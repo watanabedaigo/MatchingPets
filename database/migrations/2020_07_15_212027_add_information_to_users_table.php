@@ -14,8 +14,8 @@ class AddInformationToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('age');
-            $table->string('gender');
+            $table->string('age');//セレクトボックスで選ばせる。
+            $table->string('gender');//セレクトボックスで選ばせる。
         });
     }
 
