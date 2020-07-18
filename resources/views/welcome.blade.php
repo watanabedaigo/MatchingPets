@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(Auth::check())
-        {{ Auth::user()->name }}
-        <p>ログイン時</p>
+    @if(Auth::guard('admin')->check())
+        <p>管理者ログイン済み</p>
+        <p>データ追加画面へのリンク</p>
+    @elseif(Auth::guard('web')->check())
+        <p>ユーザーログイン済み</p>
     @else
-        <p>ログインしていない</p>
-    @endif
+        <p>ログインしていない場合のトップページ</p>
+
+    @endif    
 @endsection
