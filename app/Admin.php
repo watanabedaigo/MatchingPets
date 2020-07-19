@@ -12,4 +12,29 @@ class Admin extends Authenticatable
     protected $fillable = ['name','email','password'];
     
     protected $hidden = ['password', ];
+    
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+    
+        public function varieties()
+    {
+        return $this->hasMany(Variety::class);
+    }
+    
+        public function candidates()
+    {
+        return $this->hasMany(Candidate::class);
+    }
+    
+        public function candidatephotos()
+    {
+        return $this->hasMany(CandidatePhoto::class);
+    }
+    
+        public function places()
+    {
+        return $this->hasMany(Place::class);
+    }
 }

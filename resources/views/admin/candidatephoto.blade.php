@@ -1,17 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>地域追加</h1>
+    <h1>候補写真追加</h1>
 
     <div class="row">
         <div class="col-6">
-            {!! Form::model($place, ['route' => 'place.store']) !!}
+            {!! Form::model($candidatephoto, ['route' => 'candidatephoto.store']) !!}
 
                 <div class="form-group">
-                    {!! Form::label('place', '都道府県名:') !!}
-                    {!! Form::text('place', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('candidate_id', '候補名:') !!}
+                    {!! Form::text('candidate_id', null, ['class' => 'form-control']) !!}
                 </div>
-
+                <p>AWS s3との連携を調べて実装</p>
+              
                 {!! Form::submit('追加', ['class' => 'btn btn-primary']) !!}
                 <p>{!! link_to_route('index','データ追加ページへ',[],['class' => 'btn btn-success mt-3']) !!}</p>
 

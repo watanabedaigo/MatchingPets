@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Variety extends Model
+class Candidatephoto extends Model
 {
     public function admin()
     {

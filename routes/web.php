@@ -24,7 +24,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 
-// 以下管理者用
+// -----------------管理者用----------------------------------------------------------
 //ログイン前
 Route::group(['prefix' => 'admin'],function(){
     Route::get('login','Admin\LoginController@showLoginForm')->name('admin.showlogin');
@@ -33,6 +33,29 @@ Route::group(['prefix' => 'admin'],function(){
 //ログイン後
 Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::get('logout','Admin\LoginController@logout')->name('admin.logout');
+    // データ追加ページ一覧表示
+    Route::get('index','Admin\CreateController@index')->name('index');
+    // カテゴリー追加ページ表示
+    Route::get('category','Admin\CategoryController@create')->name('category');
+    // 品種追加ページ表示
+    Route::get('variety','Admin\VarietyController@create')->name('variety');
+    // 候補追加ページ表示
+    Route::get('candidate','Admin\CandidateController@create')->name('candidate');
+    // 候補写真追加ページ表示
+    Route::get('candidatephoto','Admin\CandidatephotoController@create')->name('candidatephoto');
+    // 地域追加ページ表示
+    Route::get('place','Admin\PlaceController@create')->name('place');
+    
+    // カテゴリー追加
+    Route::post('category','Admin\CategoryController@store')->name('category.store');
+    // 品種追加
+    Route::post('variety','Admin\VarietyController@store')->name('variety.store');
+    // 候補追加
+    Route::post('candidate','Admin\CandidateController@store')->name('candidate.store');
+    // 候補写真追加
+    Route::post('candidatephoso','Admin\CandidatephotoController@store')->name('candidatephoto.store');
+    // 地域追加
+    Route::post('place','Admin\PlaceController@store')->name('place.store');
 });
-// データ追加
+
 
