@@ -10,4 +10,9 @@ class Candidate extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    
+    public function variety()
+    {
+        return $this->belongsTo(Variety::class);
+    }
 }

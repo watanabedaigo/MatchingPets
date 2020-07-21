@@ -10,4 +10,9 @@ class Category extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    
+    public function varieties()
+    {
+        return $this->hasMany(Variety::class);
+    }
 }

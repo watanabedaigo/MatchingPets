@@ -8,6 +8,15 @@ use App\Candidate;
 
 class CandidateController extends Controller
 {
+    public function show($id)
+    {
+        $candidate = Candidate::find($id);
+        
+        return view('candidateshow',[
+            'candidate' => $candidate,
+        ]);
+    }
+
     public function create()
     {
         $candidate = new Candidate;

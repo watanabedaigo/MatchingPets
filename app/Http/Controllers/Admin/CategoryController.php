@@ -8,6 +8,27 @@ use App\Category;
 
 class CategoryController extends Controller
 {
+    public function index()
+    {
+        $categories = Category::all();
+        
+        return view('welcome',[
+            'categories' => $categories
+        ]);
+    }
+    
+    public function show($id)
+    {
+        $category = Category::find($id);
+        
+        $varieties = $category->varieties()->get();
+        
+        return view('varieties',[
+            'category' => $category,
+            'varieties' => $varieties,
+        ]);
+    }
+
     public function create()
     {
         $category = new Category;

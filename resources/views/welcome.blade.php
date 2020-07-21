@@ -8,6 +8,12 @@
         <p>ユーザーログイン済み</p>
     @else
         <p>ログインしていない場合のトップページ</p>
-
-    @endif    
+    @endif
+    
+    <h1>カテゴリー一覧</h1>
+    @if(count($categories) > 0)
+        @foreach($categories as $category)
+            <p>{!! link_to_route('category.show',$category->name, ['id' => $category->id], ['class' => 'btn btn-primary']) !!}</p>
+        @endforeach
+    @endif
 @endsection

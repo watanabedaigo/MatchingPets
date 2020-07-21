@@ -6,7 +6,6 @@
     <div class="row">
         <div class="col-6">
             {!! Form::model($candidate, ['route' => 'candidate.store']) !!}
-
                 <div class="form-group">
                     {!! Form::label('variety_id', '品種ID:') !!}
                     {!! Form::text('variety_id', null, ['class' => 'form-control']) !!}

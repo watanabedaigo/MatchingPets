@@ -17,7 +17,7 @@
                     <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト',[], ['class' => 'nav-link']) !!}</li>
                 @else
                     {{-- 無料会員登録ページへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('signup.get', 'ユーザー登録', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('signup.get', '無料会員登録', [], ['class' => 'nav-link']) !!}</li>
                     {{-- 一般ユーザーログインページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</li>
                     {{-- 管理者ログインページへのリンク --}}

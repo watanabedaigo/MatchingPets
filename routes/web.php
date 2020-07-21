@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('top');//name()を追加
+// トップページ
+Route::get('/','Admin\CategoryController@index')->name('top');
+// カテゴリーの詳細ページへ
+Route::get('category/{id}','Admin\CategoryController@show')->name('category.show');
+// 品種の詳細ページへ
+Route::get('variety/{id}','Admin\VarietyController@show')->name('variety.show');
+// 候補の詳細ページへ
+Route::get('candidate/{id}','Admin\CandidateController@show')->name('candidate.show');
 
+// -----------------一般ユーザー用----------------------------------------------------------
 // 無料会員登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');

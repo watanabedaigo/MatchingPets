@@ -8,6 +8,18 @@ use App\Variety;
 
 class VarietyController extends Controller
 {
+    public function show($id)
+    {
+        $variety = Variety::find($id);
+        
+        $candidates = $variety->candidates()->get();
+        
+        return view('candidates',[
+            'variety' => $variety,
+            'candidates' => $candidates,
+        ]);
+    }
+    
     public function create()
     {
         $variety = new Variety;
