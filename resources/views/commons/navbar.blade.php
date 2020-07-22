@@ -1,7 +1,13 @@
 <header class="mb-4">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        {{-- トップページへのリンク --}}
-        <a class="navbar-brand" href="/">MatchingPets</a>
+        
+        @if(Auth::guard('admin')->check())
+            <a class="navbar-brand" href="/">MatchingPet(管理者ログイン済み)</a>
+        @elseif(Auth::guard('web')->check())
+            <a class="navbar-brand" href="/">MatchingPet(無料会員ログイン済み)</a>
+        @else
+            <a class="navbar-brand" href="/">MatchingPet(ログイン未実施)</a>
+        @endif        
 
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
             <span class="navbar-toggler-icon"></span>
@@ -13,7 +19,7 @@
                 @if(Auth::guard('admin')->check())
                     <li class="nav-item">{!! link_to_route('admin.logout', 'ログアウト',[], ['class' => 'nav-link']) !!}</li>
                 @elseif(Auth::guard('web')->check())
-                    <li class="nav-item"><a href="#" class="nav-link">お気に入り</a></li>
+                    <li class="nav-item">{!! link_to_route('users.favorites', 'お気に入り', ['id' => \Auth::user()->id], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト',[], ['class' => 'nav-link']) !!}</li>
                 @else
                     {{-- 無料会員登録ページへのリンク --}}

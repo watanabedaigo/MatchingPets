@@ -15,4 +15,10 @@ class Candidate extends Model
     {
         return $this->belongsTo(Variety::class);
     }
+    
+    // 候補をお気に入りに追加したユーザーを取得
+    public function favorite_users()
+    {
+        return $this->belongsToMany(User::class,'favorites','candidate_id','user_id')->withTimestamps();
+    }
 }

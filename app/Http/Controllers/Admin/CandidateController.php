@@ -47,4 +47,41 @@ class CandidateController extends Controller
         return back();
     }
     
+    public function edit($id)
+    {
+        $candidate = Candidate::find($id);
+        
+        return view('admin.candidateedit',[
+            'candidate' => $candidate,
+        ]);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $candidate = Candidate::find($id);
+        
+        $candidate->price = $request->price;
+        $candidate->age = $request->age;
+        $candidate->gender = $request->gender;
+        $candidate->personality = $request->personality;
+        $candidate->personality_details = $request->personality_details;
+        $candidate->inspection = $request->inspection;
+        $candidate->place_name = $request->place_name;
+        $candidate->place_address = $request->place_address;
+        $candidate->place_phonenumber = $request->place_phonenumber;
+        $candidate->bussinesshours = $request->bussinesshours;
+        $candidate->place_id = $request->place_id;
+        $candidate->save();
+
+        return redirect('/');
+    }
+    
+    public function destroy($id)
+    {
+        $candidate = Candidate::findOrFail($id);
+        $candidate->delete();
+
+        return redirect('/');
+    }
+    
 }

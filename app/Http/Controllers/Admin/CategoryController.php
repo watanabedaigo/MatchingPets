@@ -49,4 +49,32 @@ class CategoryController extends Controller
         
         return back();
     }
+    
+    public function edit($id)
+    {
+        $category = Category::find($id);
+        
+        return view('admin.categoryedit',[
+            'category' => $category,
+        ]);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $category = Category::find($id);
+        
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect('/');
+    }
+    
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect('/');
+    }
+    
 }

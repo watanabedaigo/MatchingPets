@@ -43,4 +43,37 @@ class VarietyController extends Controller
         
         return back();
     }
+    
+    public function edit($id)
+    {
+        $variety = Variety::find($id);
+        
+        return view('admin.varietyedit',[
+            'variety' => $variety,
+        ]);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $variety = Variety::find($id);
+        
+        $variety->name = $request->name;
+        $variety->category_id= $request->category_id;
+        $variety->feature = $request->feature;
+        $variety->lifespan = $request->lifespan;
+        $variety->breedingtool = $request->breedingtool;
+        $variety->cost = $request->cost;
+        $variety->save();
+
+        return redirect('/');
+    }
+    
+    public function destroy($id)
+    {
+        $variety = Variety::findOrFail($id);
+        $variety->delete();
+
+        return redirect('/');
+    }
+    
 }
