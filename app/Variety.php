@@ -20,4 +20,9 @@ class Variety extends Model
     {
         return $this->hasMany(Candidate::class);
     }
+    
+    public function loadRelationshipCounts()
+    {
+        $this->loadCount('candidates');
+    }
 }

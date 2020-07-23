@@ -12,6 +12,8 @@ class VarietyController extends Controller
     {
         $variety = Variety::find($id);
         
+        $variety->loadRelationshipCounts();
+
         $candidates = $variety->candidates()->get();
         
         return view('candidates',[
@@ -75,5 +77,5 @@ class VarietyController extends Controller
 
         return redirect('/');
     }
-    
+
 }

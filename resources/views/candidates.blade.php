@@ -3,6 +3,8 @@
 @section('content')
     <h1>候補一覧</h1>
     {{ $variety->name }}
+    <p>候補数　{{ $variety->candidates_count }}</p>
+    
      @if(count($candidates) > 0)
         @foreach($candidates as $candidate)
         <div class="border border-primary">

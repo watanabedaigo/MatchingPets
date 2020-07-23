@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>お気に入り一覧</h1>
-    {{ $user->name }}
+    <h1>{{ $user->name }}さんのお気に入り一覧</h1>
+    <p>お気に入り数　{{ $user->favorites_count }}</p>
+    
     @if(count($favorites) > 0)
         @foreach($favorites as $favorite)
         <div class="border border-primary">

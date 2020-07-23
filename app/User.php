@@ -72,4 +72,9 @@ class User extends Authenticatable
             return false;
         }
     }
+    
+    public function loadRelationshipCounts()
+    {
+        $this->loadCount('favorites');
+    }
 }

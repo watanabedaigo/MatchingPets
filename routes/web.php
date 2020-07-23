@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // -----------------ログイン関係なし----------------------------------------------------------
 // トップページ
 Route::get('/','Admin\CategoryController@index')->name('top');

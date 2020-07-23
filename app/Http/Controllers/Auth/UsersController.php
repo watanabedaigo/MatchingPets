@@ -12,7 +12,9 @@ class UsersController extends Controller
     public function favorites($id)
     {
         $user = User::findOrFail($id);
-        // $favorites = $user->favorites()->get();
+        
+        $user->loadRelationshipCounts();
+    
         $favorites = $user->favorites()->orderBy('created_at', 'desc')->get();
         
         return view('auth.favorites',[
