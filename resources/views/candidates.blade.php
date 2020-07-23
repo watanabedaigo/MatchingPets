@@ -26,7 +26,13 @@
                     {!! Form::close() !!}
                 @endif
             @endif
-    
+            
+            @foreach($candidatephotos as $candidatephoto)
+                @if ($candidatephoto->candidate_id == $candidate->id)
+                <img src="{{ $candidatephoto->image_path }}">
+                @endif
+            @endforeach
+
             <p class="mb-0">{{ $candidate->price }}</p>
             <p class="mb-0">{{ $candidate->age }}</p>
             <p class="mb-0">{{ $candidate->gender }}</p>

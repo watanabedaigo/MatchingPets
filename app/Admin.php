@@ -18,22 +18,22 @@ class Admin extends Authenticatable
         return $this->hasMany(Category::class);
     }
     
-        public function varieties()
+    public function varieties()
     {
         return $this->hasMany(Variety::class);
     }
     
-        public function candidates()
+    public function candidates()
     {
         return $this->hasMany(Candidate::class);
     }
     
-        public function candidatephotos()
+    public function candidatephotos()
     {
         return $this->hasMany(CandidatePhoto::class);
     }
     
-        public function places()
+    public function places()
     {
         return $this->hasMany(Place::class);
     }

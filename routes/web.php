@@ -71,7 +71,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     // 候補追加
     Route::post('candidate','Admin\CandidateController@store')->name('candidate.store');
     // 候補写真追加
-    Route::post('candidatephoso','Admin\CandidatephotoController@store')->name('candidatephoto.store');
+    Route::post('candidatephoto','Admin\CandidatephotoController@store')->name('candidatephoto.store');
     // 地域追加
     Route::post('place','Admin\PlaceController@store')->name('place.store');
     

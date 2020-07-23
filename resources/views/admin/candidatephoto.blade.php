@@ -5,15 +5,21 @@
 
     <div class="row">
         <div class="col-6">
-            {!! Form::model($candidatephoto, ['route' => 'candidatephoto.store']) !!}
+            {!! Form::model($candidatephoto, ['route' => 'candidatephoto.store', 'files' => true]) !!}
 
                 <div class="form-group">
-                    {!! Form::label('candidate_id', '候補名:') !!}
+                    {!! Form::label('candidate_id', '候補ID:') !!}
                     {!! Form::text('candidate_id', null, ['class' => 'form-control']) !!}
                 </div>
-                <p>AWS s3との連携を調べて実装</p>
+                
+                <div class="mb-3">
+                    {!! Form::file('image', $attributes = []) !!}<!--<input type="file" name="image">-->
+                    {{ csrf_field() }}
+                    <!--<input type="submit" value="アップロード">-->
+                </div>
               
                 {!! Form::submit('追加', ['class' => 'btn btn-primary']) !!}
+                
                 <p>{!! link_to_route('index','データ追加ページへ',[],['class' => 'btn btn-success mt-3']) !!}</p>
 
             {!! Form::close() !!}

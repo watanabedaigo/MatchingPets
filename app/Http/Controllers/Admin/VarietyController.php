@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Variety;
+use App\Candidatephoto;
 
 class VarietyController extends Controller
 {
@@ -13,12 +14,15 @@ class VarietyController extends Controller
         $variety = Variety::find($id);
         
         $variety->loadRelationshipCounts();
+        
+        $candidatephotos = Candidatephoto::all();
 
         $candidates = $variety->candidates()->get();
         
         return view('candidates',[
             'variety' => $variety,
             'candidates' => $candidates,
+            'candidatephotos' => $candidatephotos,
         ]);
     }
     

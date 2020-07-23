@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Candidatephoto;
+use Storage;
 
 class CandidatephotoController extends Controller
 {
@@ -21,12 +22,16 @@ class CandidatephotoController extends Controller
     {
         $candidatephoto = new Candidatephoto;
         $candidatephoto->candidate_id = $request->candidate_id;
-        $candidatephoto->photo = $request->photo;
         $candidatephoto->admin_id = $request->user()->id;
+        
+        $image = $request->file('image');
+        $path = Storage::disk('s3')->putFile('matchingpets', $image, 'public');
+        $candidatephoto->image_path = Storage::disk('s3')->url($path);
+        
         $candidatephoto->save();
 
-        
         return back();
     }
+
 }
 

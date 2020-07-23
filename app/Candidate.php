@@ -21,4 +21,9 @@ class Candidate extends Model
     {
         return $this->belongsToMany(User::class,'favorites','candidate_id','user_id')->withTimestamps();
     }
+    
+    public function candidatephotos()
+    {
+        return $this->hasMany(Candidatephoto::class);
+    }
 }

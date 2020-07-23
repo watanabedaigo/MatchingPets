@@ -10,4 +10,15 @@ class Candidatephoto extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
+    
+    protected $fillable = [
+        'photo', 
+    ];
+    
+    protected $table = 'candidate_photos';
 }
