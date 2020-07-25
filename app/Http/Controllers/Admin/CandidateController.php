@@ -5,15 +5,111 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Candidate;
+use App\Variety;
+use App\Candidatephoto;
 
 class CandidateController extends Controller
 {
+    public function created_at_asc($id)
+    {
+        $variety = Variety::find($id);
+        
+        $candidates = $variety->candidates()->orderBy('created_at','asc')->get();
+        
+        $candidatephotos = Candidatephoto::all();
+        
+        return view('candidates',[
+            'variety' => $variety,
+            'candidates' => $candidates,
+            'candidatephotos' => $candidatephotos,
+        ]);
+    }
+    
+    public function created_at_desc($id)
+    {
+        $variety = Variety::find($id);
+        
+        $candidates = $variety->candidates()->orderBy('created_at','desc')->get();
+        
+        $candidatephotos = Candidatephoto::all();
+        
+        return view('candidates',[
+            'variety' => $variety,
+            'candidates' => $candidates,
+            'candidatephotos' => $candidatephotos,
+        ]);
+    }
+    
+    public function price_asc($id)
+    {
+        $variety = Variety::find($id);
+        
+        $candidates = $variety->candidates()->orderBy('price','asc')->get();
+        
+        $candidatephotos = Candidatephoto::all();
+        
+        return view('candidates',[
+            'variety' => $variety,
+            'candidates' => $candidates,
+            'candidatephotos' => $candidatephotos,
+        ]);
+    }
+    
+    public function price_desc($id)
+    {
+        $variety = Variety::find($id);
+        
+        $candidates = $variety->candidates()->orderBy('price','desc')->get();
+        
+        $candidatephotos = Candidatephoto::all();
+        
+        return view('candidates',[
+            'variety' => $variety,
+            'candidates' => $candidates,
+            'candidatephotos' => $candidatephotos,
+        ]);
+    }
+    
+    public function age_asc($id)
+    {
+        $variety = Variety::find($id);
+        
+        $candidates = $variety->candidates()->orderBy('age','asc')->get();
+        
+        $candidatephotos = Candidatephoto::all();
+        
+        return view('candidates',[
+            'variety' => $variety,
+            'candidates' => $candidates,
+            'candidatephotos' => $candidatephotos,
+        ]);
+    }
+    
+    public function age_desc($id)
+    {
+        $variety = Variety::find($id);
+        
+        $candidates = $variety->candidates()->orderBy('age','desc')->get();
+        
+        $candidatephotos = Candidatephoto::all();
+        
+        return view('candidates',[
+            'variety' => $variety,
+            'candidates' => $candidates,
+            'candidatephotos' => $candidatephotos,
+        ]);
+    }
+    
+    
     public function show($id)
     {
         $candidate = Candidate::find($id);
         
+        $candidatephotos = Candidatephoto::all();
+        
         return view('candidateshow',[
             'candidate' => $candidate,
+            'candidatephotos' => $candidatephotos,
         ]);
     }
 

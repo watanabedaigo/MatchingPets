@@ -1,5 +1,5 @@
 <header class="mb-4">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:#87cefa;">
         
         @if(Auth::guard('admin')->check())
             <a class="navbar-brand" href="/">MatchingPet(管理者ログイン済み)</a>
@@ -17,15 +17,15 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if(Auth::guard('admin')->check())
-                    <li class="nav-item">{!! link_to_route('admin.logout', 'ログアウト',[], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item ">{!! link_to_route('admin.logout', 'ログアウト',[], ['class' => 'nav-link rounded text-dark bg-warning']) !!}</li>
                 @elseif(Auth::guard('web')->check())
-                    <li class="nav-item">{!! link_to_route('users.favorites', 'お気に入り', ['id' => \Auth::user()->id], ['class' => 'nav-link']) !!}</li>
-                    <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト',[], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item mr-2">{!! link_to_route('users.favorites', 'お気に入り', ['id' => \Auth::user()->id], ['class' => 'nav-link rounded text-dark bg-warning']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト',[], ['class' => 'nav-link rounded text-dark bg-warning']) !!}</li>
                 @else
                     {{-- 無料会員登録ページへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('signup.get', '無料会員登録', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item mr-2">{!! link_to_route('signup.get', '無料会員登録', [], ['class' => 'nav-link rounded text-dark bg-warning']) !!}</li>
                     {{-- 一般ユーザーログインページへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link rounded text-dark bg-warning']) !!}</li>
                     {{-- 管理者ログインページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('admin.showlogin', '管理者ログイン', [], ['class' => 'nav-link']) !!}</li>
                 @endif

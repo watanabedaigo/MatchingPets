@@ -10,6 +10,13 @@
             {!! Form::open(['route' => ['favorites.unfavorite', $favorite->id], 'method' => 'delete']) !!}
                 {!! Form::submit('お気に入りから外す', ['class' => "btn btn-danger"]) !!}
             {!! Form::close() !!}
+            
+            @foreach($candidatephotos as $candidatephoto)
+                @if ($candidatephoto->candidate_id == $favorite->id)
+                <img src="{{ $candidatephoto->image_path }}">
+                @endif
+            @endforeach
+            
             <p class="mb-0">{!! link_to_route('candidate.show','候補詳細', ['id' => $favorite->id], ['class' => 'btn btn-primary']) !!}</p>
             <p class="mb-0">{{ $favorite->price }}</p>
             <p class="mb-0">{{ $favorite->age }}</p>

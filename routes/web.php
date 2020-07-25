@@ -20,6 +20,19 @@ Route::get('category/{id}','Admin\CategoryController@show')->name('category.show
 Route::get('variety/{id}','Admin\VarietyController@show')->name('variety.show');
 // 候補の詳細ページへ
 Route::get('candidate/{id}','Admin\CandidateController@show')->name('candidate.show');
+// 品種の候補の順番入れ替え
+// ・値段高い順
+Route::get('variety/{id}/price_desc','Admin\CandidateController@price_desc')->name('candidate.price_desc');
+// ・値段低い順
+Route::get('variety/{id}/price_asc','Admin\CandidateController@price_asc')->name('candidate.price_asc');
+// ・年齢高い順
+Route::get('variety/{id}/age_desc','Admin\CandidateController@age_desc')->name('candidate.age_desc');
+// ・年齢低い順
+Route::get('variety/{id}/age_asc','Admin\CandidateController@age_asc')->name('candidate.age_asc');
+// ・追加日新しい順
+Route::get('variety/{id}/created_at_desc','Admin\CandidateController@created_at_desc')->name('candidate.created_at_desc');
+// ・追加日古い順
+Route::get('variety/{id}/created_at_asc','Admin\CandidateController@created_at_asc')->name('candidate.created_at_asc');
 
 // -----------------一般ユーザー用----------------------------------------------------------
 // 無料会員登録

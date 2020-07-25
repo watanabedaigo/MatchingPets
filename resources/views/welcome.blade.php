@@ -11,9 +11,9 @@
             <div class="mb-1">
                 {!! link_to_route('category.show',$category->name, ['id' => $category->id], ['class' => 'btn btn-primary']) !!}
                 @if(Auth::guard('admin')->check())
-                    <p class="mb-0">{!! link_to_route('category.edit', '編集', ['id' => $category->id], ['class' => 'btn btn-warning']) !!}</p>
+                    <p class="mb-0">{!! link_to_route('category.edit', '編集', ['id' => $category->id], ['class' => 'btn btn-secondary']) !!}</p>
                     {!! Form::model($category, ['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
-                        {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::submit('削除', ['class' => 'btn btn-secondary']) !!}
                     {!! Form::close() !!}
                 @endif
                 <br>

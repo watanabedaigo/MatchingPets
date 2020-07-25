@@ -16,8 +16,8 @@ class CreateCandidatesTable extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('variety_id');
-            $table->string('price');
-            $table->string('age');
+            $table->bigInteger('price');
+            $table->bigInteger('age');
             $table->string('gender');
             $table->string('personality');
             $table->string('personality_details',1500);
