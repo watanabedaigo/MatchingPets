@@ -14,6 +14,8 @@ class CandidateController extends Controller
     {
         $variety = Variety::find($id);
         
+        $variety->loadRelationshipCounts();
+        
         $candidates = $variety->candidates()->orderBy('created_at','asc')->get();
         
         $candidatephotos = Candidatephoto::all();
@@ -28,6 +30,8 @@ class CandidateController extends Controller
     public function created_at_desc($id)
     {
         $variety = Variety::find($id);
+        
+        $variety->loadRelationshipCounts();
         
         $candidates = $variety->candidates()->orderBy('created_at','desc')->get();
         
@@ -44,6 +48,8 @@ class CandidateController extends Controller
     {
         $variety = Variety::find($id);
         
+        $variety->loadRelationshipCounts();
+        
         $candidates = $variety->candidates()->orderBy('price','asc')->get();
         
         $candidatephotos = Candidatephoto::all();
@@ -58,6 +64,8 @@ class CandidateController extends Controller
     public function price_desc($id)
     {
         $variety = Variety::find($id);
+        
+        $variety->loadRelationshipCounts();
         
         $candidates = $variety->candidates()->orderBy('price','desc')->get();
         
@@ -74,6 +82,8 @@ class CandidateController extends Controller
     {
         $variety = Variety::find($id);
         
+        $variety->loadRelationshipCounts();
+        
         $candidates = $variety->candidates()->orderBy('age','asc')->get();
         
         $candidatephotos = Candidatephoto::all();
@@ -88,6 +98,8 @@ class CandidateController extends Controller
     public function age_desc($id)
     {
         $variety = Variety::find($id);
+        
+        $variety->loadRelationshipCounts();
         
         $candidates = $variety->candidates()->orderBy('age','desc')->get();
         

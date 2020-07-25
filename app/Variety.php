@@ -25,4 +25,9 @@ class Variety extends Model
     {
         $this->loadCount('candidates');
     }
+    
+    public function varietyphotos()
+    {
+        return $this->hasMany(Varietyphoto::class);
+    }
 }

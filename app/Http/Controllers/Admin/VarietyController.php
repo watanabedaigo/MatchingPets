@@ -14,10 +14,10 @@ class VarietyController extends Controller
         $variety = Variety::find($id);
         
         $variety->loadRelationshipCounts();
-        
-        $candidatephotos = Candidatephoto::all();
 
         $candidates = $variety->candidates()->get();
+        
+        $candidatephotos = Candidatephoto::all();
         
         return view('candidates',[
             'variety' => $variety,

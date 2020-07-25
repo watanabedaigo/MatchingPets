@@ -15,4 +15,10 @@ class Category extends Model
     {
         return $this->hasMany(Variety::class);
     }
+    
+    public function categoryphotos()
+    {
+        return $this->hasMany(Categortyphoto::class);
+    }
+    
 }

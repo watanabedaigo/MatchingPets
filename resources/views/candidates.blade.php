@@ -1,15 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>候補一覧</h1>
-    {{ $variety->name }}
+    <h3>{{ $variety->name }}　候補一覧</h3>
     <p>候補数　{{ $variety->candidates_count }}</p>
     
     <div class="row mb-3">
         <div class="col-3">
-            <span>記載日</span>
-            {!! link_to_route('candidate.created_at_desc','新', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}
-            {!! link_to_route('candidate.created_at_asc','古', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}
+        <span>記載日</span>
+        {!! link_to_route('candidate.created_at_desc','新', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}
+        {!! link_to_route('candidate.created_at_asc','古', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}
         </div>
         <div class="col-3">
         <span>値段</span>
@@ -25,7 +24,7 @@
     
      @if(count($candidates) > 0)
         @foreach($candidates as $candidate)
-        <div class="border border-primary">
+        <div class="border border-primary mb-2">
             <p class="mb-0">{!! link_to_route('candidate.show','候補詳細', ['id' => $candidate->id], ['class' => 'btn btn-primary']) !!}</p>
             @if(Auth::guard('admin')->check())
                 <p class="mb-0">{!! link_to_route('candidate.edit', '編集', ['id' => $candidate->id], ['class' => 'btn btn-secondary']) !!}</p>
@@ -44,10 +43,10 @@
                 @endif
             @endif
             <div class="row">
-                <div class="col-5">
+                <div class="col-4">
                     @foreach($candidatephotos as $candidatephoto)
                         @if ($candidatephoto->candidate_id == $candidate->id)
-                        <img src="{{ $candidatephoto->image_path }}">
+                        <img src="{{ $candidatephoto->image_path }}" class="d-block mx-auto">
                         @endif
                     @endforeach
                 </div>
@@ -62,7 +61,6 @@
                 </div>
             </div>
         </div>
-        <p></p>
         @endforeach
     @endif
 @endsection

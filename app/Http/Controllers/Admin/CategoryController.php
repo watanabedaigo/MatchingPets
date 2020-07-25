@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use App\Varietyphoto;
+use App\Categoryphoto;
+
 
 class CategoryController extends Controller
 {
@@ -12,8 +15,11 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         
+        $categoryphotos = Categoryphoto::all();
+        
         return view('welcome',[
-            'categories' => $categories
+            'categories' => $categories,
+            'categoryphotos' => $categoryphotos,
         ]);
     }
     
@@ -23,9 +29,12 @@ class CategoryController extends Controller
         
         $varieties = $category->varieties()->get();
         
+        $varietyphotos = Varietyphoto::all();
+        
         return view('varieties',[
             'category' => $category,
             'varieties' => $varieties,
+            'varietyphotos' => $varietyphotos,
         ]);
     }
 
