@@ -18,6 +18,7 @@ class CreateCandidatesTable extends Migration
             $table->unsignedBigInteger('variety_id');
             $table->bigInteger('price');
             $table->bigInteger('age');
+            $table->string('birthday');
             $table->string('gender');
             $table->string('personality');
             $table->string('personality_details',1500);

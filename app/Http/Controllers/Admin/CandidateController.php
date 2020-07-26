@@ -140,6 +140,7 @@ class CandidateController extends Controller
         $candidate->variety_id = $request->variety_id;
         $candidate->price = $request->price;
         $candidate->age = $request->age;
+        $candidate->birthday = $request->birthday;
         $candidate->gender = $request->gender;
         $candidate->personality = $request->personality;
         $candidate->personality_details = $request->personality_details;
@@ -181,9 +182,10 @@ class CandidateController extends Controller
         $candidate->place_phonenumber = $request->place_phonenumber;
         $candidate->bussinesshours = $request->bussinesshours;
         $candidate->place_id = $request->place_id;
+        $candidate->coupon = $request->coupon;
         $candidate->save();
 
-        return back();
+        return redirect('/');
     }
     
     public function destroy($id)

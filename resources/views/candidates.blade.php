@@ -2,16 +2,24 @@
 
 @section('content')
     <h3>{{ $variety->name }}　候補一覧</h3>
-    <div class="col-6 border border-primary mb-2">
-        <p>飼育上の注意</p>
-        <p class="mb-0">特徴</p>
-        <p>{{ $variety->feature }}</p>
-        <p class="mb-0">平均寿命</p>
-        <p>{{ $variety->lifespan }}</p>
-        <p class="mb-0">必要な道具</p>
-        <p>{{ $variety->breedingtool }}</p>
-        <p class="mb-0">平均的な費用</p>
-        <p>{{ $variety->cost }}</p>
+    <div class="border border-primary mb-2 ">
+        <p class="mb-0">飼育上の注意</p>
+        <div class="col-2 d-inline-block">
+            <p class="mb-0">特徴</p>
+            <p class="mb-0">{{ $variety->feature }}</p>
+        </div>
+        <div class="col-2 d-inline-block">
+            <p class="mb-0">平均寿命</p>
+            <p class="mb-0">{{ $variety->lifespan }}</p>
+        </div>
+        <div class="col-2 d-inline-block">
+            <p class="mb-0">必要な道具</p>
+            <p class="mb-0">{{ $variety->breedingtool }}</p>
+        </div>
+        <div class="col-2 d-inline-block">
+            <p class="mb-0">費用</p>
+            <p class="mb-0">{{ $variety->cost }}</p>
+        </div>
     </div>
     <p>候補数　{{ $variety->candidates_count }}</p>
     
@@ -65,14 +73,14 @@
                     @endforeach
                 </div>
                 <div class="col-6">
-                    <p class="mb-0">{{ $candidate->price }}</p>
-                    <p class="mb-0">{{ $candidate->age }}</p>
-                    <p class="mb-0">{{ $candidate->gender }}</p>
-                    <p class="mb-0">{{ $candidate->personality }}</p>
-                    <p class="mb-0">{{ $candidate->inspection }}</p>
-                    <p class="mb-0">{{ $candidate->place_name }}</p>
-                    <p class="mb-0">{{ $candidate->place_address }}</p>
-                    <p class="mb-0">{{ $candidate->coupon }}</p>
+                    <p class="mb-0">値段　　：{{ $candidate->price }}</p>
+                    <p class="mb-0">年齢　　：{{ $candidate->age }}</p>
+                    <p class="mb-0">性別　　：{{ $candidate->gender }}</p>
+                    <p class="mb-0">性格　　：{{ $candidate->personality }}</p>
+                    <p class="mb-0">検査　　：{{ $candidate->inspection }}</p>
+                    <p class="mb-0">飼育場所：{{ $candidate->place_name }}</p>
+                    <p class="mb-0">住所　　：{{ $candidate->place_address }}</p>
+                    <p class="mb-0">クーポン：{{ $candidate->coupon }}</p>
                 </div>
             </div>
         </div>

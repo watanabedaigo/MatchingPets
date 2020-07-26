@@ -24,7 +24,8 @@ Route::get('candidate/{id}','Admin\CandidateController@show')->name('candidate.s
 // Route::get('variety/{id}/feature','Admin\VarietyController@feature')->name('variety.feature');
 // クーポン使用ページへ
 Route::get('candidate/{id}/coupon','Admin\CandidateController@coupon')->name('candidate.coupon');
-
+// トップページで品種を検索、該当する候補を表示するページへ
+Route::get('variety-search','Admin\VarietyController@search')->name('variety.search');
 
 // 品種の候補の順番入れ替え
 // ・値段高い順

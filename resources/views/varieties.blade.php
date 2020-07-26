@@ -5,9 +5,9 @@
     <div class="row">
          @if(count($varieties) > 0)
             @foreach($varieties as $variety)
-                <div class="mb-1 col-4 border border-primary">
+                <div class="mb-1 col-4 border border-primary ml-3 pl-0">
               
-                    <p class = "mt-1 mb-0">{!! link_to_route('variety.show',$variety->name, ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}</p>
+                    <p class = "mt-0 mb-0">{!! link_to_route('variety.show',$variety->name, ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}</p>
                 
                     @foreach($varietyphotos as $varietyphoto)
                         @if ($varietyphoto->variety_id == $variety->id)

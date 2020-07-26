@@ -71,7 +71,7 @@ class VarietyController extends Controller
         $variety->cost = $request->cost;
         $variety->save();
 
-        return back();
+        return redirect('/');
     }
     
     public function destroy($id)
@@ -80,6 +80,24 @@ class VarietyController extends Controller
         $variety->delete();
 
         return back();
+    }
+
+    public function search(Request $request)
+    {
+        $name = $request->input('name');
+        
+        $query = Variety::query();
+        
+        // 引っかかる候補を変えたければLIKEの後ろを変えて、抽象度を変える。
+        // 引っかからなければトップページへ、かつエラーメッセージ表示
+        if(!empty($name)){
+            $query->where('name','LIKE',"%{$name}%");
+        }
+        
+        $variety = $query->get()->first();
+        
+        return redirect('variety/' . $variety->id);
+        
     }
     
     // public function feature($id)

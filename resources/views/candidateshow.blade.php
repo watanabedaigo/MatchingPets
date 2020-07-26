@@ -33,17 +33,17 @@
             @endforeach
         </div>
         <div class="col-6">
-            <p class="mb-0">{{ $candidate->price }}</p>
-            <p class="mb-0">{{ $candidate->age }}</p>
-            <p class="mb-0">{{ $candidate->gender }}</p>
-            <p class="mb-0">{{ $candidate->personality }}</p>
-            <p class="mb-0">{{ $candidate->personality_details }}</p>
-            <p class="mb-0">{{ $candidate->inspection }}</p>
-            <p class="mb-0">{{ $candidate->place_name }}</p>
-            <p class="mb-0">{{ $candidate->place_address }}</p>
-            <p class="mb-0">{{ $candidate->place_phonenumber }}</p>
-            <p class="mb-0">{{ $candidate->place_bussinesshours }}</p>
-            <p class="mb-0">{{ $candidate->coupon }}</p>
+            <p class="mb-0">値段　　：{{ $candidate->price }}</p>
+            <p class="mb-0">年齢　　：{{ $candidate->age }}</p>
+            <p class="mb-0">誕生日　：{{ $candidate->birthday }}</p>
+            <p class="mb-0">性別　　：{{ $candidate->gender }}</p>
+            <p class="mb-0">性格詳細：{{ $candidate->personality_details }}</p>
+            <p class="mb-0">検査　　：{{ $candidate->inspection }}</p>
+            <p class="mb-0">飼育場所：{{ $candidate->place_name }}</p>
+            <p class="mb-0">住所　　：{{ $candidate->place_address }}</p>
+            <p class="mb-0">電話番号：{{ $candidate->place_phonenumber }}</p>
+            <p class="mb-0">営業時間：{{ $candidate->bussinesshours }}</p>
+            <p class="mb-0">クーポン：{{ $candidate->coupon }}</p>
         </div>
     </div>
 @endsection

@@ -19,6 +19,10 @@
                     {!! Form::text('age', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
+                    {!! Form::label('birthday', '誕生日:') !!}
+                    {!! Form::text('birthday', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
                     {!! Form::label('gender', '性別:') !!}
                     {!! Form::text('gender', null, ['class' => 'form-control']) !!}
                 </div>

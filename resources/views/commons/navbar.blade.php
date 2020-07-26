@@ -17,6 +17,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if(Auth::guard('admin')->check())
+                    <li class="nav-item mr-2">{!! link_to_route('index','データ追加',[],['class' => 'nav-link rounded text-dark bg-warning']) !!}</li>
                     <li class="nav-item ">{!! link_to_route('admin.logout', 'ログアウト',[], ['class' => 'nav-link rounded text-dark bg-warning']) !!}</li>
                 @elseif(Auth::guard('web')->check())
                     <li class="nav-item mr-2">{!! link_to_route('users.favorites', 'お気に入り', ['id' => \Auth::user()->id], ['class' => 'nav-link rounded text-dark bg-warning']) !!}</li>
