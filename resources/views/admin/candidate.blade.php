@@ -54,6 +54,14 @@
                     {!! Form::label('place_id', '都道府県ID:') !!}
                     {!! Form::text('place_id', null, ['class' => 'form-control']) !!}
                 </div>
+                <div class="form-group">
+                    {!! Form::label('place_details_id', '市区町村ID:') !!}
+                    {!! Form::text('place_details_id', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('coupon', 'クーポン:') !!}
+                    {!! Form::text('coupon', null, ['class' => 'form-control']) !!}
+                </div>
 
                 {!! Form::submit('追加', ['class' => 'btn btn-primary']) !!}
                 <p>{!! link_to_route('index','データ追加ページへ',[],['class' => 'btn btn-success mt-3']) !!}</p>

@@ -149,7 +149,9 @@ class CandidateController extends Controller
         $candidate->place_phonenumber = $request->place_phonenumber;
         $candidate->bussinesshours = $request->bussinesshours;
         $candidate->place_id = $request->place_id;
+        $candidate->place_details_id = $request->place_details_id;
         $candidate->admin_id = $request->user()->id;
+        $candidate->coupon = $request->coupon;
         $candidate->save();        
         
         return back();
@@ -181,7 +183,7 @@ class CandidateController extends Controller
         $candidate->place_id = $request->place_id;
         $candidate->save();
 
-        return redirect('/');
+        return back();
     }
     
     public function destroy($id)
@@ -189,7 +191,16 @@ class CandidateController extends Controller
         $candidate = Candidate::findOrFail($id);
         $candidate->delete();
 
-        return redirect('/');
+        return back();
     }
     
+    public function coupon($id)
+    {
+        $candidate = Candidate::find($id);
+    
+        return view('candidatecoupon',[
+            'candidate' => $candidate,
+        ]);
+    }
+
 }

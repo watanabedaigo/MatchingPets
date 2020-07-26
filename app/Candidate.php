@@ -26,4 +26,9 @@ class Candidate extends Model
     {
         return $this->hasMany(Candidatephoto::class);
     }
+    
+    public function placedetail()
+    {
+        return $this->belongsTo(Placedetail::class);
+    }
 }

@@ -47,4 +47,9 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Varietyphoto::class);
     }
+    
+    public function placedetails()
+    {
+        return $this->hasMany(Placedetails::class);
+    }
 }

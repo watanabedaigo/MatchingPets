@@ -75,7 +75,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect('/');
+        return back();
     }
     
     public function destroy($id)
@@ -83,7 +83,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect('/');
+        return back();
     }
     
 }

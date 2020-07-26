@@ -2,6 +2,17 @@
 
 @section('content')
     <h3>{{ $variety->name }}　候補一覧</h3>
+    <div class="col-6 border border-primary mb-2">
+        <p>飼育上の注意</p>
+        <p class="mb-0">特徴</p>
+        <p>{{ $variety->feature }}</p>
+        <p class="mb-0">平均寿命</p>
+        <p>{{ $variety->lifespan }}</p>
+        <p class="mb-0">必要な道具</p>
+        <p>{{ $variety->breedingtool }}</p>
+        <p class="mb-0">平均的な費用</p>
+        <p>{{ $variety->cost }}</p>
+    </div>
     <p>候補数　{{ $variety->candidates_count }}</p>
     
     <div class="row mb-3">
@@ -42,6 +53,9 @@
                     {!! Form::close() !!}               
                 @endif
             @endif
+            @if($candidate->coupon != NULL)
+                <p>{!! link_to_route('candidate.coupon','クーポンを使う', ['id' => $candidate->id], ['class' => 'btn btn-warning']) !!}</p>
+            @endif
             <div class="row">
                 <div class="col-4">
                     @foreach($candidatephotos as $candidatephoto)
@@ -58,6 +72,7 @@
                     <p class="mb-0">{{ $candidate->inspection }}</p>
                     <p class="mb-0">{{ $candidate->place_name }}</p>
                     <p class="mb-0">{{ $candidate->place_address }}</p>
+                    <p class="mb-0">{{ $candidate->coupon }}</p>
                 </div>
             </div>
         </div>

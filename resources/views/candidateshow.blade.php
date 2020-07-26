@@ -20,26 +20,30 @@
                 {!! Form::close() !!}               
             @endif
         @endif
-        <div class="row">
-            <div class="col-4">
-                @foreach($candidatephotos as $candidatephoto)
-                    @if ($candidatephoto->candidate_id == $candidate->id)
+        
+        @if($candidate->coupon != NULL)
+                <p>{!! link_to_route('candidate.coupon','クーポンを使う', ['id' => $candidate->id], ['class' => 'btn btn-warning']) !!}</p>
+        @endif
+        
+        <div class="col-4">
+            @foreach($candidatephotos as $candidatephoto)
+                @if ($candidatephoto->candidate_id == $candidate->id)
                     <img src="{{ $candidatephoto->image_path }}" class="d-block mx-auto">
-                    @endif
-                @endforeach
-            </div>
-            <div class="col-6">
-                <p class="mb-0">{{ $candidate->price }}</p>
-                <p class="mb-0">{{ $candidate->age }}</p>
-                <p class="mb-0">{{ $candidate->gender }}</p>
-                <p class="mb-0">{{ $candidate->personality }}</p>
-                <p class="mb-0">{{ $candidate->personality_details }}</p>
-                <p class="mb-0">{{ $candidate->inspection }}</p>
-                <p class="mb-0">{{ $candidate->place_name }}</p>
-                <p class="mb-0">{{ $candidate->place_address }}</p>
-                <p class="mb-0">{{ $candidate->place_phonenumber }}</p>
-                <p class="mb-0">{{ $candidate->place_bussinesshours }}</p>
-            </div>
+                @endif
+            @endforeach
+        </div>
+        <div class="col-6">
+            <p class="mb-0">{{ $candidate->price }}</p>
+            <p class="mb-0">{{ $candidate->age }}</p>
+            <p class="mb-0">{{ $candidate->gender }}</p>
+            <p class="mb-0">{{ $candidate->personality }}</p>
+            <p class="mb-0">{{ $candidate->personality_details }}</p>
+            <p class="mb-0">{{ $candidate->inspection }}</p>
+            <p class="mb-0">{{ $candidate->place_name }}</p>
+            <p class="mb-0">{{ $candidate->place_address }}</p>
+            <p class="mb-0">{{ $candidate->place_phonenumber }}</p>
+            <p class="mb-0">{{ $candidate->place_bussinesshours }}</p>
+            <p class="mb-0">{{ $candidate->coupon }}</p>
         </div>
     </div>
 @endsection

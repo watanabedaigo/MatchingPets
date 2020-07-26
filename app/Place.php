@@ -10,4 +10,9 @@ class Place extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    
+    public function placedetails()
+    {
+        return $this->hasMany(Placedetails::class);
+    }
 }

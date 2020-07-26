@@ -20,6 +20,11 @@ Route::get('category/{id}','Admin\CategoryController@show')->name('category.show
 Route::get('variety/{id}','Admin\VarietyController@show')->name('variety.show');
 // 候補の詳細ページへ
 Route::get('candidate/{id}','Admin\CandidateController@show')->name('candidate.show');
+// 品種の飼育上の注意ページへ　※候補のページに小さく乗せるためリンクを作る必要はない・・・？
+// Route::get('variety/{id}/feature','Admin\VarietyController@feature')->name('variety.feature');
+// クーポン使用ページへ
+Route::get('candidate/{id}/coupon','Admin\CandidateController@coupon')->name('candidate.coupon');
+
 
 // 品種の候補の順番入れ替え
 // ・値段高い順
@@ -79,8 +84,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::get('categoryphoto','Admin\CategoryphotoController@create')->name('categoryphoto');
     // 品種写真追加ページ表示
     Route::get('varietyphoto','Admin\VarietyphotoController@create')->name('varietyphoto');
-    // 地域追加ページ表示
+    // 都道府県追加ページ表示
     Route::get('place','Admin\PlaceController@create')->name('place');
+    // 市区町村追加ページ表示
+    Route::get('placedetail','Admin\PlacedetailController@create')->name('placedetail');
     
     // カテゴリー追加
     Route::post('category','Admin\CategoryController@store')->name('category.store');
@@ -94,8 +101,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::post('categoryphoto','Admin\CategoryphotoController@store')->name('categoryphoto.store');
     // 品種写真追加
     Route::post('varietyphoto','Admin\VarietyphotoController@store')->name('varietyphoto.store');
-    // 地域追加
+    // 都道府県追加
     Route::post('place','Admin\PlaceController@store')->name('place.store');
+    // 市区町村追加
+    Route::post('placedetail','Admin\PlacedetailController@store')->name('placedetail.store');
     
     // カテゴリー編集ページ表示
     Route::get('category/{id}/edit','Admin\CategoryController@edit')->name('category.edit');

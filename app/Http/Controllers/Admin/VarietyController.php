@@ -71,7 +71,7 @@ class VarietyController extends Controller
         $variety->cost = $request->cost;
         $variety->save();
 
-        return redirect('/');
+        return back();
     }
     
     public function destroy($id)
@@ -79,7 +79,16 @@ class VarietyController extends Controller
         $variety = Variety::findOrFail($id);
         $variety->delete();
 
-        return redirect('/');
+        return back();
     }
+    
+    // public function feature($id)
+    // {
+    //     $variety = Variety::find($id);
+        
+    //     return view('varietyfeature',[
+    //         'variety' => $variety,
+    //     ]);
+    // }
 
 }
