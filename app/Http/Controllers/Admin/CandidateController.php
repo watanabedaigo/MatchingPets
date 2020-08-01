@@ -10,13 +10,26 @@ use App\Candidatephoto;
 
 class CandidateController extends Controller
 {
-    public function created_at_asc($id)
+    public function created_at_asc($id, Request $request)
     {
+        // /variety/1 普通の場合
+        
+        // /variety-narrowing?place_id=1&variety_id=1
+        
+        // /variety/1?place_id=1 一旦候補一覧の画面にきて、検索ボタンを押した場合
+        
+        $place_address = $request->input('place_address');
+        
         $variety = Variety::find($id);
         
-        $variety->loadRelationshipCounts();
-        
-        $candidates = $variety->candidates()->orderBy('created_at','asc')->get();
+        $candidates = [];
+        if (!empty($place_address)) {
+            // 検索ボタンを押した場合
+            $candidates = $variety->candidates()->where('place_address','LIKE',"%{$place_address}%")->orderBy('created_at','asc')->paginate(10);
+        } else {
+            // 普通の場合
+            $candidates = $variety->candidates()->orderBy('created_at','asc')->paginate(10);   
+        }
         
         $candidatephotos = Candidatephoto::all();
         
@@ -31,10 +44,8 @@ class CandidateController extends Controller
     {
         $variety = Variety::find($id);
         
-        $variety->loadRelationshipCounts();
-        
-        $candidates = $variety->candidates()->orderBy('created_at','desc')->get();
-        
+        $candidates = $variety->candidates()->orderBy('created_at','desc')->paginate(10);
+    
         $candidatephotos = Candidatephoto::all();
         
         return view('candidates',[
@@ -48,9 +59,7 @@ class CandidateController extends Controller
     {
         $variety = Variety::find($id);
         
-        $variety->loadRelationshipCounts();
-        
-        $candidates = $variety->candidates()->orderBy('price','asc')->get();
+        $candidates = $variety->candidates()->orderBy('price','asc')->paginate(10);
         
         $candidatephotos = Candidatephoto::all();
         
@@ -65,10 +74,8 @@ class CandidateController extends Controller
     {
         $variety = Variety::find($id);
         
-        $variety->loadRelationshipCounts();
-        
-        $candidates = $variety->candidates()->orderBy('price','desc')->get();
-        
+        $candidates = $variety->candidates()->orderBy('price','desc')->paginate(10);
+   
         $candidatephotos = Candidatephoto::all();
         
         return view('candidates',[
@@ -82,9 +89,7 @@ class CandidateController extends Controller
     {
         $variety = Variety::find($id);
         
-        $variety->loadRelationshipCounts();
-        
-        $candidates = $variety->candidates()->orderBy('age','asc')->get();
+        $candidates = $variety->candidates()->orderBy('age','asc')->paginate(10);
         
         $candidatephotos = Candidatephoto::all();
         
@@ -99,9 +104,7 @@ class CandidateController extends Controller
     {
         $variety = Variety::find($id);
         
-        $variety->loadRelationshipCounts();
-        
-        $candidates = $variety->candidates()->orderBy('age','desc')->get();
+        $candidates = $variety->candidates()->orderBy('age','desc')->paginate(10);
         
         $candidatephotos = Candidatephoto::all();
         
@@ -182,6 +185,7 @@ class CandidateController extends Controller
         $candidate->place_phonenumber = $request->place_phonenumber;
         $candidate->bussinesshours = $request->bussinesshours;
         $candidate->place_id = $request->place_id;
+        $candidate->place_details_id = $request->place_details_id;
         $candidate->coupon = $request->coupon;
         $candidate->save();
 
@@ -204,5 +208,93 @@ class CandidateController extends Controller
             'candidate' => $candidate,
         ]);
     }
+
+// 条件つき絞り込み
+    public function narrowing(Request $request)
+    {
+        // 候補一覧ページから品種IDを取得し、その品種IDを持ち、かつ入力されたplace_idを持つ候補を表示したい。→一覧表示画面で、品種IDを入力させ、それを受け取ることで取得する。しかし、ユーザーに品種IDを入力させるわけにはいかない・・・
+        // →品種IDの入力フォームの値をこちらで決定し、このフォームをを隠せないか。→Form::hiddenがあるので用いる。value属性に候補一覧ページに飛ばされた品種IDを当てはめておくことで、品種IDを自動的に取得することができる。
+        $variety_id = $request->input('variety_id');
+        // dd($variety_id); // 中身を確認する関数。これ以降の処理を止めて中身を表示。
+        
+        $place_address = $request->input('place_address');
+        $gender = $request->input('gender');
+        $price = $request->input('price');
+        $age = $request->input('age');
+        $coupon = $request->input('coupon');
+        $birthday = $request->input('birthday');
+        
+        $variety = Variety::find($variety_id);
+  
+        $query = Candidate::query();
+        
+        if(!empty($place_address)){
+            $query->where('place_address','LIKE',"%{$place_address}%")
+                    ->where('variety_id',$variety_id);
+        }else{
+            $query->where('variety_id',$variety_id);
+        }
+        
+        if(!empty($gender)){
+            $query->where('gender',$gender)
+                    ->where('variety_id',$variety_id);
+        }else{
+            $query->where('variety_id',$variety_id);
+        }
+        
+        if(!empty($price)){
+            $query->where('price','<=',$price)
+                    ->where('variety_id',$variety_id);
+        }else{
+            $query->where('variety_id',$variety_id);
+        }
+        
+        if(!empty($age)){
+            $query->where('age','<=',$age)
+                    ->where('variety_id',$variety_id);
+        }else{
+            $query->where('variety_id',$variety_id);
+        }
+        
+        if(!empty($coupon)){
+            $query->where('coupon','!=',NULL)
+                    ->where('variety_id',$variety_id);
+        }else{
+            $query->where('variety_id',$variety_id);
+        }
+        
+        if(!empty($birthday)){
+            $query->where('birthday',$birthday)
+                    ->where('variety_id',$variety_id);
+        }else{
+            $query->where('variety_id',$variety_id);
+        }
+        
+        $candidates = $query->paginate(10);
+        
+        // 検索を押したら同時に並び替えを実施バージョン
+        // if (!empty($place_address)) {
+        //     // 検索ボタンを押した場合
+        //     $candidates = $variety->candidates()->where('place_address','LIKE',"%{$place_address}%")->orderBy('created_at','desc')->get();
+        // } else{
+        //     $candidates = $variety->candidates()->orderBy('created_at','asc')->get();;
+        // }
+        
+        // if (!empty($gender)) {
+        //     // 検索ボタンを押した場合
+        //     $candidates = $variety->candidates()->where('gender',$gender)->orderBy('created_at','desc')->get();
+        // } else{
+        //     $candidates = $variety->candidates()->orderBy('created_at','asc')->get();;
+        // }
+        
+        $candidatephotos = Candidatephoto::all();
+        
+        return view('candidates',[
+            'candidates' => $candidates,
+            'variety' => $variety,
+            'candidatephotos' => $candidatephotos,
+        ]);
+    }
+// 条件つき絞り込み
 
 }

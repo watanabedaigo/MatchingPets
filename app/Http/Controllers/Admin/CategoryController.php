@@ -27,7 +27,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         
-        $varieties = $category->varieties()->get();
+        $varieties = $category->varieties()->orderBy('name','asc')->get();
         
         $varietyphotos = Varietyphoto::all();
         

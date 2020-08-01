@@ -27,7 +27,10 @@ Route::get('candidate/{id}/coupon','Admin\CandidateController@coupon')->name('ca
 // トップページで品種を検索、該当する候補を表示するページへ
 Route::get('variety-search','Admin\VarietyController@search')->name('variety.search');
 
-// 品種の候補の順番入れ替え
+// 候補の条件つき絞り込み
+Route::get('variety-narrowing','Admin\CandidateController@narrowing')->name('candidate.narrowing');
+
+// 候補の順番入れ替え
 // ・値段高い順
 Route::get('variety/{id}/price_desc','Admin\CandidateController@price_desc')->name('candidate.price_desc');
 // ・値段低い順

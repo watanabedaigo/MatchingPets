@@ -15,4 +15,9 @@ class Place extends Model
     {
         return $this->hasMany(Placedetails::class);
     }
+    
+    public function candidates()
+    {
+        return $this->hasMany(Candidate::class);
+    }
 }

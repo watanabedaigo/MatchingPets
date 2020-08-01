@@ -2,8 +2,9 @@
 
 @section('content')
     <h3>{{ $variety->name }}　候補一覧</h3>
-    <div class="border border-primary mb-2 ">
-        <p class="mb-0">飼育上の注意</p>
+    
+    <p class="mb-1">飼育上の注意</p>
+    <div class="border border-primary mb-2">
         <div class="col-2 d-inline-block">
             <p class="mb-0">特徴</p>
             <p class="mb-0">{{ $variety->feature }}</p>
@@ -21,7 +22,39 @@
             <p class="mb-0">{{ $variety->cost }}</p>
         </div>
     </div>
-    <p>候補数　{{ $variety->candidates_count }}</p>
+
+            <p class="mb-1">候補絞り込み</p>
+            {!! Form::open(['route' => 'candidate.narrowing', 'method' => 'GET']) !!}
+                <div class="form-group border border-warning mb-2 pt-1"  style="height: 50px;">
+                    {!! Form::label('place_address', '場所:') !!}
+                    {!! Form::text('place_address', old('place_address'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control col-2 d-inline-block mr-3']) !!}
+                    
+                    {!! Form::label('gender', '性別:') !!}
+                    <!--{!! Form::select('gender',['オス'=>'オス','メス'=>'メス'], null, ['placeholder' => '性別を選択','class' => 'form-control']) !!}-->
+                    <span>オス </span>{!! Form::radio('gender', 'オス') !!}
+                    <span>メス </span>{!! Form::radio('gender', 'メス') !!}
+                    
+                    {!! Form::label('age', '年齢:',['class' => 'ml-3']) !!}
+                    {!! Form::select('age',['2'=>'2歳以下','4'=>'4歳以下','6'=>'6歳以下','8'=>'8歳以下'], null, ['placeholder' => '上限なし','class' => 'form-control col-2 d-inline-block mr-3']) !!}
+                    
+                    {!! Form::label('price', '値段:') !!}
+                    {!! Form::select('price',['50000'=>'50000円以下','70000'=>'70000円以下','90000'=>'90000円以下','110000'=>'110000円以下'], null, ['placeholder' => '上限なし','class' => 'form-control  col-2 d-inline-block mr-3']) !!}
+                    
+                    {!! Form::label('coupon', 'クーポン有のみ表示:') !!}
+                    {!! Form::checkbox('coupon','有') !!}
+                    
+                    @if(Auth::guard('admin')->check())
+                    {!! Form::label('birthday', '誕生日:') !!}
+                    {!! Form::text('birthday', null, ['placeholder' => '誕生日を入力','class' => 'form-control  col-2']) !!}
+                    @endif
+                    
+                    {!! Form::hidden('variety_id', $variety->id) !!}
+                </div>
+                {!! Form::submit('検索', ['class' => 'btn btn-primary col-12']) !!}
+            {!! Form::close() !!}
+            
+    <p class="mt-3">候補数：{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
+    {{ $candidates->links() }}
     
     <div class="row mb-3">
         <div class="col-3">
@@ -41,7 +74,7 @@
         </div>
     </div>
     
-     @if(count($candidates) > 0)
+    @if(count($candidates) > 0)
         @foreach($candidates as $candidate)
         <div class="border border-primary mb-2">
             <p class="mb-0">{!! link_to_route('candidate.show','候補詳細', ['id' => $candidate->id], ['class' => 'btn btn-primary']) !!}</p>
@@ -61,6 +94,7 @@
                     {!! Form::close() !!}               
                 @endif
             @endif
+            
             @if($candidate->coupon != NULL)
                 <p>{!! link_to_route('candidate.coupon','クーポンを使う', ['id' => $candidate->id], ['class' => 'btn btn-warning']) !!}</p>
             @endif
@@ -85,5 +119,7 @@
             </div>
         </div>
         @endforeach
+    @else
+        <p>該当する候補がありません。</p>
     @endif
 @endsection

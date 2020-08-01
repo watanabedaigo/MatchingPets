@@ -12,10 +12,8 @@ class VarietyController extends Controller
     public function show($id)
     {
         $variety = Variety::find($id);
-        
-        $variety->loadRelationshipCounts();
-
-        $candidates = $variety->candidates()->get();
+    
+        $candidates = $variety->candidates()->paginate(10);
         
         $candidatephotos = Candidatephoto::all();
         
@@ -96,7 +94,11 @@ class VarietyController extends Controller
         
         $variety = $query->get()->first();
         
-        return redirect('variety/' . $variety->id);
+        if($variety != NULL){
+            return redirect('variety/' . $variety->id);
+        }else{
+            return back();
+        }
         
     }
     
