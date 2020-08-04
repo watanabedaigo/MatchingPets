@@ -20,6 +20,10 @@ class CandidatephotoController extends Controller
     
     public function store(Request $request)
     {
+        $request->validate([
+            'candidate_id' => 'required|integer|exists:candidates,id',
+        ]);
+        
         $candidatephoto = new Candidatephoto;
         $candidatephoto->candidate_id = $request->candidate_id;
         $candidatephoto->admin_id = $request->user()->id;

@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use App\Variety;
+use App\Candidate;
 use App\Varietyphoto;
 use App\Categoryphoto;
+use App\Candidatephoto;
 
 
 class CategoryController extends Controller
@@ -17,9 +20,15 @@ class CategoryController extends Controller
         
         $categoryphotos = Categoryphoto::all();
         
+        $newcandidates = Candidate::orderBy('created_at','desc')->get();
+
+        $newcandidatephotos = Candidatephoto::all();
+
         return view('welcome',[
             'categories' => $categories,
             'categoryphotos' => $categoryphotos,
+            'newcandidates' => $newcandidates,
+            'newcandidatephotos' => $newcandidatephotos,
         ]);
     }
     

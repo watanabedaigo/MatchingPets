@@ -35,6 +35,10 @@ class VarietyController extends Controller
     
     public function store(Request $request)
     {
+        $request->validate([
+            'category_id' => 'required|integer|exists:categories,id',
+        ]);
+        
         $variety = new Variety;
         $variety->name = $request->name;
         $variety->category_id = $request->category_id;
@@ -97,7 +101,7 @@ class VarietyController extends Controller
         if($variety != NULL){
             return redirect('variety/' . $variety->id);
         }else{
-            return back();
+            return back()->with('message','該当する品種が存在しませんでした。申し訳ないのですが、入力内容を変えて再度検索をお願い致します。');
         }
         
     }

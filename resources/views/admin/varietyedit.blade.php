@@ -32,8 +32,6 @@
                 </div>
 
                 {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
-                <p>{!! link_to_route('index','データ追加ページへ',[],['class' => 'btn btn-success mt-3']) !!}</p>
-
             {!! Form::close() !!}
         </div>
     </div>

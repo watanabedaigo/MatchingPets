@@ -15,7 +15,8 @@
                 <div class="col-4">
                     @foreach($candidatephotos as $candidatephoto)
                         @if ($candidatephoto->candidate_id == $favorite->id)
-                        <img src="{{ $candidatephoto->image_path }}">
+                            <img src="{{ $candidatephoto->image_path }}">
+                            @break
                         @endif
                     @endforeach
                 </div>

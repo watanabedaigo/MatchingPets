@@ -20,6 +20,10 @@ class VarietyphotoController extends Controller
     
     public function store(Request $request)
     {
+        $request->validate([
+            'variety_id' => 'required|integer|exists:varieties,id',
+        ]);
+        
         $varietyphoto = new Varietyphoto;
         $varietyphoto->variety_id = $request->variety_id;
         $varietyphoto->admin_id = $request->user()->id;

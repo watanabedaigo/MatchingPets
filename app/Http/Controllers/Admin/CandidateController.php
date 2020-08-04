@@ -40,8 +40,10 @@ class CandidateController extends Controller
         ]);
     }
     
-    public function created_at_desc($id)
+    public function created_at_desc($id, Request $request)
     {
+        $candidate_ids = $request->input('candidate_ids');
+        
         $variety = Variety::find($id);
         
         $candidates = $variety->candidates()->orderBy('created_at','desc')->paginate(10);
@@ -115,12 +117,11 @@ class CandidateController extends Controller
         ]);
     }
     
-    
     public function show($id)
     {
         $candidate = Candidate::find($id);
         
-        $candidatephotos = Candidatephoto::all();
+        $candidatephotos = $candidate->candidatephotos()->get();
         
         return view('candidateshow',[
             'candidate' => $candidate,
@@ -139,6 +140,12 @@ class CandidateController extends Controller
     
     public function store(Request $request)
     {
+        $request->validate([
+            'variety_id' => 'required|integer|exists:varieties,id',
+            'place_id' => 'required|integer|exists:places,id',
+            'place_details_id' => 'required|integer|exists:place_details,id',
+        ]);
+        
         $candidate = new Candidate;
         $candidate->variety_id = $request->variety_id;
         $candidate->price = $request->price;
@@ -227,7 +234,6 @@ class CandidateController extends Controller
         $variety = Variety::find($variety_id);
   
         $query = Candidate::query();
-        
         if(!empty($place_address)){
             $query->where('place_address','LIKE',"%{$place_address}%")
                     ->where('variety_id',$variety_id);
@@ -244,14 +250,14 @@ class CandidateController extends Controller
         
         if(!empty($price)){
             $query->where('price','<=',$price)
-                    ->where('variety_id',$variety_id);
+                    ->where('variety_id',$variety_id)->orderBy('price','asc');
         }else{
             $query->where('variety_id',$variety_id);
         }
         
         if(!empty($age)){
             $query->where('age','<=',$age)
-                    ->where('variety_id',$variety_id);
+                    ->where('variety_id',$variety_id)->orderBy('age','asc');
         }else{
             $query->where('variety_id',$variety_id);
         }

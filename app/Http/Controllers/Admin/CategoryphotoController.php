@@ -20,6 +20,10 @@ class CategoryphotoController extends Controller
     
     public function store(Request $request)
     {
+        $request->validate([
+            'category_id' => 'required|integer|exists:categories,id',
+        ]);
+        
         $categoryphoto = new Categoryphoto;
         $categoryphoto->category_id = $request->category_id;
         $categoryphoto->admin_id = $request->user()->id;

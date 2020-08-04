@@ -28,9 +28,15 @@
             <div class="col-4">
                 @foreach($candidatephotos as $candidatephoto)
                     @if ($candidatephoto->candidate_id == $candidate->id)
-                        <img src="{{ $candidatephoto->image_path }}" class="d-block mx-auto">
+                        @if($loop->first)
+                            <img src="{{ $candidatephoto->image_path }}" class="d-block mx-auto">
+                        @else
+                            <img src="{{ $candidatephoto->image_path }}" class="d-inlene-block mx-auto col-4">
+                        @endif
                     @endif
                 @endforeach
+                <!--最初のループか否かで場合分け-->
+                
             </div>
             <div class="col-6">
                 <p class="mb-0">値段　　：{{ $candidate->price }}</p>
