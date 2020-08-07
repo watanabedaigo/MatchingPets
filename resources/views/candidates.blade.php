@@ -3,7 +3,7 @@
 @section('content')
     @if(count($candidates) < 1)
     <ul class="alert alert-danger" role="alert">
-        <li class="ml-4">該当する候補がいませんでした。申し訳ないのですが、条件を変えて再度検索をお願い致します。</li>
+        <li class="ml-4">該当する候補がいません。申し訳ないのですが、条件を変えて再度検索をお願い致します。</li>
     </ul>
     @endif
 
@@ -55,7 +55,10 @@
                     
             @if(Auth::guard('admin')->check())
                 {!! Form::label('birthday', '誕生日:') !!}
-                {!! Form::text('birthday', null, ['placeholder' => '誕生日を入力','class' => 'form-control col-2 d-inline-block']) !!}
+                {!! Form::text('birthday', null, ['placeholder' => '誕生日を入力','class' => 'form-control col-2 d-inline-block mr-3']) !!}
+                
+                {!! Form::label('id', '候補ID:') !!}
+                {!! Form::text('id', null, ['placeholder' => '候補IDを入力','class' => 'form-control col-2 d-inline-block']) !!}
             @endif
                     
             {!! Form::hidden('variety_id', $variety->id) !!}
@@ -69,18 +72,51 @@
     <div class="row mb-3">
         <div class="col-3">
         <span>記載日</span>
-        {!! link_to_route('candidate.created_at_desc','新', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}
-        {!! link_to_route('candidate.created_at_asc','古', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}
+        {!! Form::open(['route' => ['candidate.created_at_desc',$variety->id], 'method' => 'GET']) !!}
+            @foreach($candidates as $candidate)
+                {!! Form::hidden('candidate_ids[]', $candidate->id) !!}
+            @endforeach
+            {!! Form::submit('新', ['class' => 'btn btn-warning col-2']) !!}
+        {!! Form::close() !!}
+        
+        {!! Form::open(['route' => ['candidate.created_at_asc',$variety->id], 'method' => 'GET']) !!}
+            @foreach($candidates as $candidate)
+                {!! Form::hidden('candidate_ids[]', $candidate->id) !!}
+            @endforeach
+            {!! Form::submit('古', ['class' => 'btn btn-warning col-2']) !!}
+        {!! Form::close() !!}
         </div>
         <div class="col-3">
         <span>値段</span>
-        {!! link_to_route('candidate.price_asc','低', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}
-        {!! link_to_route('candidate.price_desc','高', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}        
+        {!! Form::open(['route' => ['candidate.price_asc',$variety->id], 'method' => 'GET']) !!}
+            @foreach($candidates as $candidate)
+                {!! Form::hidden('candidate_ids[]', $candidate->id) !!}
+            @endforeach
+            {!! Form::submit('低', ['class' => 'btn btn-warning col-2']) !!}
+        {!! Form::close() !!}
+        
+        {!! Form::open(['route' => ['candidate.price_desc',$variety->id], 'method' => 'GET']) !!}
+            @foreach($candidates as $candidate)
+                {!! Form::hidden('candidate_ids[]', $candidate->id) !!}
+            @endforeach
+            {!! Form::submit('高', ['class' => 'btn btn-warning col-2']) !!}
+        {!! Form::close() !!}
         </div>
         <div class="col-3">
         <span>年齢</span>
-        {!! link_to_route('candidate.age_asc','低', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}
-        {!! link_to_route('candidate.age_desc','高', ['id' => $variety->id], ['class' => 'btn btn-primary']) !!}        
+        {!! Form::open(['route' => ['candidate.age_asc',$variety->id], 'method' => 'GET']) !!}
+            @foreach($candidates as $candidate)
+                {!! Form::hidden('candidate_ids[]', $candidate->id) !!}
+            @endforeach
+            {!! Form::submit('低', ['class' => 'btn btn-warning col-2']) !!}
+        {!! Form::close() !!}
+        
+        {!! Form::open(['route' => ['candidate.age_desc',$variety->id], 'method' => 'GET']) !!}
+            @foreach($candidates as $candidate)
+                {!! Form::hidden('candidate_ids[]', $candidate->id) !!}
+            @endforeach
+            {!! Form::submit('高', ['class' => 'btn btn-warning col-2']) !!}
+        {!! Form::close() !!}
         </div>
     </div>
     

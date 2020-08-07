@@ -58,8 +58,8 @@
     <div class ="row">
         @foreach($newcandidates as $newcandidate)
             @if($loop->iteration < 4)
-                <div class="border border-primary mb-2 mr-3 col-3 ">
-                    <p>{{ $newcandidate->created_at }}</p>
+                <div class="border border-primary mb-2 mr-3 ml-3 col-3 pl-0">
+                    <p class="mb-0">追加日時<br>{{ $newcandidate->created_at }}</p>
                     @if(Auth::guard('admin')->check())
                         <p class="mb-0">{!! link_to_route('candidate.show','ID'.$newcandidate->id.'.'.'候補詳細', ['id' => $newcandidate->id], ['class' => 'btn btn-primary']) !!}</p>
                         <p class="mb-0">{!! link_to_route('candidate.edit', '編集', ['id' => $newcandidate->id], ['class' => 'btn btn-secondary']) !!}</p>
@@ -81,25 +81,24 @@
                         <p class="mb-0">{!! link_to_route('candidate.show','候補詳細', ['id' => $newcandidate->id], ['class' => 'btn btn-primary']) !!}</p>
                     @endif
                     
-                    <div class="row">
-                        <div>
-                            @foreach($newcandidatephotos as $newcandidatephoto)
-                                @if ($newcandidatephoto->candidate_id == $newcandidate->id)
-                                    <img src="{{ $newcandidatephoto->image_path }}" class="d-block mx-auto">
-                                    @break
-                                @endif
-                            @endforeach
-                        </div>
-                        <div class="pl-2">
-                            <p class="mb-0">値段　　：{{ $newcandidate->price }}</p>
-                            <p class="mb-0">年齢　　：{{ $newcandidate->age }}</p>
-                            <p class="mb-0">性別　　：{{ $newcandidate->gender }}</p>
-                            <p class="mb-0">性格　　：{{ $newcandidate->personality }}</p>
-                            <p class="mb-0">検査　　：{{ $newcandidate->inspection }}</p>
-                            <p class="mb-0">飼育場所：{{ $newcandidate->place_name }}</p>
-                            <p class="mb-0">住所　　：{{ $newcandidate->place_address }}</p>
-                            <p class="mb-0">クーポン：{{ $newcandidate->coupon }}</p>
-                        </div>
+                    
+                    <div>
+                        @foreach($newcandidatephotos as $newcandidatephoto)
+                            @if ($newcandidatephoto->candidate_id == $newcandidate->id)
+                                <img src="{{ $newcandidatephoto->image_path }}" class="d-block mx-auto">
+                                @break
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="pl-2">
+                        <p class="mb-0">値段　　：{{ $newcandidate->price }}</p>
+                        <p class="mb-0">年齢　　：{{ $newcandidate->age }}</p>
+                        <p class="mb-0">性別　　：{{ $newcandidate->gender }}</p>
+                        <p class="mb-0">性格　　：{{ $newcandidate->personality }}</p>
+                        <p class="mb-0">検査　　：{{ $newcandidate->inspection }}</p>
+                        <p class="mb-0">飼育場所：{{ $newcandidate->place_name }}</p>
+                        <p class="mb-0">住所　　：{{ $newcandidate->place_address }}</p>
+                        <p class="mb-0">クーポン：{{ $newcandidate->coupon }}</p>
                     </div>
                 </div>
             @endif

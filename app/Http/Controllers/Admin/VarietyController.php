@@ -14,6 +14,7 @@ class VarietyController extends Controller
         $variety = Variety::find($id);
     
         $candidates = $variety->candidates()->paginate(10);
+        // dd($candidates);
         
         $candidatephotos = Candidatephoto::all();
         
