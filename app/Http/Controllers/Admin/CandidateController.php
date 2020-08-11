@@ -12,9 +12,14 @@ class CandidateController extends Controller
 {
     public function created_at_asc($id, Request $request)
     {
-        $variety = Variety::find($id);
+        // $variety = Variety::find($id);
+        $variety_id = $request->input('variety_id');
+        $variety = Variety::find($variety_id);
+        // dd($variety);
         
         // ビューに表示されている候補のIDを全て取得
+        // 現ページの候補しか取得できていない。２ページ以降の候補のIDも取得したい・・・。
+        // ＝並び替えの際、ページネーションがうまく機能していない。
         $candidate_ids = $request->input('candidate_ids');
         // dd($candidate_ids);
         
@@ -34,7 +39,9 @@ class CandidateController extends Controller
     
     public function created_at_desc($id, Request $request)
     {
-        $variety = Variety::find($id);
+        // $variety = Variety::find($id);
+        $variety_id = $request->input('variety_id');
+        $variety = Variety::find($variety_id);
         
         // ビューに表示されている候補のIDを全て取得
         $candidate_ids = $request->input('candidate_ids');
@@ -56,7 +63,9 @@ class CandidateController extends Controller
     
     public function price_asc($id, Request $request)
     {
-        $variety = Variety::find($id);
+        // $variety = Variety::find($id);
+        $variety_id = $request->input('variety_id');
+        $variety = Variety::find($variety_id);
         
         // ビューに表示されている候補のIDを全て取得
         $candidate_ids = $request->input('candidate_ids');
@@ -78,7 +87,9 @@ class CandidateController extends Controller
     
     public function price_desc($id, Request $request)
     {
-        $variety = Variety::find($id);
+        // $variety = Variety::find($id);
+        $variety_id = $request->input('variety_id');
+        $variety = Variety::find($variety_id);
         
         // ビューに表示されている候補のIDを全て取得
         $candidate_ids = $request->input('candidate_ids');
@@ -100,7 +111,9 @@ class CandidateController extends Controller
     
     public function age_asc($id, Request $request)
     {
-        $variety = Variety::find($id);
+        // $variety = Variety::find($id);
+        $variety_id = $request->input('variety_id');
+        $variety = Variety::find($variety_id);
         
         // ビューに表示されている候補のIDを全て取得
         $candidate_ids = $request->input('candidate_ids');
@@ -122,7 +135,9 @@ class CandidateController extends Controller
     
     public function age_desc($id, Request $request)
     {
-        $variety = Variety::find($id);
+        // $variety = Variety::find($id);
+        $variety_id = $request->input('variety_id');
+        $variety = Variety::find($variety_id);
         
         // ビューに表示されている候補のIDを全て取得
         $candidate_ids = $request->input('candidate_ids');
@@ -182,8 +197,10 @@ class CandidateController extends Controller
         $candidate->inspection = $request->inspection;
         $candidate->place_name = $request->place_name;
         $candidate->place_address = $request->place_address;
+        $candidate->map = $request->map;
         $candidate->place_phonenumber = $request->place_phonenumber;
         $candidate->bussinesshours = $request->bussinesshours;
+        $candidate->URL = $request->URL;
         $candidate->place_id = $request->place_id;
         $candidate->place_details_id = $request->place_details_id;
         $candidate->admin_id = $request->user()->id;
@@ -214,8 +231,10 @@ class CandidateController extends Controller
         $candidate->inspection = $request->inspection;
         $candidate->place_name = $request->place_name;
         $candidate->place_address = $request->place_address;
+        $candidate->map = $request->map;
         $candidate->place_phonenumber = $request->place_phonenumber;
         $candidate->bussinesshours = $request->bussinesshours;
+        $candidate->URL = $request->URL;
         $candidate->place_id = $request->place_id;
         $candidate->place_details_id = $request->place_details_id;
         $candidate->coupon = $request->coupon;
@@ -258,6 +277,7 @@ class CandidateController extends Controller
         $id = $request->input('id');
         
         $variety = Variety::find($variety_id);
+        // dd($variety);
   
         $query = Candidate::query();
         $query->where('variety_id',$variety_id);
@@ -292,21 +312,6 @@ class CandidateController extends Controller
         
         $candidates = $query->paginate(10);
         
-        // 検索を押したら同時に並び替えを実施バージョン
-        // if (!empty($place_address)) {
-        //     // 検索ボタンを押した場合
-        //     $candidates = $variety->candidates()->where('place_address','LIKE',"%{$place_address}%")->orderBy('created_at','desc')->get();
-        // } else{
-        //     $candidates = $variety->candidates()->orderBy('created_at','asc')->get();;
-        // }
-        
-        // if (!empty($gender)) {
-        //     // 検索ボタンを押した場合
-        //     $candidates = $variety->candidates()->where('gender',$gender)->orderBy('created_at','desc')->get();
-        // } else{
-        //     $candidates = $variety->candidates()->orderBy('created_at','asc')->get();;
-        // }
-        
         $candidatephotos = Candidatephoto::all();
         
         return view('candidates',[
@@ -315,6 +320,4 @@ class CandidateController extends Controller
             'candidatephotos' => $candidatephotos,
         ]);
     }
-// 条件つき絞り込み
-
 }

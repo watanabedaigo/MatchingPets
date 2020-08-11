@@ -27,8 +27,10 @@ class CreateCandidatesTable extends Migration
             $table->unsignedBigInteger('place_details_id');
             $table->string('place_name');
             $table->string('place_address');
+            $table->string('map',450);
             $table->string('place_phonenumber');
             $table->string('bussinesshours');
+            $table->string('URL');
             $table->string('coupon',1500)->nullable();
             $table->unsignedBigInteger('admin_id');
             $table->timestamps();

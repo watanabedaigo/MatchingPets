@@ -42,9 +42,13 @@
                     {!! Form::label('place_name', 'ペットショップ、保健所名:') !!}
                     {!! Form::text('place_name', null, ['class' => 'form-control']) !!}
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     {!! Form::label('place_address', '住所:') !!}
                     {!! Form::text('place_address', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('map', '地図:') !!}
+                    {!! Form::text('map', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('place_phonenumber', '電話番号:') !!}
@@ -53,6 +57,10 @@
                 <div class="form-group">
                     {!! Form::label('bussinesshours', '営業時間:') !!}
                     {!! Form::text('bussinesshours', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('URL', 'URL:') !!}
+                    {!! Form::text('URL', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('place_id', '都道府県ID:') !!}

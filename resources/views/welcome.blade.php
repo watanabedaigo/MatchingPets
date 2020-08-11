@@ -33,23 +33,31 @@
                     }
                 @endphp
                 
-                <div class="mb-1 col-4 border border-primary ml-3 pl-0">
-                    @if(Auth::guard('admin')->check())
-                        <p class = "mt-0 mb-0">{!! link_to_route('category.show','ID'.$category->id.'.'.$category->name.'('.$total.')', ['id' => $category->id], ['class' => 'btn btn-primary']) !!}</p>
-                        <p class="mb-0">{!! link_to_route('category.edit', '編集', ['id' => $category->id], ['class' => 'btn btn-secondary']) !!}</p>
+                @if(Auth::guard('admin')->check())
+                    <div style='position:relative; z-index:1' class="mb-1 col-4 border border-primary ml-3 pl-0">
+                        <p>ID{{ $category->id }}.{{ $category->name }}({{ $total }})</p>
+                        @foreach($categoryphotos as $categoryphoto)
+                            @if ($categoryphoto->category_id == $category->id)
+                                <img src="{{ $categoryphoto->image_path }}" class="d-block mx-auto">
+                            @endif
+                        @endforeach
+                        <a href="{{ route('category.show', $category->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
+                        <a href="{{ route('category.edit', $category->id) }}" style='position: relative; z-index:3' class="btn btn-secondary">編集</a>
                         {!! Form::model($category, ['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('削除', ['class' => 'btn btn-secondary']) !!}
+                            {!! Form::submit('削除', ['class' => 'btn btn-secondary','style'=>'position:relative; z-index:3']) !!}
                         {!! Form::close() !!}
-                    @else
-                        <p class = "mt-0 mb-0">{!! link_to_route('category.show',$category->name.'('.$total.')', ['id' => $category->id], ['class' => 'btn btn-primary']) !!}</p>
-                    @endif
-                    
-                    @foreach($categoryphotos as $categoryphoto)
-                        @if ($categoryphoto->category_id == $category->id)
-                        <img src="{{ $categoryphoto->image_path }}" class="d-block mx-auto">
-                        @endif
-                    @endforeach
-                </div>
+                    </div>
+                @else
+                    <div style='position:relative;' class="mb-1 col-4 border border-primary ml-3 pl-0">
+                        <p>{{ $category->name }}({{ $total }})</p>
+                        @foreach($categoryphotos as $categoryphoto)
+                            @if ($categoryphoto->category_id == $category->id)
+                                <img src="{{ $categoryphoto->image_path }}" class="d-block mx-auto">
+                            @endif
+                        @endforeach
+                        <a href="{{ route('category.show', $category->id) }}" style='position:absolute; top:0; left:0; height:100%; width:100%;'></a>
+                    </div>
+                @endif
             @endforeach
         @endif
     </div>
@@ -58,49 +66,47 @@
     <div class ="row">
         @foreach($newcandidates as $newcandidate)
             @if($loop->iteration < 4)
-                <div class="border border-primary mb-2 mr-3 ml-3 col-3 pl-0">
-                    <p class="mb-0">追加日時<br>{{ $newcandidate->created_at }}</p>
-                    @if(Auth::guard('admin')->check())
-                        <p class="mb-0">{!! link_to_route('candidate.show','ID'.$newcandidate->id.'.'.'候補詳細', ['id' => $newcandidate->id], ['class' => 'btn btn-primary']) !!}</p>
-                        <p class="mb-0">{!! link_to_route('candidate.edit', '編集', ['id' => $newcandidate->id], ['class' => 'btn btn-secondary']) !!}</p>
-                        {!! Form::model($newcandidate, ['route' => ['candidate.destroy', $newcandidate->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('削除', ['class' => 'btn btn-secondary']) !!}
+            <div style='position:relative; z-index:1' class="mb-1 border border-primary col-3 ml-3 pl-0">
+                <a href="{{ route('candidate.show', $newcandidate->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
+                @if(Auth::guard('admin')->check())
+                    <a href="{{ route('candidate.edit', $newcandidate->id) }}" style='position: relative; z-index:3' class="btn btn-secondary">編集</a>
+                    {!! Form::model($candidate, ['route' => ['candidate.destroy', $newcandidate->id], 'method' => 'delete']) !!}
+                        {!! Form::submit('削除', ['class' => 'btn btn-secondary','style'=>'position:relative; z-index:3']) !!}
+                    {!! Form::close() !!}
+                @elseif(Auth::guard('web')->check())
+                    @if (Auth::user()->is_favorite($newcandidate->id))
+                        {!! Form::open(['route' => ['favorites.unfavorite', $newcandidate->id], 'method' => 'delete']) !!}
+                            {!! Form::submit('お気に入りから外す', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
                         {!! Form::close() !!}
-                    @elseif(Auth::guard('web')->check())
-                        <p class="mb-0">{!! link_to_route('candidate.show','候補詳細', ['id' => $newcandidate->id], ['class' => 'btn btn-primary']) !!}</p>
-                        @if (Auth::user()->is_favorite($newcandidate->id))
-                            {!! Form::open(['route' => ['favorites.unfavorite', $newcandidate->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('お気に入りから外す', ['class' => "btn btn-success"]) !!}
-                            {!! Form::close() !!}
-                        @else
-                            {!! Form::open(['route' => ['favorites.favorite', $newcandidate->id]]) !!}
-                                {!! Form::submit('お気に入りに追加', ['class' => "btn btn-success"]) !!}
-                            {!! Form::close() !!}               
-                        @endif
                     @else
-                        <p class="mb-0">{!! link_to_route('candidate.show','候補詳細', ['id' => $newcandidate->id], ['class' => 'btn btn-primary']) !!}</p>
+                        {!! Form::open(['route' => ['favorites.favorite', $newcandidate->id]]) !!}
+                            {!! Form::submit('お気に入りに追加', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
+                        {!! Form::close() !!}               
                     @endif
-                    
-                    
-                    <div>
-                        @foreach($newcandidatephotos as $newcandidatephoto)
-                            @if ($newcandidatephoto->candidate_id == $newcandidate->id)
-                                <img src="{{ $newcandidatephoto->image_path }}" class="d-block mx-auto">
-                                @break
-                            @endif
-                        @endforeach
-                    </div>
-                    <div class="pl-2">
-                        <p class="mb-0">値段　　：{{ $newcandidate->price }}</p>
-                        <p class="mb-0">年齢　　：{{ $newcandidate->age }}</p>
-                        <p class="mb-0">性別　　：{{ $newcandidate->gender }}</p>
-                        <p class="mb-0">性格　　：{{ $newcandidate->personality }}</p>
-                        <p class="mb-0">検査　　：{{ $newcandidate->inspection }}</p>
-                        <p class="mb-0">飼育場所：{{ $newcandidate->place_name }}</p>
-                        <p class="mb-0">住所　　：{{ $newcandidate->place_address }}</p>
-                        <p class="mb-0">クーポン：{{ $newcandidate->coupon }}</p>
-                    </div>
+                @endif
+                
+                @if($newcandidate->coupon != NULL)
+                    <a href="{{ route('candidate.coupon', $newcandidate->id) }}" style='position: relative; z-index:3' class="btn btn-warning">クーポン使用</a>
+                @endif
+                <div>
+                    @foreach($newcandidatephotos as $newcandidatephoto)
+                        @if ($newcandidatephoto->candidate_id == $newcandidate->id)
+                            <img src="{{ $newcandidatephoto->image_path }}" class="d-block mx-auto">
+                            @break
+                        @endif
+                    @endforeach
                 </div>
+                <div>
+                    <p class="mb-0">値段　　：{{ $newcandidate->price }}</p>
+                    <p class="mb-0">年齢　　：{{ $newcandidate->age }}</p>
+                    <p class="mb-0">性別　　：{{ $newcandidate->gender }}</p>
+                    <p class="mb-0">性格　　：{{ $newcandidate->personality }}</p>
+                    <p class="mb-0">検査　　：{{ $newcandidate->inspection }}</p>
+                    <p class="mb-0">飼育場所：{{ $newcandidate->place_name }}</p>
+                    <p class="mb-0">住所　　：{{ $newcandidate->place_address }}</p>
+                    <p class="mb-0">クーポン：{{ $newcandidate->coupon }}</p>
+                </div>
+            </div>
             @endif
         @endforeach
     </div>

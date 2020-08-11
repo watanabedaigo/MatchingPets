@@ -8,12 +8,12 @@
             {!! Form::model($variety, ['route' => 'variety.store']) !!}
 
                 <div class="form-group">
-                    {!! Form::label('name', '品種名:') !!}
-                    {!! Form::text('name', null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="form-group">
                     {!! Form::label('category_id', 'カテゴリーID:') !!}
                     {!! Form::text('category_id', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('name', '品種名:') !!}
+                    {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('feature', '飼育上の注意点:') !!}

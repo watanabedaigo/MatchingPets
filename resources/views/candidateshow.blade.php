@@ -49,7 +49,11 @@
                 <p class="mb-0">住所　　：{{ $candidate->place_address }}</p>
                 <p class="mb-0">電話番号：{{ $candidate->place_phonenumber }}</p>
                 <p class="mb-0">営業時間：{{ $candidate->bussinesshours }}</p>
+                <p class="mb-0">URL     ：<a href ={{ $candidate->URL }}>{{ $candidate->URL }}</a></p>
                 <p class="mb-0">クーポン：{{ $candidate->coupon }}</p>
+            </div>
+            <div class="ml-3">
+                {!! $candidate->map !!}
             </div>
         </div>
     </div>
