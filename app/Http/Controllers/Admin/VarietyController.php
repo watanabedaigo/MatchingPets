@@ -5,16 +5,81 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Variety;
+use App\Candidate;
 use App\Candidatephoto;
 
 class VarietyController extends Controller
 {
-    public function show($id)
+    public function show($id,Request $request)
     {
         $variety = Variety::find($id);
-    
-        $candidates = $variety->candidates()->paginate(10);
-        // dd($candidates);
+        
+        $place_address1 = $request->input('place_address1');
+        $place_address2 = $request->input('place_address2');
+        $place_address3 = $request->input('place_address3');
+        $gender = $request->input('gender');
+        $price = $request->input('price');
+        $age = $request->input('age');
+        $coupon = $request->input('coupon');
+        $birthday = $request->input('birthday');
+        $id = $request->input('id');
+        $sort = $request->input('sort');
+        
+        $query = Candidate::query();
+        $query->where('variety_id',$variety->id);
+        
+        if(!empty($place_address1) && empty($place_address2)){
+            $query->where('place_address','LIKE',"%{$place_address1}%");
+        }
+        
+        if(!empty($place_address1) && !empty($place_address2)){
+            $query->where('place_address','LIKE',"%{$place_address1}%")
+              ->orWhere('place_address','LIKE',"%{$place_address2}%");
+        }
+        
+        if(!empty($place_address1) && !empty($place_address2 &&!empty($place_address3))){
+            $query->where('place_address','LIKE',"%{$place_address1}%")
+                ->orWhere('place_address','LIKE',"%{$place_address2}%")
+                ->orWhere('place_address','LIKE',"%{$place_address3}%");
+        }
+        
+        if(!empty($gender)){
+            $query->where('gender',$gender);
+        }
+        
+        if(!empty($price)){
+            $query->where('price','<=',$price);
+        }
+        
+        if(!empty($age)){
+            $query->where('age','<=',$age);
+        }
+        
+        if(!empty($coupon)){
+            $query->where('coupon','!=',NULL);
+        }
+        
+        if(!empty($birthday)){
+            $query->where('birthday',$birthday);
+        }
+        
+        if(!empty($id)){
+            $query->where('id',$id);
+        }
+        
+        if($sort == '記載日降順'){
+            $query->orderBy('created_at','desc');
+        }elseif($sort == '値段降順'){
+            $query->orderBy('price','desc');
+        }elseif($sort == '値段昇順'){
+            $query->orderBy('price','asc');
+        }elseif($sort == '年齢降順'){
+            $query->orderBy('age','desc');
+        }elseif($sort == '年齢昇順'){
+            $query->orderBy('age','asc');
+        }
+        
+        $candidates = $query->paginate(10);
         
         $candidatephotos = Candidatephoto::all();
         

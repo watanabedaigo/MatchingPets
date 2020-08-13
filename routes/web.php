@@ -11,7 +11,7 @@
 |
 */
 
-// -----------------ログイン関係なし----------------------------------------------------------
+// -----------------ログイン関係なし、全員が使用できる機能----------------------------------------------------------
 // トップページ
 Route::get('/','Admin\CategoryController@index')->name('top');
 // カテゴリーの詳細ページへ
@@ -23,12 +23,9 @@ Route::get('candidate/{id}','Admin\CandidateController@show')->name('candidate.s
 // 品種の飼育上の注意ページへ　※候補のページに小さく乗せるためリンクを作る必要はない・・・？
 // Route::get('variety/{id}/feature','Admin\VarietyController@feature')->name('variety.feature');
 // クーポン使用ページへ
-Route::get('candidate/{id}/coupon','Admin\CandidateController@coupon')->name('candidate.coupon');
+Route::get('candidate/{id}/coupon','MailSendController@send')->name('candidate.coupon');
 // トップページで品種を検索、該当する候補を表示するページへ
 Route::get('variety-search','Admin\VarietyController@search')->name('variety.search');
-
-// 候補の条件つき絞り込み
-Route::get('variety-narrowing','Admin\CandidateController@narrowing')->name('candidate.narrowing');
 
 // 候補の順番入れ替え
 // ・値段高い順

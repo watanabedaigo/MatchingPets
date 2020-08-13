@@ -7,6 +7,8 @@
     </ul>
     @endif
     
+    <!--<img src="image/トップページ.jpg" style="width:700px; height:500px;"></img>-->
+    
     <h3>品種　フリーワード検索</h3>
     <div class="row"> 
         <div class="form-group col-6">
@@ -64,13 +66,14 @@
 
     <h3 class="mt-3">新着情報</h3>
     <div class ="row">
+    @if(count($newcandidates) > 0)
         @foreach($newcandidates as $newcandidate)
             @if($loop->iteration < 4)
             <div style='position:relative; z-index:1' class="mb-1 border border-primary col-3 ml-3 pl-0">
                 <a href="{{ route('candidate.show', $newcandidate->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
                 @if(Auth::guard('admin')->check())
                     <a href="{{ route('candidate.edit', $newcandidate->id) }}" style='position: relative; z-index:3' class="btn btn-secondary">編集</a>
-                    {!! Form::model($candidate, ['route' => ['candidate.destroy', $newcandidate->id], 'method' => 'delete']) !!}
+                    {!! Form::model($newcandidate, ['route' => ['candidate.destroy', $newcandidate->id], 'method' => 'delete']) !!}
                         {!! Form::submit('削除', ['class' => 'btn btn-secondary','style'=>'position:relative; z-index:3']) !!}
                     {!! Form::close() !!}
                 @elseif(Auth::guard('web')->check())
@@ -109,6 +112,7 @@
             </div>
             @endif
         @endforeach
+    @endif
     </div>
     
 @endsection

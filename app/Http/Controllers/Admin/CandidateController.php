@@ -10,152 +10,32 @@ use App\Candidatephoto;
 
 class CandidateController extends Controller
 {
-    public function created_at_asc($id, Request $request)
-    {
-        // $variety = Variety::find($id);
-        $variety_id = $request->input('variety_id');
-        $variety = Variety::find($variety_id);
-        // dd($variety);
+    // 以下の並び替えだと、現在のページの候補のIDしか取得できていない。２ページ以降の候補のIDを取得できていない。
+    // 現在のページに表示されている候補のみを並び替えてしまう。
+    // public function created_at_asc($id, Request $request)
+    // {
+    //     // $variety = Variety::find($id);
+    //     $variety_id = $request->input('variety_id');
+    //     $variety = Variety::find($variety_id);
+    //     // dd($variety);
         
-        // ビューに表示されている候補のIDを全て取得
-        // 現ページの候補しか取得できていない。２ページ以降の候補のIDも取得したい・・・。
-        // ＝並び替えの際、ページネーションがうまく機能していない。
-        $candidate_ids = $request->input('candidate_ids');
-        // dd($candidate_ids);
+    //     // ビューに表示されている候補のIDを全て取得
+    //     $candidate_ids = $request->input('candidate_ids');
+    //     // dd($candidate_ids);
         
-        // ①
-        // 取得したIDの候補をCollectionとしてを取得
-        $candidates = Candidate::whereIn('id', $candidate_ids)->orderBy('created_at', 'asc')->paginate(10);
-        // dd($candidates);
+    //     // ①
+    //     // 取得したIDの候補をCollectionとしてを取得
+    //     $candidates = Candidate::whereIn('id', $candidate_ids)->orderBy('created_at', 'asc')->paginate(10);
+    //     // dd($candidates);
         
-        $candidatephotos = Candidatephoto::all();
+    //     $candidatephotos = Candidatephoto::all();
         
-        return view('candidates',[
-            'variety' => $variety,
-            'candidates' => $candidates,
-            'candidatephotos' => $candidatephotos,
-        ]);
-    }
-    
-    public function created_at_desc($id, Request $request)
-    {
-        // $variety = Variety::find($id);
-        $variety_id = $request->input('variety_id');
-        $variety = Variety::find($variety_id);
-        
-        // ビューに表示されている候補のIDを全て取得
-        $candidate_ids = $request->input('candidate_ids');
-        // dd($candidate_ids);
-        
-        // ①
-        // 取得したIDの候補をCollectionとしてを取得
-        $candidates = Candidate::whereIn('id', $candidate_ids)->orderBy('created_at', 'desc')->paginate(10);
-        // dd($candidates);
-        
-        $candidatephotos = Candidatephoto::all();
-        
-        return view('candidates',[
-            'variety' => $variety,
-            'candidates' => $candidates,
-            'candidatephotos' => $candidatephotos,
-        ]);
-    }
-    
-    public function price_asc($id, Request $request)
-    {
-        // $variety = Variety::find($id);
-        $variety_id = $request->input('variety_id');
-        $variety = Variety::find($variety_id);
-        
-        // ビューに表示されている候補のIDを全て取得
-        $candidate_ids = $request->input('candidate_ids');
-        // dd($candidate_ids);
-        
-        // ①
-        // 取得したIDの候補をCollectionとしてを取得
-        $candidates = Candidate::whereIn('id', $candidate_ids)->orderBy('price', 'asc')->paginate(10);
-        // dd($candidates);
-        
-        $candidatephotos = Candidatephoto::all();
-        
-        return view('candidates',[
-            'variety' => $variety,
-            'candidates' => $candidates,
-            'candidatephotos' => $candidatephotos,
-        ]);
-    }
-    
-    public function price_desc($id, Request $request)
-    {
-        // $variety = Variety::find($id);
-        $variety_id = $request->input('variety_id');
-        $variety = Variety::find($variety_id);
-        
-        // ビューに表示されている候補のIDを全て取得
-        $candidate_ids = $request->input('candidate_ids');
-        // dd($candidate_ids);
-        
-        // ①
-        // 取得したIDの候補をCollectionとしてを取得
-        $candidates = Candidate::whereIn('id', $candidate_ids)->orderBy('price', 'desc')->paginate(10);
-        // dd($candidates);
-        
-        $candidatephotos = Candidatephoto::all();
-        
-        return view('candidates',[
-            'variety' => $variety,
-            'candidates' => $candidates,
-            'candidatephotos' => $candidatephotos,
-        ]);
-    }
-    
-    public function age_asc($id, Request $request)
-    {
-        // $variety = Variety::find($id);
-        $variety_id = $request->input('variety_id');
-        $variety = Variety::find($variety_id);
-        
-        // ビューに表示されている候補のIDを全て取得
-        $candidate_ids = $request->input('candidate_ids');
-        // dd($candidate_ids);
-        
-        // ①
-        // 取得したIDの候補をCollectionとしてを取得
-        $candidates = Candidate::whereIn('id', $candidate_ids)->orderBy('age', 'asc')->paginate(10);
-        // dd($candidates);
-        
-        $candidatephotos = Candidatephoto::all();
-        
-        return view('candidates',[
-            'variety' => $variety,
-            'candidates' => $candidates,
-            'candidatephotos' => $candidatephotos,
-        ]);
-    }
-    
-    public function age_desc($id, Request $request)
-    {
-        // $variety = Variety::find($id);
-        $variety_id = $request->input('variety_id');
-        $variety = Variety::find($variety_id);
-        
-        // ビューに表示されている候補のIDを全て取得
-        $candidate_ids = $request->input('candidate_ids');
-        // dd($candidate_ids);
-        
-        // ①
-        // 取得したIDの候補をCollectionとしてを取得
-        $candidates = Candidate::whereIn('id', $candidate_ids)->orderBy('age', 'desc')->paginate(10);
-        // dd($candidates);
-        
-        $candidatephotos = Candidatephoto::all();
-        
-        return view('candidates',[
-            'variety' => $variety,
-            'candidates' => $candidates,
-            'candidatephotos' => $candidatephotos,
-        ]);
-    }
+    //     return view('candidates',[
+    //         'variety' => $variety,
+    //         'candidates' => $candidates,
+    //         'candidatephotos' => $candidatephotos,
+    //     ]);
+    // }
     
     public function show($id)
     {
@@ -260,7 +140,7 @@ class CandidateController extends Controller
         ]);
     }
 
-// 条件つき絞り込み
+// 条件つき絞り込み、表示順指定
     public function narrowing(Request $request)
     {
         // 候補一覧ページから品種IDを取得し、その品種IDを持ち、かつ入力されたplace_idを持つ候補を表示したい。→一覧表示画面で、品種IDを入力させ、それを受け取ることで取得する。しかし、ユーザーに品種IDを入力させるわけにはいかない・・・
@@ -268,13 +148,16 @@ class CandidateController extends Controller
         $variety_id = $request->input('variety_id');
         // dd($variety_id); // 中身を確認する関数。これ以降の処理を止めて中身を表示。
         
-        $place_address = $request->input('place_address');
+        $place_address1 = $request->input('place_address1');
+        $place_address2 = $request->input('place_address2');
+        $place_address3 = $request->input('place_address3');
         $gender = $request->input('gender');
         $price = $request->input('price');
         $age = $request->input('age');
         $coupon = $request->input('coupon');
         $birthday = $request->input('birthday');
         $id = $request->input('id');
+        $sort = $request->input('sort');
         
         $variety = Variety::find($variety_id);
         // dd($variety);
@@ -282,8 +165,19 @@ class CandidateController extends Controller
         $query = Candidate::query();
         $query->where('variety_id',$variety_id);
         
-        if(!empty($place_address)){
-            $query->where('place_address','LIKE',"%{$place_address}%");
+        if(!empty($place_address1) && empty($place_address2)){
+            $query->where('place_address','LIKE',"%{$place_address1}%");
+        }
+        
+        if(!empty($place_address1) && !empty($place_address2)){
+            $query->where('place_address','LIKE',"%{$place_address1}%")
+              ->orWhere('place_address','LIKE',"%{$place_address2}%");
+        }
+        
+        if(!empty($place_address1) && !empty($place_address2 &&!empty($place_address3))){
+            $query->where('place_address','LIKE',"%{$place_address1}%")
+                ->orWhere('place_address','LIKE',"%{$place_address2}%")
+                ->orWhere('place_address','LIKE',"%{$place_address3}%");
         }
         
         if(!empty($gender)){
@@ -291,11 +185,11 @@ class CandidateController extends Controller
         }
         
         if(!empty($price)){
-            $query->where('price','<=',$price)->orderBy('price','asc');
+            $query->where('price','<=',$price);
         }
         
         if(!empty($age)){
-            $query->where('age','<=',$age)->orderBy('age','asc');
+            $query->where('age','<=',$age);
         }
         
         if(!empty($coupon)){
@@ -308,6 +202,18 @@ class CandidateController extends Controller
         
         if(!empty($id)){
             $query->where('id',$id);
+        }
+        
+        if($sort == '記載日降順'){
+            $query->orderBy('created_at','desc');
+        }elseif($sort == '値段降順'){
+            $query->orderBy('price','desc');
+        }elseif($sort == '値段昇順'){
+            $query->orderBy('price','asc');
+        }elseif($sort == '年齢降順'){
+            $query->orderBy('age','desc');
+        }elseif($sort == '年齢昇順'){
+            $query->orderBy('age','asc');
         }
         
         $candidates = $query->paginate(10);
