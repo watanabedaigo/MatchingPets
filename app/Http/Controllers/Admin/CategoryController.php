@@ -21,14 +21,18 @@ class CategoryController extends Controller
         $categoryphotos = Categoryphoto::all();
         
         $newcandidates = Candidate::orderBy('created_at','desc')->get();
-
         $newcandidatephotos = Candidatephoto::all();
-
+        
+        $popularityvarieties = Variety::orderBy('view_count','desc')->get();
+        $popularityvarietyphotos = Varietyphoto::all();
+        
         return view('welcome',[
             'categories' => $categories,
             'categoryphotos' => $categoryphotos,
             'newcandidates' => $newcandidates,
             'newcandidatephotos' => $newcandidatephotos,
+            'popularityvarieties' => $popularityvarieties,
+            'popularityvarietyphotos' => $popularityvarietyphotos,
         ]);
     }
     

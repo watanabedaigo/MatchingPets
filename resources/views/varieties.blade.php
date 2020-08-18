@@ -8,6 +8,7 @@
                 @if(Auth::guard('admin')->check())
                     <div style='position:relative; z-index:1' class="mb-1 col-4 border border-primary ml-3 pl-0">
                         <p>ID{{ $variety->id }}.{{ $variety->name }}({{ count($variety->candidates()->get()) }})</p>
+                        <p>閲覧数：{{ $variety->view_count }}</p>
                         @foreach($varietyphotos as $varietyphoto)
                             @if ($varietyphoto->variety_id == $variety->id)
                                 <img src="{{ $varietyphoto->image_path }}" class="d-block mx-auto">

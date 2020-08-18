@@ -14,6 +14,9 @@ class VarietyController extends Controller
     {
         $variety = Variety::find($id);
         
+        $variety->view_count = $variety->view_count + 1;
+        $variety->save();
+        
         $place_address1 = $request->input('place_address1');
         $place_address2 = $request->input('place_address2');
         $place_address3 = $request->input('place_address3');
@@ -73,6 +76,8 @@ class VarietyController extends Controller
             $query->orderBy('price','asc');
         }elseif($sort == '誕生日昇順'){
             $query->orderBy('birthday','asc');
+        }elseif($sort == '閲覧数降順'){
+            $query->orderBy('view_count','desc');
         }
         
         $candidates = $query->paginate(10);

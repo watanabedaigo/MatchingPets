@@ -15,65 +15,54 @@
     <!--        <p class="mb-0">特徴</p>-->
     <!--        <p class="mb-0">{{ $variety->feature }}</p>-->
     <!--    </div>-->
-    <!--    <div class="col-2 d-inline-block">-->
-    <!--        <p class="mb-0">平均寿命</p>-->
-    <!--        <p class="mb-0">{{ $variety->lifespan }}</p>-->
-    <!--    </div>-->
-    <!--    <div class="col-2 d-inline-block">-->
-    <!--        <p class="mb-0">必要な道具</p>-->
-    <!--        <p class="mb-0">{{ $variety->breedingtool }}</p>-->
-    <!--    </div>-->
-    <!--    <div class="col-2 d-inline-block">-->
-    <!--        <p class="mb-0">費用</p>-->
-    <!--        <p class="mb-0">{{ $variety->cost }}</p>-->
-    <!--    </div>-->
     <!--</div>-->
 
     <!--条件絞り込み&表示順-->
     {!! Form::open(['route' => ['variety.show',$variety->id], 'method' => 'GET']) !!}
-    <p class="mb-1">条件指定</p>
-        <div class="form-group border border-warning mb-2 pt-1"  style="height: 90px;">
-
-            {!! Form::label('place_address1', '場所①:') !!}
-            {!! Form::text('place_address1', Request::get('place_address1'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control col-2 d-inline-block mr-3']) !!}
-            
-            {!! Form::label('place_address2', '場所②:') !!}
-            {!! Form::text('place_address2', Request::get('place_address2'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control col-2 d-inline-block mr-3']) !!}
-               
-            {!! Form::label('place_address3', '場所③:') !!}
-            {!! Form::text('place_address3', Request::get('place_address3'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control col-2 d-inline-block mr-3']) !!}
-            <br>
-            {!! Form::label('gender', '性別:') !!}
-            <span>オス </span>{!! Form::radio('gender','オス',Request::get('gender')) !!}
-            <span>メス </span>{!! Form::radio('gender','メス',Request::get('gender')) !!}
-      
-            <!--{!! Form::label('age', '年齢:',['class' => 'ml-3']) !!}-->
-            <!--{!! Form::select('age',['2'=>'2歳以下','4'=>'4歳以下','6'=>'6歳以下','8'=>'8歳以下'],Request::get('age'), ['placeholder' => '上限なし','class' => 'form-control col-2 d-inline-block mr-3']) !!}-->
-            
-            {!! Form::label('price', '値段:') !!}
-            {!! Form::select('price',['50000'=>'50000円以下','70000'=>'70000円以下','90000'=>'90000円以下','110000'=>'110000円以下'],Request::get('price'), ['placeholder' => '上限なし','class' => 'form-control col-2 d-inline-block mr-3']) !!}
-                    
-            {!! Form::label('coupon', 'クーポン有のみ表示:') !!}
-            {!! Form::checkbox('coupon','有',Request::get('coupon'),['class' => 'mr-3']) !!}
-            
-            @if(Auth::guard('admin')->check())
-                {!! Form::label('birthday', '誕生日:') !!}
-                {!! Form::text('birthday',Request::get('birthday'), ['placeholder' => '誕生日','class' => 'form-control col-2 d-inline-block mr-3']) !!}
+        <p class="mb-1">条件指定</p>
+            <div class="form-group border border-warning mb-2 pt-1"  style="height: 90px;">
+    
+                {!! Form::label('place_address1', '場所①:') !!}
+                {!! Form::text('place_address1', Request::get('place_address1'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control col-2 d-inline-block mr-3']) !!}
                 
-                {!! Form::label('id', '候補ID:') !!}
-                {!! Form::text('id',Request::get('id'), ['placeholder' => '候補ID','class' => 'form-control col-1 d-inline-block']) !!}
-            @endif
+                {!! Form::label('place_address2', '場所②:') !!}
+                {!! Form::text('place_address2', Request::get('place_address2'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control col-2 d-inline-block mr-3']) !!}
+                   
+                {!! Form::label('place_address3', '場所③:') !!}
+                {!! Form::text('place_address3', Request::get('place_address3'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control col-2 d-inline-block mr-3']) !!}
+                <br>
+                {!! Form::label('gender', '性別:') !!}
+                <span>オス </span>{!! Form::radio('gender','オス',Request::get('gender')) !!}
+                <span>メス </span>{!! Form::radio('gender','メス',Request::get('gender')) !!}
+          
+                <!--{!! Form::label('age', '年齢:',['class' => 'ml-3']) !!}-->
+                <!--{!! Form::select('age',['2'=>'2歳以下','4'=>'4歳以下','6'=>'6歳以下','8'=>'8歳以下'],Request::get('age'), ['placeholder' => '上限なし','class' => 'form-control col-2 d-inline-block mr-3']) !!}-->
+                
+                {!! Form::label('price', '値段:') !!}
+                {!! Form::select('price',['50000'=>'50000円以下','70000'=>'70000円以下','90000'=>'90000円以下','110000'=>'110000円以下'],Request::get('price'), ['placeholder' => '上限なし','class' => 'form-control col-2 d-inline-block mr-3']) !!}
+                        
+                {!! Form::label('coupon', 'クーポン有のみ表示:') !!}
+                {!! Form::checkbox('coupon','有',Request::get('coupon'),['class' => 'mr-3']) !!}
+                
+                @if(Auth::guard('admin')->check())
+                    {!! Form::label('birthday', '誕生日:') !!}
+                    {!! Form::text('birthday',Request::get('birthday'), ['placeholder' => '誕生日','class' => 'form-control col-2 d-inline-block mr-3']) !!}
                     
-        </div>
-    <p class="mb-1">表示順指定</p>
-        <div class="form-group border border-warning mb-2 pt-1"  style="height: 50px;">
-            {!! Form::label('sort','表示順：') !!}
-            <span>記載日が新しい順で表示</span>{!! Form::radio('sort','記載日降順') !!}
-            <span class="ml-4">値段が低い順で表示</span>{!! Form::radio('sort','値段昇順',old('sort')) !!}
-            <span class="ml-4">年齢が低い順で表示</span>{!! Form::radio('sort','誕生日昇順',old('sort')) !!}
-        </div>
-        {!! Form::submit('検索', ['class' => 'btn btn-warning col-9']) !!}
-        <a href="{{ route('variety.show', $variety->id,) }}" class='col-2 btn btn-danger'>条件リセット</a>
+                    {!! Form::label('id', '候補ID:') !!}
+                    {!! Form::text('id',Request::get('id'), ['placeholder' => '候補ID','class' => 'form-control col-1 d-inline-block']) !!}
+                @endif
+                        
+            </div>
+        <p class="mb-1">表示順指定</p>
+            <div class="form-group border border-warning mb-2 pt-1"  style="height: 50px;">
+                {!! Form::label('sort','表示順：') !!}
+                <span>記載日が新しい順で表示</span>{!! Form::radio('sort','記載日降順') !!}
+                <span class="ml-4">値段が低い順で表示</span>{!! Form::radio('sort','値段昇順',old('sort')) !!}
+                <span class="ml-4">年齢が低い順で表示</span>{!! Form::radio('sort','誕生日昇順',old('sort')) !!}
+                <span class="ml-4">閲覧数が多い順で表示</span>{!! Form::radio('sort','閲覧数降順',old('sort')) !!}
+            </div>
+            {!! Form::submit('検索', ['class' => 'btn btn-warning col-9']) !!}
+            <a href="{{ route('variety.show', $variety->id,) }}" class='col-2 btn btn-danger'>条件リセット</a>
     {!! Form::close() !!}
       
     <!--候補数-->

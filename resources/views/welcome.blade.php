@@ -66,6 +66,36 @@
             @endforeach
         @endif
     </div>
+    
+<!--人気の品種-->
+    <h3 class="mt-3">人気の品種</h3>
+    <div class="row">
+    @if(count($popularityvarieties) > 0)
+        @foreach($popularityvarieties as $popularityvariety)
+            @if($loop->iteration < 4)
+                <div style='position:relative; z-index:1' class="mb-1 border border-primary col-3 ml-3 pl-0">
+                    <p>ID{{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }})</p>
+                    <a href="{{ route('variety.show', $popularityvariety->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
+                    @if(Auth::guard('admin')->check())
+                        <a href="{{ route('variety.edit', $popularityvariety->id) }}" style='position: relative; z-index:3' class="btn btn-secondary">編集</a>
+                        {!! Form::model($popularityvariety, ['route' => ['variety.destroy', $popularityvariety->id], 'method' => 'delete']) !!}
+                            {!! Form::submit('削除', ['class' => 'btn btn-secondary','style'=>'position:relative; z-index:3']) !!}
+                        {!! Form::close() !!}
+                    @endif
+            
+                    <div>
+                        @foreach($popularityvarietyphotos as $popularityvarietyphoto)
+                            @if ($popularityvarietyphoto->variety_id == $popularityvariety->id)
+                                <img src="{{ $popularityvarietyphoto->image_path }}" class="d-block mx-auto">
+                                @break
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    @endif
+    </div>
 
 <!--新着情報-->
     <h3 class="mt-3">新着情報</h3>
