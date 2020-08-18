@@ -18,10 +18,10 @@ class CreateVarietiesTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('admin_id');
-            $table->string('feature',1500);
-            $table->string('lifespan');
-            $table->string('breedingtool');
-            $table->string('cost');
+            $table->string('feature',1500)->nullable();
+            $table->string('lifespan')->nullable();
+            $table->string('breedingtool')->nullable();
+            $table->string('cost')->nullable();
             $table->timestamps();
             
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

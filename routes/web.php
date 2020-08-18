@@ -22,7 +22,7 @@ Route::get('variety/{id}','Admin\VarietyController@show')->name('variety.show');
 Route::get('candidate/{id}','Admin\CandidateController@show')->name('candidate.show');
 // 品種の飼育上の注意ページへ　※候補のページに小さく乗せるためリンクを作る必要はない・・・？
 // Route::get('variety/{id}/feature','Admin\VarietyController@feature')->name('variety.feature');
-// クーポン使用ページへ
+// クーポン使用ページへ　※メール送信
 Route::get('candidate/{id}/coupon','MailSendController@send')->name('candidate.coupon');
 // トップページで品種を検索、該当する候補を表示するページへ
 Route::get('variety-search','Admin\VarietyController@search')->name('variety.search');

@@ -42,6 +42,7 @@
                 @if(Auth::guard('admin')->check())
                     <p class="mb-0">id　　：{{ $candidate->id }}</p>
                 @endif
+                <p class="mb-0">閲覧数　：{{ $candidate->view_count }}</p>
                 <p class="mb-0">値段　　：{{ $candidate->price }}</p>
                 <p class="mb-0">年齢　　：{{ $candidate->age }}</p>
                 <p class="mb-0">誕生日　：{{ $candidate->birthday }}</p>

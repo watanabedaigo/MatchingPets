@@ -19,7 +19,7 @@ class VarietyController extends Controller
         $place_address3 = $request->input('place_address3');
         $gender = $request->input('gender');
         $price = $request->input('price');
-        $age = $request->input('age');
+        // $age = $request->input('age');
         $coupon = $request->input('coupon');
         $birthday = $request->input('birthday');
         $id = $request->input('id');
@@ -51,9 +51,9 @@ class VarietyController extends Controller
             $query->where('price','<=',$price);
         }
         
-        if(!empty($age)){
-            $query->where('age','<=',$age);
-        }
+        // if(!empty($age)){
+        //     $query->where('age','<=',$age);
+        // }
         
         if(!empty($coupon)){
             $query->where('coupon','!=',NULL);
@@ -69,14 +69,10 @@ class VarietyController extends Controller
         
         if($sort == '記載日降順'){
             $query->orderBy('created_at','desc');
-        }elseif($sort == '値段降順'){
-            $query->orderBy('price','desc');
         }elseif($sort == '値段昇順'){
             $query->orderBy('price','asc');
-        }elseif($sort == '年齢降順'){
-            $query->orderBy('age','desc');
-        }elseif($sort == '年齢昇順'){
-            $query->orderBy('age','asc');
+        }elseif($sort == '誕生日昇順'){
+            $query->orderBy('birthday','asc');
         }
         
         $candidates = $query->paginate(10);

@@ -8,7 +8,6 @@
     @endif
 
     <h3>{{ $variety->name }}　候補一覧</h3>
-    
     <!--飼育上の注意-->
     <!--<p class="mb-1">{{ $variety->name }}の飼育上の注意</p>-->
     <!--<div class="border border-primary mb-2">-->
@@ -43,20 +42,19 @@
                
             {!! Form::label('place_address3', '場所③:') !!}
             {!! Form::text('place_address3', Request::get('place_address3'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control col-2 d-inline-block mr-3']) !!}
-            
+            <br>
             {!! Form::label('gender', '性別:') !!}
-            <!--{!! Form::select('gender',['オス'=>'オス','メス'=>'メス'], null, ['placeholder' => '性別を選択','class' => 'form-control']) !!}-->
             <span>オス </span>{!! Form::radio('gender','オス',Request::get('gender')) !!}
             <span>メス </span>{!! Form::radio('gender','メス',Request::get('gender')) !!}
-            <br>        
-            {!! Form::label('age', '年齢:',['class' => 'ml-3']) !!}
-            {!! Form::select('age',['2'=>'2歳以下','4'=>'4歳以下','6'=>'6歳以下','8'=>'8歳以下'],Request::get('age'), ['placeholder' => '上限なし','class' => 'form-control col-2 d-inline-block mr-3']) !!}
+      
+            <!--{!! Form::label('age', '年齢:',['class' => 'ml-3']) !!}-->
+            <!--{!! Form::select('age',['2'=>'2歳以下','4'=>'4歳以下','6'=>'6歳以下','8'=>'8歳以下'],Request::get('age'), ['placeholder' => '上限なし','class' => 'form-control col-2 d-inline-block mr-3']) !!}-->
             
             {!! Form::label('price', '値段:') !!}
             {!! Form::select('price',['50000'=>'50000円以下','70000'=>'70000円以下','90000'=>'90000円以下','110000'=>'110000円以下'],Request::get('price'), ['placeholder' => '上限なし','class' => 'form-control col-2 d-inline-block mr-3']) !!}
                     
             {!! Form::label('coupon', 'クーポン有のみ表示:') !!}
-            {!! Form::checkbox('coupon','有',Request::get('coupon')) !!}
+            {!! Form::checkbox('coupon','有',Request::get('coupon'),['class' => 'mr-3']) !!}
             
             @if(Auth::guard('admin')->check())
                 {!! Form::label('birthday', '誕生日:') !!}
@@ -70,11 +68,9 @@
     <p class="mb-1">表示順指定</p>
         <div class="form-group border border-warning mb-2 pt-1"  style="height: 50px;">
             {!! Form::label('sort','表示順：') !!}
-            <span>記載日：新</span>{!! Form::radio('sort','記載日降順') !!}
-            <span class="ml-4">値段：高</span>{!! Form::radio('sort','値段降順',old('sort')) !!}
-            <span class="ml-4">値段：低</span>{!! Form::radio('sort','値段昇順',old('sort')) !!}
-            <span class="ml-4">年齢：高</span>{!! Form::radio('sort','年齢降順',old('sort')) !!}
-            <span class="ml-4">年齢：低</span>{!! Form::radio('sort','年齢昇順',old('sort')) !!}
+            <span>記載日が新しい順で表示</span>{!! Form::radio('sort','記載日降順') !!}
+            <span class="ml-4">値段が低い順で表示</span>{!! Form::radio('sort','値段昇順',old('sort')) !!}
+            <span class="ml-4">年齢が低い順で表示</span>{!! Form::radio('sort','誕生日昇順',old('sort')) !!}
         </div>
         {!! Form::submit('検索', ['class' => 'btn btn-warning col-9']) !!}
         <a href="{{ route('variety.show', $variety->id,) }}" class='col-2 btn btn-danger'>条件リセット</a>
@@ -135,8 +131,9 @@
                         @if(Auth::guard('admin')->check())
                             <p class="mb-0 text-danger">id　　  ：{{ $candidate->id }}</p>
                         @endif
+                        <p class="mb-0">閲覧数　：{{ $candidate->view_count }}</p>
                         <p class="mb-0">値段　　：{{ $candidate->price }}</p>
-                        <p class="mb-0">年齢　　：{{ $candidate->age }}</p>
+                        <p class="mb-0">誕生日　：{{ $candidate->birthday }}</p>
                         <p class="mb-0">性別　　：{{ $candidate->gender }}</p>
                         <p class="mb-0">性格　　：{{ $candidate->personality }}</p>
                         <p class="mb-0">検査　　：{{ $candidate->inspection }}</p>

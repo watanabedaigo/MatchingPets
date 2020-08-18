@@ -63,14 +63,6 @@
                     {!! Form::text('URL', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('place_id', '都道府県ID:') !!}
-                    {!! Form::text('place_id', null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('place_details_id', '市区町村ID:') !!}
-                    {!! Form::text('place_details_id', null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="form-group">
                     {!! Form::label('coupon', 'クーポン:') !!}
                     {!! Form::text('coupon', null, ['class' => 'form-control']) !!}
                 </div>

@@ -23,8 +23,6 @@ class CreateCandidatesTable extends Migration
             $table->string('personality');
             $table->string('personality_details',1500);
             $table->string('inspection');
-            $table->unsignedBigInteger('place_id');
-            $table->unsignedBigInteger('place_details_id');
             $table->string('place_name');
             $table->string('place_address');
             $table->string('map',450);
@@ -32,12 +30,11 @@ class CreateCandidatesTable extends Migration
             $table->string('bussinesshours');
             $table->string('URL');
             $table->string('coupon',1500)->nullable();
+            $table->bigInteger('view_count');
             $table->unsignedBigInteger('admin_id');
             $table->timestamps();
             
             $table->foreign('variety_id')->references('id')->on('varieties')->onDelete('cascade');
-            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
-            $table->foreign('place_details_id')->references('id')->on('place_details')->onDelete('cascade');
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
     }
