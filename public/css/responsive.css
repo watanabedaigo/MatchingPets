@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+@media screen and (min-width:992px) { 
+}
+
+@media screen and (min-width: 768px) {
+    .search {
+        position:absolute;
+        top:65%;
+        left:3%;
+        width:40%;
+    }    
+    .search-form {
+        width:75%;
+    }
+}
+@media screen and (min-width: 576px) { 
+    .catchcopy {
+        font-size:2.5vw;
+    }
+    .navbar {
+        padding:.5rem 1rem;   
+    }
+    .btn-bg {
+        background-color:#ffc107;
+    }
+}

@@ -172,14 +172,4 @@ class VarietyController extends Controller
         }
         
     }
-    
-    // public function feature($id)
-    // {
-    //     $variety = Variety::find($id);
-        
-    //     return view('varietyfeature',[
-    //         'variety' => $variety,
-    //     ]);
-    // }
-
 }

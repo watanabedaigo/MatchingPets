@@ -69,19 +69,6 @@
     <p class="mt-3">候補数：{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
     {{ $candidates->appends(request()->input())->links() }}
     
-    <!--並び替え-->
-    <!--<div class="row mb-3">-->
-    <!--    <div class="col-3">-->
-    <!--    <span>記載日</span>-->
-    <!--    {!! Form::open(['route' => ['candidate.created_at_asc',$variety->id], 'method' => 'GET']) !!}-->
-    <!--        @foreach($candidates as $candidate)-->
-    <!--            {!! Form::hidden('candidate_ids[]', $candidate->id) !!}-->
-    <!--        @endforeach-->
-    <!--        {!! Form::hidden('variety_id', $variety->id) !!}-->
-    <!--        {!! Form::submit('古', ['class' => 'btn btn-warning col-2']) !!}-->
-    <!--    {!! Form::close() !!}-->
-    <!--</div>-->
-    
     <!--候補一覧-->
     @if(count($candidates) > 0)
         @foreach($candidates as $candidate)

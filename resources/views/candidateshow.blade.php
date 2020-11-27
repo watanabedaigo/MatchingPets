@@ -28,6 +28,7 @@
             <div class="col-4">
                 @foreach($candidatephotos as $candidatephoto)
                     @if ($candidatephoto->candidate_id == $candidate->id)
+                        <!--最初のループか否かで場合分け-->
                         @if($loop->first)
                             <img src="{{ $candidatephoto->image_path }}" class="d-block mx-auto">
                         @else
@@ -35,7 +36,6 @@
                         @endif
                     @endif
                 @endforeach
-                <!--最初のループか否かで場合分け-->
                 
             </div>
             <div class="col-6">
