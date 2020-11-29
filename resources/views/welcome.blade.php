@@ -28,7 +28,7 @@
             @if(count($categories) > 0)
                 @foreach($categories as $category)
                     
-                    <!--@php-->
+                    <!--php-->
                     <!--    $varieties = $category->varieties()->get();-->
                     <!--    $total = 0;-->
                     <!--    foreach($varieties as $variety){-->
@@ -36,7 +36,7 @@
                     <!--        $count = count($candidates);-->
                     <!--        $total = $total + $count;-->
                     <!--    }-->
-                    <!--@endphp-->
+                    <!--endphp-->
                 
                     <div class="category col-2 bg-white border-dark border rounded-circle">
                         @if(Auth::guard('admin')->check())

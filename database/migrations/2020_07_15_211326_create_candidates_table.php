@@ -18,7 +18,7 @@ class CreateCandidatesTable extends Migration
             $table->unsignedBigInteger('variety_id');
             $table->bigInteger('price');
             // 削除
-            // $table->bigInteger('age');
+            $table->bigInteger('age');
             // views/admin/candidate.blade.php candidateedit.blade.phpの該当部分を削除
             $table->string('birthday');
             $table->string('gender');
