@@ -10,6 +10,7 @@ use App\Candidate;
 use App\Varietyphoto;
 use App\Categoryphoto;
 use App\Candidatephoto;
+use DateTime;
 
 
 class CategoryController extends Controller

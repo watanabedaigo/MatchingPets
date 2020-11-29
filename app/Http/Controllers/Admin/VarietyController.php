@@ -54,10 +54,6 @@ class VarietyController extends Controller
             $query->where('price','<=',$price);
         }
         
-        // if(!empty($age)){
-        //     $query->where('age','<=',$age);
-        // }
-        
         if(!empty($coupon)){
             $query->where('coupon','!=',NULL);
         }
