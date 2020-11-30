@@ -9,7 +9,19 @@
 
 <!--トップページ写真、フリーワード検索-->
     <div class="m-0" style="position:relative;">
-        <p class="catchcopy small">新しい家族を見つけよう。<br>Find your favorite pet.</p>
+        <p class="catchcopy small pl-1 pr-1 m-0 text-center">新しい家族に出会える<br>ペットポータルサイト</p>
+        @php
+            $total = 0;
+            foreach($categories as $category){
+                $varieties = $category->varieties()->get();
+                foreach($varieties as $variety){
+                    $candidates = $variety->candidates()->get();
+                    $count = count($candidates);
+                    $total = $total + $count;
+                }
+            }
+        @endphp
+        <p class="publication small pl-1 pr-1 m-0 text-center"><i class="fas fa-thumbtack thumbtack-1"></i><i class="fas fa-thumbtack thumbtack-2"></i>現在<span class="count">{{ $total }}</span>匹掲載中</p>
         <img src="image/toppage.jpg" class="top-image"></img>
         <div class="search"> 
             <div class="form-group mb-0">
@@ -23,21 +35,10 @@
     
 <!--カテゴリー一覧-->
     <div style="background-color:linen;">
-        <h5 class="pt-2 ml-2 mr-2 border-bottom border-dark">カテゴリー</h5>
+        <h5 class="pt-2 ml-2 mr-2"><i class="fas fa-paw icon"></i>カテゴリー</h5>
         <div class="category-container row d-flex justify-content-between p-2">
             @if(count($categories) > 0)
                 @foreach($categories as $category)
-                    
-                    <!--php-->
-                    <!--    $varieties = $category->varieties()->get();-->
-                    <!--    $total = 0;-->
-                    <!--    foreach($varieties as $variety){-->
-                    <!--        $candidates = $variety->candidates()->get();-->
-                    <!--        $count = count($candidates);-->
-                    <!--        $total = $total + $count;-->
-                    <!--    }-->
-                    <!--endphp-->
-                
                     <div class="category col-2 bg-white border-dark border rounded-circle">
                         @if(Auth::guard('admin')->check())
                             <p class="category-name m-0 text-center w-100 font-weight-bold">{{ $category->id }}.{{ $category->name }}</p>
@@ -72,7 +73,7 @@
     
 <!--人気の品種-->
     <div style="background-color:floralwhite;">
-        <h5 class="pt-2 ml-2 mr-2 border-bottom border-dark">人気の品種</h5>
+        <h5 class="pt-2 ml-2 mr-2"><i class="fas fa-paw icon"></i>人気の品種</h5>
         <div class="category-container pb-2">
         @if(count($popularityvarieties) > 0)
             @foreach($popularityvarieties as $popularityvariety)
@@ -114,7 +115,7 @@
 
 <!--新着情報-->
     <div style="background-color:linen;">
-        <h5 class="pt-2 ml-2 mr-2 border-bottom border-dark">新着情報</h5>
+        <h5 class="pt-2 ml-2 mr-2"><i class="fas fa-paw icon"></i>新着情報</h5>
         <div class="category-container pb-2">
         @if(count($newcandidates) > 0)
             @foreach($newcandidates as $newcandidate)

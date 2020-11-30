@@ -65,8 +65,13 @@ Route::group(['middleware' => ['auth']], function () {
 // -----------------管理者用----------------------------------------------------------
 //ログイン前
 Route::group(['prefix' => 'admin'],function(){
+    // 登録
+    Route::get('signup', 'Admin\RegisterController@showRegistrationForm')->name('admin.showregister');
+    Route::post('signup', 'Admin\RegisterController@register')->name('admin.register');
+    // ログイン
     Route::get('login','Admin\LoginController@showLoginForm')->name('admin.showlogin');
     Route::post('login','Admin\LoginController@login')->name('admin.login');
+    
 });
 //ログイン後
 Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
