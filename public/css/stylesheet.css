@@ -121,19 +121,19 @@ h5:after {
 .category {
     position:relative;
     z-index:1;
-    padding-top: 1.25rem;
-    padding-bottom: 0.625rem;
+    /*padding-top: 1.25rem;*/
+    /*padding-bottom: 0.625rem;*/
 }
 
-.category-name {
-    font-size:.3rem;
-    position:absolute;
-    top:11%;
-    left:50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-}
+/*.category-name {*/
+    /*font-size:.7rem;*/
+    /*position:absolute;*/
+    /*top:0;*/
+    /*left:50%;*/
+    /*transform: translateX(-50%);*/
+    /*-webkit-transform: translateX(-50%);*/
+    /*-ms-transform: translateX(-50%);*/
+/*}*/
 
 .link {
     position:absolute;

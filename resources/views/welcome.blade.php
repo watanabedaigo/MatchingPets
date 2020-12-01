@@ -36,37 +36,32 @@
 <!--カテゴリー一覧-->
     <div style="background-color:linen;">
         <h5 class="pt-2 ml-2 mr-2"><i class="fas fa-paw icon"></i>カテゴリー</h5>
-        <div class="category-container row d-flex justify-content-between p-2">
-            @if(count($categories) > 0)
+        <div class="category-container row d-flex frex-row pt-0 pr-2 pl-2 pb-2">
+            @if(count($categories) === 0)
+            @else
                 @foreach($categories as $category)
-                    <div class="category col-2 bg-white border-dark border rounded-circle">
-                        @if(Auth::guard('admin')->check())
-                            <p class="category-name m-0 text-center w-100 font-weight-bold">{{ $category->id }}.{{ $category->name }}</p>
-                            <a href="{{ route('category.edit', $category->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
-                            {!! Form::model($category, ['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('削除', ['style'=>'position:absolute; z-index:3; top:70px; left:0;','class' => 'btn btn-primary']) !!}
-                            {!! Form::close() !!}
-                        @else
-                            <p class="category-name m-0 text-center w-100 font-weight-bold">{{ $category->name }}</p>
-                        @endif
-                            
-                        @foreach($categoryphotos as $categoryphoto)
-                            @if ($categoryphoto->category_id == $category->id)
-                                <img src="{{ $categoryphoto->image_path }}" class="d-block img-fluid">
+                    <div class="col-sm-2 col-3 p-0 mb-1">
+                        <div class="category bg-white border-dark border rounded p-2 mr-1">
+                            @if(Auth::guard('admin')->check())
+                                <p class="category-name m-0 text-center w-100 font-weight-bold">{{ $category->id }}.{{ $category->name }}</p>
+                                <a href="{{ route('category.edit', $category->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
+                                {!! Form::model($category, ['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('削除', ['style'=>'position:absolute; z-index:3; top:70px; left:0;','class' => 'btn btn-primary']) !!}
+                                {!! Form::close() !!}
+                            @else
+                                <p class="m-0 text-center w-100 font-weight-bold small">{{ $category->name }}</p>
                             @endif
-                        @endforeach
-
-                        <a href="{{ route('category.show', $category->id,) }}" class="link"></a>
+                                
+                            @foreach($categoryphotos as $categoryphoto)
+                                @if ($categoryphoto->category_id == $category->id)
+                                    <img src="{{ $categoryphoto->image_path }}" class="d-block img-fluid mx-auto" style="max-width:80%;">
+                                @endif
+                            @endforeach
+                    
+                            <a href="{{ route('category.show', $category->id,) }}" class="link"></a>
+                        </div>
                     </div>
                 @endforeach
-            @endif
-
-            @if(count($categories) <= 12)
-                @for ($i = 1; $i <= 12-count($categories); $i++)
-                    <div class="category col-2 p-0" style="color:linen;">
-                        {{ $i }}
-                    </div>
-                @endfor
             @endif
         </div>
     </div>
