@@ -70,9 +70,9 @@ class CandidateController extends Controller
         $candidate = new Candidate;
         $candidate->variety_id = $request->variety_id;
         $candidate->price = $request->price;
-        $candidate->age = $request->age;
         $candidate->birthday = $request->birthday;
         $candidate->gender = $request->gender;
+        $candidate->coat_color = $request->coat_color;
         $candidate->personality = $request->personality;
         $candidate->personality_details = $request->personality_details;
         $candidate->inspection = $request->inspection;
@@ -103,9 +103,9 @@ class CandidateController extends Controller
         $candidate = Candidate::find($id);
         
         $candidate->price = $request->price;
-        $candidate->age = $request->age;
         $candidate->birthday = $request->birthday;
         $candidate->gender = $request->gender;
+        $candidate->coat_color = $request->coat_color;
         $candidate->personality = $request->personality;
         $candidate->personality_details = $request->personality_details;
         $candidate->inspection = $request->inspection;

@@ -22,7 +22,7 @@ class CreateVarietiesTable extends Migration
             $table->string('lifespan')->nullable();
             $table->string('breedingtool')->nullable();
             $table->string('cost')->nullable();
-            $table->bigInteger('view_count');
+            $table->bigInteger('view_count')->nullable();
             $table->timestamps();
             
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

@@ -22,7 +22,6 @@ class VarietyController extends Controller
         $place_address3 = $request->input('place_address3');
         $gender = $request->input('gender');
         $price = $request->input('price');
-        // $age = $request->input('age');
         $coupon = $request->input('coupon');
         $birthday = $request->input('birthday');
         $id = $request->input('id');

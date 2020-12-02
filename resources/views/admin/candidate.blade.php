@@ -15,12 +15,12 @@
                     {!! Form::text('price', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('age', '年齢:') !!}
-                    {!! Form::text('age', null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="form-group">
                     {!! Form::label('birthday', '誕生日:') !!}
                     {!! Form::text('birthday', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('coat_color', '毛色:') !!}
+                    {!! Form::text('coat_color', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('gender', '性別:') !!}

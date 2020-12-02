@@ -17,7 +17,7 @@
                 foreach($varieties as $variety){
                     $candidates = $variety->candidates()->get();
                     $count = count($candidates);
-                    $total = $total + $count;
+                    $total += $count;
                 }
             }
         @endphp
@@ -142,7 +142,11 @@
                     @endif
                     
                     <div class="w-100 small">
-                        <p class="m-0">{{ $date->format('Y年m月d日') }}に追加　<span style="color:tomato;">{{ $newcandidate->view_count }}人</span>が見ました</p>
+                        @if($newcandidate->view_count == 0)
+                            <p class="m-0">{{ $date->format('Y年m月d日') }}に追加　<span class="font-weight-bold" style="color:tomato;">NEW!!!</span></p>
+                        @else
+                            <p class="m-0">{{ $date->format('Y年m月d日') }}に追加　<span style="color:tomato;">{{ $newcandidate->view_count }}人</span>が見ました</p>
+                        @endif
                     </div>
                     <div class="col-5 pt-1 pb-1 pl-2 pr-2 text-center">
                         @foreach($newcandidatephotos as $newcandidatephoto)
