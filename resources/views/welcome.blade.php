@@ -21,7 +21,7 @@
                 }
             }
         @endphp
-        <p class="publication small pl-1 pr-1 m-0 text-center"><i class="fas fa-thumbtack thumbtack-1"></i><i class="fas fa-thumbtack thumbtack-2"></i>現在<span class="count">{{ $total }}</span>匹掲載中</p>
+        <p class="publication small pl-1 pr-1 m-0 text-center"><i class="fas fa-thumbtack thumbtack-1"></i><i class="fas fa-thumbtack thumbtack-2"></i>現在<span class="count"> {{ $total }}</span>匹 掲載中</p>
         <img src="image/toppage.jpg" class="top-image"></img>
         <div class="search"> 
             <div class="form-group mb-0">
@@ -39,7 +39,7 @@
         <div class="category-container row d-flex frex-row pt-0 pr-2 pl-2 pb-2">
             @if(count($categories) > 0)
                 @foreach($categories as $category)
-                    <div class="col-sm-2 col-3 p-0 mb-1">
+                    <div class="col-sm-2 col-3 p-0 mb-1 ">
                         <div class="category bg-white border-dark border rounded pt-1 mr-1">
                             @if(Auth::guard('admin')->check())
                                 <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">{{ $category->id }}.{{ $category->name }}</p>
@@ -72,12 +72,12 @@
         @if(count($popularityvarieties) > 0)
             @foreach($popularityvarieties as $popularityvariety)
                 @if($loop->iteration <= 3)
-                    <div class="popularityvariety border border-dark rounded row p-0 mx-auto mt-1" style="width:90%; background-color:white;">
+                    <div class="popularityvariety border border-dark rounded row p-0 mx-auto mt-1 background-1" style="width:90%;">
                         <div class="w-100 small">
                             @if(Auth::guard('admin')->check())
-                                <p class="m-0 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span>　{{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }})</nobr></p>
+                                <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中) {{ $popularityvariety->view_count }}</nobr></p>
                             @else
-                                <p class="m-0 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span>　{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }})</nobr></p>
+                                <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中)</nobr></p>
                             @endif
                         </div>
                         <div class="col-4 pt-1 pb-1 pr-1 small">
@@ -122,7 +122,7 @@
                 @endphp
             
                 @if($loop->iteration <= 5)
-                <div class="popularityvariety bg-white border border-dark rounded row p-0 mx-auto mt-1" style="width:90%;">
+                <div class="popularityvariety bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
                     <a href="{{ route('candidate.show', $newcandidate->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
                     @if(Auth::guard('admin')->check())
                         <a href="{{ route('candidate.edit', $newcandidate->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
@@ -143,15 +143,15 @@
                     
                     <div class="w-100 small">
                         @if($newcandidate->view_count == 0)
-                            <p class="m-0">{{ $date->format('Y年m月d日') }}に追加　<span class="font-weight-bold" style="color:tomato;">NEW!!!</span></p>
+                            <p class="m-0 pl-1">{{ $date->format('Y年m月d日') }}追加　<span class="font-weight-bold" style="color:tomato;">NEW!!!</span></p>
                         @else
-                            <p class="m-0">{{ $date->format('Y年m月d日') }}に追加　<span style="color:tomato;">{{ $newcandidate->view_count }}人</span>が見ました</p>
+                            <p class="m-0 pl-1">{{ $date->format('Y年m月d日') }}追加　{{ $newcandidate->view_count }}人が見ました</p>
                         @endif
                     </div>
-                    <div class="col-5 pt-1 pb-1 pl-2 pr-2 text-center">
+                    <div class="col-5 pt-1 pb-1 pl-2 pr-2 text-center d-flex align-items-center">
                         @foreach($newcandidatephotos as $newcandidatephoto)
                             @if ($newcandidatephoto->candidate_id == $newcandidate->id)
-                                <img src="{{ $newcandidatephoto->image_path }}" class="d-block img-fluid mx-auto">
+                                <img src="{{ $newcandidatephoto->image_path }}" class="img-fluid">
                                 @break
                             @endif
                         @endforeach
@@ -164,7 +164,6 @@
                         <p class="mb-0">誕生日：{{ $newcandidate->birthday }}</p>
                         <p class="mb-0">性別：{{ $newcandidate->gender }}</p>
                         <p class="mb-0">性格：{{ $newcandidate->personality }}</p>
-                        <p class="mb-0">検査：{{ $newcandidate->inspection }}</p>
                         <p class="mb-0">場所：{{ $newcandidate->place_name }}</p>
                     </div>
                 </div>
