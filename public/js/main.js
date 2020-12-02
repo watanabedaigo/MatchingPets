@@ -12,3 +12,7 @@
 // ・インスタのWebAPIを用いて、候補の写真や動画を載せる？
 // 　重くなってしまうため、リンクだけを貼る？
 
+$(document).ready(function () {
+  hsize = $(window).height();
+  $("#variety").css("height", hsize + "px");
+});

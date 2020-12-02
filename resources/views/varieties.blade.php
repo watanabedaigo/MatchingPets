@@ -1,37 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3>{{ $category->name }}　品種一覧</h3>
-    <div class="row">
-         @if(count($varieties) > 0)
-            @foreach($varieties as $variety)
-                @if(Auth::guard('admin')->check())
-                    <div style='position:relative; z-index:1' class="mb-1 col-4 border border-primary ml-3 pl-0">
-                        <p>ID{{ $variety->id }}.{{ $variety->name }}({{ count($variety->candidates()->get()) }})</p>
-                        <p>閲覧数：{{ $variety->view_count }}</p>
-                        @foreach($varietyphotos as $varietyphoto)
-                            @if ($varietyphoto->variety_id == $variety->id)
-                                <img src="{{ $varietyphoto->image_path }}" class="d-block mx-auto">
+    <div style="background-color:linen;" id="variety">
+        <h5 class="pt-2 ml-2 mr-2"><i class="fas fa-paw icon"></i>{{ $category->name }}</h5>
+        <div class="category-container row d-flex frex-row pt-0 pr-2 pl-2 pb-2">
+             @if(count($varieties) > 0)
+                @foreach($varieties as $variety)
+                    <div class="col-sm-2 col-3 p-0 mb-1 ">
+                        <div class="category bg-white border-dark border rounded pt-1 mr-1">
+                            @if(Auth::guard('admin')->check())
+                                <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">ID{{ $variety->id }}.{{ $variety->name }}({{ count($variety->candidates()->get()) }}匹掲載) {{ $variety->view_count }}回訪問</p>
+                                <a href="{{ route('variety.edit', $variety->id) }}" style='position: relative; z-index:3' class="btn btn-secondary">編集</a>
+                                {!! Form::model($variety, ['route' => ['variety.destroy', $variety->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('削除', ['class' => 'btn btn-secondary','style'=>'position:relative; z-index:3']) !!}
+                                {!! Form::close() !!}
+                            @else
+                                <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">{{ $variety->name }}</p>
                             @endif
-                        @endforeach
-                        <a href="{{ route('variety.show', $variety->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
-                        <a href="{{ route('variety.edit', $variety->id) }}" style='position: relative; z-index:3' class="btn btn-secondary">編集</a>
-                        {!! Form::model($variety, ['route' => ['variety.destroy', $variety->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('削除', ['class' => 'btn btn-secondary','style'=>'position:relative; z-index:3']) !!}
-                        {!! Form::close() !!}
+                            
+                            @foreach($varietyphotos as $varietyphoto)
+                                @if ($varietyphoto->variety_id == $variety->id)
+                                    <img src="{{ $varietyphoto->image_path }}" class="d-block img-fluid mx-auto" style="max-width:80%">
+                                @endif
+                            @endforeach
+                            
+                            <a href="{{ route('variety.show', $variety->id) }}" class="link"></a>
+                        </div>
                     </div>
-                @else
-                    <div style='position:relative;' class="mb-1 col-4 border border-primary ml-3 pl-0">
-                        <p>{{ $variety->name }}({{ count($variety->candidates()->get()) }})</p>
-                        @foreach($varietyphotos as $varietyphoto)
-                            @if ($varietyphoto->variety_id == $variety->id)
-                                <img src="{{ $varietyphoto->image_path }}" class="d-block mx-auto">
-                            @endif
-                        @endforeach
-                        <a href="{{ route('variety.show', $variety->id) }}" style='position:absolute; top:0; left:0; height:100%; width:100%;'></a>
-                    </div>
-                @endif
-            @endforeach
-        @endif
+                @endforeach
+            @endif
+        </div>
     </div>
 @endsection

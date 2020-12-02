@@ -40,7 +40,7 @@
             @if(count($categories) > 0)
                 @foreach($categories as $category)
                     <div class="col-sm-2 col-3 p-0 mb-1 ">
-                        <div class="category bg-white border-dark border rounded pt-1 mr-1">
+                        <div class="category bg-white border-dark border rounded pt-1 mr-1 background-2">
                             @if(Auth::guard('admin')->check())
                                 <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">{{ $category->id }}.{{ $category->name }}</p>
                                 <a href="{{ route('category.edit', $category->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
