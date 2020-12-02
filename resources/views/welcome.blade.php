@@ -37,19 +37,18 @@
     <div style="background-color:linen;">
         <h5 class="pt-2 ml-2 mr-2"><i class="fas fa-paw icon"></i>カテゴリー</h5>
         <div class="category-container row d-flex frex-row pt-0 pr-2 pl-2 pb-2">
-            @if(count($categories) === 0)
-            @else
+            @if(count($categories) > 0)
                 @foreach($categories as $category)
                     <div class="col-sm-2 col-3 p-0 mb-1">
-                        <div class="category bg-white border-dark border rounded p-2 mr-1">
+                        <div class="category bg-white border-dark border rounded pt-1 mr-1">
                             @if(Auth::guard('admin')->check())
-                                <p class="category-name m-0 text-center w-100 font-weight-bold">{{ $category->id }}.{{ $category->name }}</p>
+                                <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">{{ $category->id }}.{{ $category->name }}</p>
                                 <a href="{{ route('category.edit', $category->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
                                 {!! Form::model($category, ['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
                                     {!! Form::submit('削除', ['style'=>'position:absolute; z-index:3; top:70px; left:0;','class' => 'btn btn-primary']) !!}
                                 {!! Form::close() !!}
                             @else
-                                <p class="m-0 text-center w-100 font-weight-bold small">{{ $category->name }}</p>
+                                <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">{{ $category->name }}</p>
                             @endif
                                 
                             @foreach($categoryphotos as $categoryphoto)
@@ -74,13 +73,14 @@
             @foreach($popularityvarieties as $popularityvariety)
                 @if($loop->iteration <= 3)
                     <div class="popularityvariety border border-dark rounded row p-0 mx-auto mt-1" style="width:90%; background-color:white;">
-                        <div class="col-4 pt-1 pb-1 pr-1 small">
+                        <div class="w-100 small">
                             @if(Auth::guard('admin')->check())
                                 <p class="m-0 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span>　{{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }})</nobr></p>
                             @else
                                 <p class="m-0 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span>　{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }})</nobr></p>
                             @endif
-                            
+                        </div>
+                        <div class="col-4 pt-1 pb-1 pr-1 small">
                             @if(Auth::guard('admin')->check())
                                 <a href="{{ route('variety.edit', $popularityvariety->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
                                 {!! Form::model($popularityvariety, ['route' => ['variety.destroy', $popularityvariety->id], 'method' => 'delete']) !!}
@@ -96,8 +96,8 @@
                             @endforeach
                         </div>
                         
-                        <div class="col-8 m-0 d-flex align-items-center small">
-                            <p class="m-0"><nobr>{!! $popularityvariety->feature !!}</nobr></p>
+                        <div class="col-8 m-0 small">
+                            <p class="m-0 w-100" style="word-wrap: break-word;">{{ $popularityvariety->feature }}</p>
                         </div>
                         
                         <a href="{{ route('variety.show', $popularityvariety->id,) }}" class="link"></a>
