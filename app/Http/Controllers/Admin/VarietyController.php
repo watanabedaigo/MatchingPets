@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Category;
 use App\Variety;
 use App\Candidate;
 use App\Candidatephoto;
@@ -14,7 +15,7 @@ class VarietyController extends Controller
     {
         $variety = Variety::find($id);
         
-        $variety->view_count = $variety->view_count + 1;
+        $variety->view_count += 1;
         $variety->save();
         
         $place_address1 = $request->input('place_address1');
@@ -79,10 +80,13 @@ class VarietyController extends Controller
         
         $candidatephotos = Candidatephoto::all();
         
+        $categories = Category::all();
+        
         return view('candidates',[
             'variety' => $variety,
             'candidates' => $candidates,
             'candidatephotos' => $candidatephotos,
+            'categories' => $categories,
         ]);
     }
     

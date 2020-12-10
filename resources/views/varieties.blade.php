@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div style="background-color:linen;" id="variety">
-        <h5 class="pt-2 ml-2 mr-2"><i class="fas fa-paw icon"></i>{{ $category->name }}</h5>
-        <div class="category-container row d-flex frex-row pt-0 pr-2 pl-2 pb-2">
+    <div>
+        <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>{{ $category->name }}</h5>
+        <div class="category-container row pt-0 pl-2 pr-2">
              @if(count($varieties) > 0)
                 @foreach($varieties as $variety)
                     <div class="col-sm-2 col-3 p-0 mb-1 ">
-                        <div class="category bg-white border-dark border rounded pt-1 mr-1">
+                        <div class="category bg-white border-dark border rounded pt-1 mr-1 background-2" style="height:24vmin">
                             @if(Auth::guard('admin')->check())
                                 <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">ID{{ $variety->id }}.{{ $variety->name }}({{ count($variety->candidates()->get()) }}匹掲載) {{ $variety->view_count }}回訪問</p>
                                 <a href="{{ route('variety.edit', $variety->id) }}" style='position: relative; z-index:3' class="btn btn-secondary">編集</a>
@@ -20,7 +20,7 @@
                             
                             @foreach($varietyphotos as $varietyphoto)
                                 @if ($varietyphoto->variety_id == $variety->id)
-                                    <img src="{{ $varietyphoto->image_path }}" class="d-block img-fluid mx-auto" style="max-width:80%">
+                                    <img src="{{ $varietyphoto->image_path }}" class="d-block img-fluid mx-auto" style="max-width:75%;">
                                 @endif
                             @endforeach
                             

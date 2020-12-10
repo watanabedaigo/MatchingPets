@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Candidate;
 use App\Variety;
+use App\Category;
 use App\Candidatephoto;
 
 class CandidateController extends Controller
@@ -41,14 +42,20 @@ class CandidateController extends Controller
     {
         $candidate = Candidate::find($id);
      
-        $candidate->view_count = $candidate->view_count + 1;
+        $candidate->view_count += 1;
         $candidate->save();
         
         $candidatephotos = $candidate->candidatephotos()->get();
         
+        $categories = Category::all();
+        
+        $varieties = Variety::all();
+        
         return view('candidateshow',[
             'candidate' => $candidate,
             'candidatephotos' => $candidatephotos,
+            'categories' => $categories,
+            'varieties' => $varieties,
         ]);
     }
 

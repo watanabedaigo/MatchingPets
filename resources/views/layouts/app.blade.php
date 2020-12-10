@@ -14,7 +14,7 @@
     <body>
         @include('commons.navbar')
 
-        <div class="container">
+        <div class="container" id="background" style="background-color:linen;">
             @include('commons.error_messages')
             @yield('content')
         </div>
