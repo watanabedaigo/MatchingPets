@@ -198,3 +198,10 @@ input[type = radio] {
     background-color:silver; 
     width:25%;
 }
+
+.table > tbody > tr > th{
+    border:1px solid gray;
+}
+.table > tbody > tr > td{
+    border:1px solid gray;
+}

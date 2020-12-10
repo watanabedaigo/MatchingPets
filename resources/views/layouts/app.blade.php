@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <link href="{{asset('/css/stylesheet.css')}}" rel="stylesheet">
         <link href="{{asset('/css/responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('/css/magnific-popup.css')}}" rel="stylesheet">
     </head>
 
     <body>
@@ -22,6 +23,7 @@
         <!--ここにヘッダーをincludeする。-->
         
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="{{ asset('/js/jquery.magnific-popup.min.js') }}"></script>
         <script src="{{ asset('/js/main.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>

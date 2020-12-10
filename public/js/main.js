@@ -58,3 +58,19 @@ $('#sort').on('click',() => {
     $('#pricesort,#age,#created').css('background-color','snow');
   }
 });
+
+$('.popup').magnificPopup({
+  type: 'image',
+  gallery: { enabled: true },
+  mainClass: 'mfp-fade',
+  removalDelay: 300,
+});
+
+const windowwidth = $(window).width();
+console.log(windowwidth);
+if(windowwidth <= 375){
+  $('iframe').css({
+    'width':'300',
+    'height':'300',
+  });
+}

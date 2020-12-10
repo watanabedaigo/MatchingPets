@@ -32,42 +32,82 @@
                 @endif
             @endif
         
-            <div class="col-sm-4 bg-light">
+            <div class="col-sm-4 pt-2 pb-2 rounded" style="font-size:0;">
                 @foreach($candidatephotos as $candidatephoto)
                     @if ($candidatephoto->candidate_id == $candidate->id)
                         <!--最初のループか否かで場合分け-->
                         @if($loop->first)
-                            <img src="{{ $candidatephoto->image_path }}" class="d-block mx-auto">
+                            <a class="popup" href="{{ $candidatephoto->image_path }}"><img src="{{ $candidatephoto->image_path }}" class="d-block mx-auto"></a>
                         @else
-                            <img src="{{ $candidatephoto->image_path }}" class="d-inlene-block mx-auto col-4">
+                            <div class="d-inline-block" style="width:33%;">
+                                <a class="popup" href="{{ $candidatephoto->image_path }}"><img src="{{ $candidatephoto->image_path }}" class="w-100"></a>
+                            </div>
                         @endif
                     @endif
                 @endforeach
             </div>
             
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 @if(Auth::guard('admin')->check())
                     <p class="mb-0">id　　：{{ $candidate->id }}</p>
                 @endif
-                <p class="mb-0">閲覧数　：{{ $candidate->view_count }}</p>
-                <p class="mb-0">値段　　：{{ $candidate->price }}</p>
-                <p class="mb-0">年齢　　：{{ $candidate->age }}</p>
-                <p class="mb-0">誕生日　：{{ $candidate->birthday }}</p>
-                <p class="mb-0">性別　　：{{ $candidate->gender }}</p>
-                <p class="mb-0">性格詳細：{{ $candidate->personality_details }}</p>
-                <p class="mb-0">検査　　：{{ $candidate->inspection }}</p>
-                <p class="mb-0">飼育場所：{{ $candidate->place_name }}</p>
-                <p class="mb-0">住所　　：{{ $candidate->place_address }}</p>
-                <p class="mb-0">電話番号：{{ $candidate->place_phonenumber }}</p>
-                <p class="mb-0">営業時間：{{ $candidate->bussinesshours }}</p>
-                <p class="mb-0">URL     ：<a href ={{ $candidate->URL }}>HPに飛ぶ</a></p>
-                <p class="mb-0">クーポン：{{ $candidate->coupon }}</p>
+                
+                <table class="table table-sm table-bordered w-100 mt-1" style="font-size:.7rem;">
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">閲覧数</th>
+                        <td class="bg-light">{{ $candidate->view_count }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">値段</th>
+                        <td class="bg-light">{{ $candidate->price }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">誕生日</th>
+                        <td class="bg-light">{{ $candidate->birthday }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">性別</th>
+                        <td class="bg-light">{{ $candidate->gender }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">性格</th>
+                        <td class="bg-light">{{ $candidate->personality_details }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">検査</th>
+                        <td class="bg-light">{{ $candidate->inspection }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">飼育場所</th>
+                        <td class="bg-light">{{ $candidate->place_name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">住所</th>
+                        <td class="bg-light">{{ $candidate->place_address }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">電話番号</th>
+                        <td class="bg-light">{{ $candidate->place_phonenumber }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">営業時間</th>
+                        <td class="bg-light">{{ $candidate->bussinesshours }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">URL</th>
+                        <td class="bg-light">{{ $candidate->URL }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="w-25 text-center" style="background-color:lightgray;">クーポン</th>
+                        <td class="bg-light">{{ $candidate->coupon }}</td>
+                    </tr>
+                </table>
             </div>
             
-            <div class="ml-3">
+            <div class="mx-auto">
                 {!! $candidate->map !!}
             </div>
-    
+        
             @if($candidate->coupon != NULL)
                 <p>{!! link_to_route('candidate.coupon','クーポンを使う', ['id' => $candidate->id], ['class' => 'btn btn-warning']) !!}</p>
             @endif
