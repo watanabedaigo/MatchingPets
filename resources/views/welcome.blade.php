@@ -41,15 +41,13 @@
                 @foreach($categories as $category)
                     <div class="col-sm-2 col-3 p-0 mb-1">
                         <div class="category bg-white border-dark border rounded pt-1 mr-1 background-2">
-                            @if(Auth::guard('admin')->check())
-                                <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">{{ $category->id }}.{{ $category->name }}</p>
-                                <a href="{{ route('category.edit', $category->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
-                                {!! Form::model($category, ['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
-                                    {!! Form::submit('削除', ['style'=>'position:absolute; z-index:3; top:70px; left:0;','class' => 'btn btn-primary']) !!}
-                                {!! Form::close() !!}
-                            @else
-                                <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">{{ $category->name }}</p>
-                            @endif
+                            
+                            <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">
+                                @if(Auth::guard('admin')->check())
+                                    {{ $category->id }}.
+                                @endif
+                                {{ $category->name }}
+                            </p>
                                 
                             @foreach($categoryphotos as $categoryphoto)
                                 @if ($categoryphoto->category_id == $category->id)
@@ -59,6 +57,15 @@
                     
                             <a href="{{ route('category.show', $category->id,) }}" class="link"></a>
                         </div>
+                        
+                        @if(Auth::guard('admin')->check())
+                            <div class="d-flex justify-content-center" style="height:1rem;">
+                                <a href="{{ route('category.edit', $category->id) }}" class="d-inline-block"><i class="fas fa-edit" style="vertical-align:top;"></i></a>
+                                {!! Form::model($category, ['route' => ['category.destroy', $category->id], 'method' => 'delete','class' => 'd-inline-block']) !!}
+                                    {!! Form::button('<i class="fa fa-trash" style="vertical-align:top;"></i>', ['type' => 'submit', 'class' => 'btn p-0'] ) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             @endif
@@ -74,20 +81,14 @@
                 <div class="popularityvariety border border-dark rounded row p-0 mx-auto mt-1 background-1" style="width:90%;">
                     <div class="w-100 small">
                         @if(Auth::guard('admin')->check())
-                            <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中) {{ $popularityvariety->view_count }}</nobr></p>
+                            <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中) {{ $popularityvariety->view_count }}回閲覧</nobr></p>
                         @else
                             <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中)</nobr></p>
                         @endif
                     </div>
-                        
+                    
+                     
                     <div class="col-4 pt-1 pb-1 pr-1 small">
-                        @if(Auth::guard('admin')->check())
-                            <a href="{{ route('variety.edit', $popularityvariety->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
-                            {!! Form::model($popularityvariety, ['route' => ['variety.destroy', $popularityvariety->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('削除', ['style'=>'position:absolute; z-index:3; top:70px; left:0;','class' => 'btn btn-primary']) !!}
-                            {!! Form::close() !!}
-                        @endif
-                            
                         @foreach($popularityvarietyphotos as $popularityvarietyphoto)
                             @if ($popularityvarietyphoto->variety_id == $popularityvariety->id)
                                 <img src="{{ $popularityvarietyphoto->image_path }}" class="d-block img-fluid mx-auto" style="max-width:80%;">
@@ -99,6 +100,15 @@
                     <div class="col-8 m-0 small">
                         <p class="m-0 w-100" style="word-wrap: break-word;">{{ $popularityvariety->feature }}</p>
                     </div>
+                    
+                    @if(Auth::guard('admin')->check())
+                        <div style="height:1rem; position:absolute; top:0; right:0; z-index:3">
+                            <a href="{{ route('variety.edit', $popularityvariety->id) }}" class="d-inline-block h-100"><i class="fas fa-edit" style="vertical-align:top;"></i></a>
+                            {!! Form::model($popularityvariety, ['route' => ['variety.destroy', $popularityvariety->id], 'method' => 'delete','class' => 'd-inline-block']) !!}
+                                {!! Form::button('<i class="fa fa-trash" style="vertical-align:top;"></i>', ['type' => 'submit', 'class' => 'btn p-0'] ) !!}
+                            {!! Form::close() !!}
+                        </div>
+                    @endif
                         
                     <a href="{{ route('variety.show', $popularityvariety->id,) }}" class="link"></a>
                 </div>
@@ -121,23 +131,6 @@
                     @endphp
     
                     <div class="popularityvariety bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
-                        @if(Auth::guard('admin')->check())
-                            <a href="{{ route('candidate.edit', $newcandidate->id) }}" style='position:absolute; z-index:3; top:35px; left:0;' class="btn btn-primary d-inline">編集</a>
-                            {!! Form::model($newcandidate, ['route' => ['candidate.destroy', $newcandidate->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('削除', ['style'=>'position:absolute; z-index:3; top:70px; left:0;','class' => 'btn btn-primary']) !!}
-                            {!! Form::close() !!}
-                        @elseif(Auth::guard('web')->check())
-                            @if(Auth::user()->is_favorite($newcandidate->id))
-                                {!! Form::open(['route' => ['favorites.unfavorite', $newcandidate->id], 'method' => 'delete']) !!}
-                                    {!! Form::submit('お気に入りから外す', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
-                                {!! Form::close() !!}
-                            @else
-                                {!! Form::open(['route' => ['favorites.favorite', $newcandidate->id]]) !!}
-                                    {!! Form::submit('お気に入りに追加', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
-                                {!! Form::close() !!}               
-                            @endif
-                        @endif
-                        
                         <div class="w-100 small">
                             @if($newcandidate->view_count == 0)
                                 <p class="m-0 pl-1">{{ $date->format('Y年m月d日') }}追加　<span class="font-weight-bold" style="color:tomato;">NEW!!!</span></p>
@@ -154,6 +147,7 @@
                                 @endif
                             @endforeach
                         </div>
+                        
                         <div class="col-7 m-0 p-0 small">
                             @if(Auth::guard('admin')->check())
                                 <p class="mb-0">id　　  ：{{ $newcandidate->id }}</p>
@@ -170,6 +164,25 @@
                             <p class="mb-0">場所：{{ $newcandidate->place_name }}</p>
                         </div>
                     
+                        @if(Auth::guard('admin')->check())
+                            <div style="height:1rem; position:absolute; top:0; right:0; z-index:3">
+                                <a href="{{ route('candidate.edit', $newcandidate->id) }}" class="d-inline-block h-100"><i class="fas fa-edit" style="vertical-align:top;"></i></a>
+                                {!! Form::model($newcandidate, ['route' => ['candidate.destroy', $newcandidate->id], 'method' => 'delete','class' => 'd-inline-block']) !!}
+                                    {!! Form::button('<i class="fa fa-trash" style="vertical-align:top;"></i>', ['type' => 'submit', 'class' => 'btn p-0'] ) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        @elseif(Auth::guard('web')->check())
+                            @if(Auth::user()->is_favorite($newcandidate->id))
+                                {!! Form::open(['route' => ['favorites.unfavorite', $newcandidate->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('お気に入りから外す', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
+                                {!! Form::close() !!}
+                            @else
+                                {!! Form::open(['route' => ['favorites.favorite', $newcandidate->id]]) !!}
+                                    {!! Form::submit('お気に入りに追加', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
+                                {!! Form::close() !!}               
+                            @endif
+                        @endif
+                        
                         <a href="{{ route('candidate.show', $newcandidate->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
                     </div>
                 @endforeach

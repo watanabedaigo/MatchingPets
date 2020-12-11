@@ -169,10 +169,6 @@ input[type = radio] {
     display:none;
 }
 
-#sort {
-    font-size:0;
-}
-
 .sort-select-l1 {
     font-size:1rem;
     border-style:solid;
@@ -202,6 +198,7 @@ input[type = radio] {
 .table > tbody > tr > th{
     border:1px solid gray;
 }
+
 .table > tbody > tr > td{
     border:1px solid gray;
 }

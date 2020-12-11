@@ -67,7 +67,6 @@ $('.popup').magnificPopup({
 });
 
 const windowwidth = $(window).width();
-console.log(windowwidth);
 if(windowwidth <= 375){
   $('iframe').css({
     'width':'300',

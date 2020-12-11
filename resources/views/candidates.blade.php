@@ -54,7 +54,7 @@
             <!--並び替え-->
             <div>
                 <p class="p-0 m-0"><i class="fas fa-sort-amount-down icon"></i>並び替え</p>
-                <div class="form-group mb-2 p-0 rounded-bottom text-center" id="sort">
+                <div class="form-group mb-2 p-0 rounded-bottom text-center" id="sort" style="font-size:0;">
                     <div class="w-25 m-0 p-0 d-inline-block sort-select-l1 rounded-left" id="created">
                         {!! Form::label('sortCreated', '新着順',['class' => 'w-100 m-0']) !!}{!! Form::radio('sort','記載日降順',old('sort'),['id' => 'sortCreated','class' => 'mr-2']) !!}
                     </div>
@@ -92,23 +92,6 @@
                 @endphp
             
                 <div class="popularityvariety bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
-                    @if(Auth::guard('admin')->check())
-                        <a href="{{ route('candidate.edit', $candidate->id) }}" style='position: relative; z-index:3' class="btn btn-secondary">編集</a>
-                        {!! Form::model($candidate, ['route' => ['candidate.destroy', $candidate->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('削除', ['class' => 'btn btn-secondary','style'=>'position:relative; z-index:3']) !!}
-                        {!! Form::close() !!}
-                    @elseif(Auth::guard('web')->check())
-                        @if (Auth::user()->is_favorite($candidate->id))
-                            {!! Form::open(['route' => ['favorites.unfavorite', $candidate->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('お気に入りから外す', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
-                            {!! Form::close() !!}
-                        @else
-                            {!! Form::open(['route' => ['favorites.favorite', $candidate->id]]) !!}
-                                {!! Form::submit('お気に入りに追加', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
-                            {!! Form::close() !!}               
-                        @endif
-                    @endif
-                
                     <div class="col-5 pt-1 pb-1 pl-2 pr-2 text-center d-flex align-items-center">
                         @foreach($candidatephotos as $candidatephoto)
                             @if ($candidatephoto->candidate_id == $candidate->id)
@@ -128,8 +111,27 @@
                         <p class="mb-0">性格：{{ $candidate->personality }}</p>
                         <p class="mb-0">場所：{{ $candidate->place_name }}</p>
                     </div>
+                
+                    @if(Auth::guard('admin')->check())
+                        <div style="height:1rem; position:absolute; top:0; right:0; z-index:3">
+                            <a href="{{ route('candidate.edit', $candidate->id) }}" class="d-inline-block h-100"><i class="fas fa-edit" style="vertical-align:top;"></i></a>
+                            {!! Form::model($candidate, ['route' => ['candidate.destroy', $candidate->id], 'method' => 'delete','class' => 'd-inline-block']) !!}
+                                {!! Form::button('<i class="fa fa-trash" style="vertical-align:top;"></i>', ['type' => 'submit', 'class' => 'btn p-0'] ) !!}
+                            {!! Form::close() !!}
+                        </div>
+                    @elseif(Auth::guard('web')->check())
+                        @if(Auth::user()->is_favorite($candidate->id))
+                            {!! Form::open(['route' => ['favorites.unfavorite', $candidate->id], 'method' => 'delete']) !!}
+                                {!! Form::submit('お気に入りから外す', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
+                            {!! Form::close() !!}
+                        @else
+                            {!! Form::open(['route' => ['favorites.favorite', $candidate->id]]) !!}
+                                {!! Form::submit('お気に入りに追加', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
+                            {!! Form::close() !!}               
+                        @endif
+                    @endif
                     
-                    <a href="{{ route('candidate.show', $candidate->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
+                    <a href="{{ route('candidate.show', $candidate->id,) }}" class="link"></a>
                 </div>
             @endforeach
         @endif
