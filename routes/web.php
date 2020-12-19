@@ -84,12 +84,12 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::get('variety','Admin\VarietyController@create')->name('variety');
     // 候補追加ページ表示
     Route::get('candidate','Admin\CandidateController@create')->name('candidate');
-    // 候補写真追加ページ表示
-    Route::get('candidatephoto','Admin\CandidatephotoController@create')->name('candidatephoto');
     // カテゴリー写真追加ページ表示
     Route::get('categoryphoto','Admin\CategoryphotoController@create')->name('categoryphoto');
     // 品種写真追加ページ表示
     Route::get('varietyphoto','Admin\VarietyphotoController@create')->name('varietyphoto');
+    // 候補写真追加ページ表示
+    Route::get('candidatephoto','Admin\CandidatephotoController@create')->name('candidatephoto');
     // 都道府県追加ページ表示
     Route::get('place','Admin\PlaceController@create')->name('place');
     // 市区町村追加ページ表示

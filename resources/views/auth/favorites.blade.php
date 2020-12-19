@@ -1,68 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>{{ $user->name }}さんのお気に入り一覧</h1>
-    <p>お気に入り数　{{ $user->favorites_count }}</p>
+    <div class="container">
+        <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>お気に入り一覧 ({{ $favorites->count() }}件)</h5>
+        <div class="category-container row pt-0 pl-2 pr-2">
+            <!--候補一覧-->
+            @if(count($favorites) > 0)
+                @foreach($favorites as $favorite)
+                    @php
+                        $price = $favorite->price;
+                        $priceShow = number_format($price);
+                    @endphp
+                
+                    <div class="popularityvariety bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
+                        <div class="col-5 pt-1 pb-1 pl-2 pr-2 text-center d-flex align-items-center">
+                            @foreach($candidatephotos as $candidatephoto)
+                                @if ($candidatephoto->candidate_id == $favorite->id)
+                                    <img src="{{ $candidatephoto->image_path }}" class="img-fluid">
+                                    @break
+                                @endif
+                            @endforeach
+                        </div>
     
-    @if(count($favorites) > 0)
-        @foreach($favorites as $favorite)
-        <!--<div class="border border-primary mb-2">-->
-        <!--    <p class="mb-0">{!! link_to_route('candidate.show','候補詳細', ['id' => $favorite->id], ['class' => 'btn btn-primary']) !!}</p>-->
-        <!--    {!! Form::open(['route' => ['favorites.unfavorite', $favorite->id], 'method' => 'delete']) !!}-->
-        <!--        {!! Form::submit('お気に入りから外す', ['class' => "btn btn-danger"]) !!}-->
-        <!--    {!! Form::close() !!}-->
-        <!--    <div class="row">-->
-        <!--        <div class="col-4">-->
-        <!--            @foreach($candidatephotos as $candidatephoto)-->
-        <!--                @if ($candidatephoto->candidate_id == $favorite->id)-->
-        <!--                    <img src="{{ $candidatephoto->image_path }}">-->
-        <!--                    @break-->
-        <!--                @endif-->
-        <!--            @endforeach-->
-        <!--        </div>-->
-        <!--        <div class="col-6">-->
-        <!--            <p class="mb-0">{{ $favorite->price }}</p>-->
-        <!--            <p class="mb-0">{{ $favorite->age }}</p>-->
-        <!--            <p class="mb-0">{{ $favorite->gender }}</p>-->
-        <!--            <p class="mb-0">{{ $favorite->personality }}</p>-->
-        <!--            <p class="mb-0">{{ $favorite->inspection }}</p>-->
-        <!--            <p class="mb-0">{{ $favorite->place_name }}</p>-->
-        <!--            <p class="mb-0">{{ $favorite->place_address }}</p>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
-        
-            <div style='position:relative; z-index:1' class="mb-1 border border-primary ml-3 pl-0">
-                <a href="{{ route('candidate.show', $favorite->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
-                {!! Form::open(['route' => ['favorites.unfavorite', $favorite->id], 'method' => 'delete']) !!}
-                    {!! Form::submit('お気に入りから外す', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
-                {!! Form::close() !!}
-    
-                @if($favorite->coupon != NULL)
-                    <a href="{{ route('candidate.coupon', $favorite->id) }}" style='position: relative; z-index:3' class="btn btn-warning">クーポン使用</a>
-                @endif
-                <div class="row">
-                    <div class="col-4">
-                        @foreach($candidatephotos as $candidatephoto)
-                            @if ($candidatephoto->candidate_id == $favorite->id)
-                                <img src="{{ $candidatephoto->image_path }}" class="d-block mx-auto">
-                                @break
+                        <div class="col-7 m-0 p-0 small">
+                            <p class="mb-0">値段：{{ $priceShow }}円(税込)</p>
+                            <p class="mb-0">誕生日：{{ $favorite->birthday }}</p>
+                            <p class="mb-0">性別：{{ $favorite->gender }}</p>
+                            <p class="mb-0">性格：{{ $favorite->personality }}</p>
+                            <p class="mb-0">場所：{{ $favorite->place_name }}</p>
+                        </div>
+                    
+                        @if(Auth::guard('web')->check())
+                            @if(Auth::user()->is_favorite($favorite->id))
+                                <div class="favorite">
+                                    {!! Form::open(['route' => ['favorites.unfavorite', $favorite->id], 'method' => 'delete']) !!}
+                                        {!! Form::button('', ['type' => 'submit', 'class' => 'btn removefavorite' , 'style' => 'color:crimson;'] ) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            @else
+                                <div class="favorite">
+                                    {!! Form::open(['route' => ['favorites.favorite', $favorite->id]]) !!}
+                                        {!! Form::button('', ['type' => 'submit', 'class' => 'btn addfavorite'] ) !!}
+                                    {!! Form::close() !!}  
+                                </div>
                             @endif
-                        @endforeach
+                        @endif
+                        
+                        <a href="{{ route('candidate.show', $favorite->id,) }}" class="link"></a>
                     </div>
-                    <div class="col-6">
-                        <p class="mb-0">値段　　：{{ $favorite->price }}</p>
-                        <p class="mb-0">年齢　　：{{ $favorite->age }}</p>
-                        <p class="mb-0">性別　　：{{ $favorite->gender }}</p>
-                        <p class="mb-0">性格　　：{{ $favorite->personality }}</p>
-                        <p class="mb-0">検査　　：{{ $favorite->inspection }}</p>
-                        <p class="mb-0">飼育場所：{{ $favorite->place_name }}</p>
-                        <p class="mb-0">住所　　：{{ $favorite->place_address }}</p>
-                        <p class="mb-0">クーポン：{{ $favorite->coupon }}</p>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    @endif
-    
+                @endforeach
+            @endif
+        </div>
+    </div>
 @endsection

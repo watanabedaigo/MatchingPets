@@ -11,33 +11,6 @@ use App\Candidatephoto;
 
 class CandidateController extends Controller
 {
-    // 以下の並び替えだと、現在のページの候補のIDしか取得できていない。２ページ以降の候補のIDを取得できていない。
-    // 現在のページに表示されている候補のみを並び替えてしまう。
-    // public function created_at_asc($id, Request $request)
-    // {
-    //     // $variety = Variety::find($id);
-    //     $variety_id = $request->input('variety_id');
-    //     $variety = Variety::find($variety_id);
-    //     // dd($variety);
-        
-    //     // ビューに表示されている候補のIDを全て取得
-    //     $candidate_ids = $request->input('candidate_ids');
-    //     // dd($candidate_ids);
-        
-    //     // ①
-    //     // 取得したIDの候補をCollectionとしてを取得
-    //     $candidates = Candidate::whereIn('id', $candidate_ids)->orderBy('created_at', 'asc')->paginate(10);
-    //     // dd($candidates);
-        
-    //     $candidatephotos = Candidatephoto::all();
-        
-    //     return view('candidates',[
-    //         'variety' => $variety,
-    //         'candidates' => $candidates,
-    //         'candidatephotos' => $candidatephotos,
-    //     ]);
-    // }
-    
     public function show($id)
     {
         $candidate = Candidate::find($id);
@@ -93,7 +66,13 @@ class CandidateController extends Controller
         $candidate->coupon = $request->coupon;
         $candidate->save();        
         
-        return back();
+        $candidatephoto = new Candidatephoto;
+        
+        return view('admin.candidatephoto',[
+            'candidate' => $candidate,
+            'candidatephoto' => $candidatephoto,
+        ]);
+
     }
     
     public function edit($id)

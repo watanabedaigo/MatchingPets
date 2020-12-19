@@ -8,7 +8,7 @@
     @endif
                                 
 <!--トップページ写真、フリーワード検索-->
-    <div class="m-0" style="position:relative;">
+    <div class="m-0" style="position:relative;" id="img">
         <p class="catchcopy small pl-1 pr-1 m-0 text-center">新しい家族に出会える<br>ペットポータルサイト</p>
         @php
             $total = 0;
@@ -34,15 +34,14 @@
     </div>
     
 <!--カテゴリー一覧-->
-    <div>
+    <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>カテゴリー</h5>
-        <div class="category-container row pt-0 pr-2 pl-2 pb-2">
+        <div class="category-container row pt-0 pb-2 pl-2 pr-2">
             @if(count($categories) > 0)
                 @foreach($categories as $category)
-                    <div class="col-sm-2 col-3 p-0 mb-1">
-                        <div class="category bg-white border-dark border rounded pt-1 mr-1 background-2">
-                            
-                            <p class="m-0 text-center w-100 font-weight-bold" style="font-size:3vw;">
+                    <div class="col-lg-1 col-md-2 col-3 p-0 mb-1">
+                        <div class="category bg-white border-dark border rounded pt-1 mr-1 background-2 small">
+                            <p class="m-0 text-center w-100 font-weight-bold" id="category-name">
                                 @if(Auth::guard('admin')->check())
                                     {{ $category->id }}.
                                 @endif
@@ -74,51 +73,52 @@
     
 <!--人気の品種-->
     <div style="background-color:floralwhite;">
-        <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>人気の品種</h5>
-        <div class="category-container pb-2">
-        @if(count($popularityvarieties) > 0)
-            @foreach($popularityvarieties as $popularityvariety)
-                <div class="popularityvariety border border-dark rounded row p-0 mx-auto mt-1 background-1" style="width:90%;">
-                    <div class="w-100 small">
-                        @if(Auth::guard('admin')->check())
-                            <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中) {{ $popularityvariety->view_count }}回閲覧</nobr></p>
-                        @else
-                            <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中)</nobr></p>
-                        @endif
-                    </div>
-                    
-                     
-                    <div class="col-4 pt-1 pb-1 pr-1 small">
-                        @foreach($popularityvarietyphotos as $popularityvarietyphoto)
-                            @if ($popularityvarietyphoto->variety_id == $popularityvariety->id)
-                                <img src="{{ $popularityvarietyphoto->image_path }}" class="d-block img-fluid mx-auto" style="max-width:80%;">
-                                @break
+        <div class="container">
+            <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>人気の品種</h5>
+            <div class="category-container pb-2 pl-2 pr-2" id="popularityvariety-wrap">
+            @if(count($popularityvarieties) > 0)
+                @foreach($popularityvarieties as $popularityvariety)
+                    <div class="popularityvariety border border-dark rounded row p-2 mt-1 mx-auto background-1" style="width:90%;" id="popularityvariety">
+                        <div class="w-100 small">
+                            @if(Auth::guard('admin')->check())
+                                <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中) {{ $popularityvariety->view_count }}回閲覧</nobr></p>
+                            @else
+                                <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中)</nobr></p>
                             @endif
-                        @endforeach
-                    </div>
-                        
-                    <div class="col-8 m-0 small">
-                        <p class="m-0 w-100" style="word-wrap: break-word;">{{ $popularityvariety->feature }}</p>
-                    </div>
-                    
-                    @if(Auth::guard('admin')->check())
-                        <div style="height:1rem; position:absolute; top:0; right:0; z-index:3">
-                            <a href="{{ route('variety.edit', $popularityvariety->id) }}" class="d-inline-block h-100"><i class="fas fa-edit" style="vertical-align:top;"></i></a>
-                            {!! Form::model($popularityvariety, ['route' => ['variety.destroy', $popularityvariety->id], 'method' => 'delete','class' => 'd-inline-block']) !!}
-                                {!! Form::button('<i class="fa fa-trash" style="vertical-align:top;"></i>', ['type' => 'submit', 'class' => 'btn p-0'] ) !!}
-                            {!! Form::close() !!}
                         </div>
-                    @endif
                         
-                    <a href="{{ route('variety.show', $popularityvariety->id,) }}" class="link"></a>
-                </div>
-            @endforeach
-        @endif
+                        <div class="col-lg-12 col-4 pt-1 pb-1 pr-1 small">
+                            @foreach($popularityvarietyphotos as $popularityvarietyphoto)
+                                @if ($popularityvarietyphoto->variety_id == $popularityvariety->id)
+                                    <img src="{{ $popularityvarietyphoto->image_path }}" class="d-block img-fluid mx-auto" id="popularityvariety-img">
+                                    @break
+                                @endif
+                            @endforeach
+                        </div>
+                            
+                        <div class="col-lg-12 col-8 m-0 small">
+                            <p class="m-0 w-100" style="word-wrap: break-word;">{{ $popularityvariety->feature }}</p>
+                        </div>
+                        
+                        @if(Auth::guard('admin')->check())
+                            <div class="admin">
+                                <a href="{{ route('variety.edit', $popularityvariety->id) }}" class="d-inline-block h-100"><i class="fas fa-edit" style="vertical-align:top;"></i></a>
+                                {!! Form::model($popularityvariety, ['route' => ['variety.destroy', $popularityvariety->id], 'method' => 'delete','class' => 'd-inline-block']) !!}
+                                    {!! Form::button('<i class="fa fa-trash" style="vertical-align:top;"></i>', ['type' => 'submit', 'class' => 'btn p-0'] ) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        @endif
+                            
+                        <a href="{{ route('variety.show', $popularityvariety->id,) }}" class="link"></a>
+                    </div>
+                @endforeach
+            @endif
+            </div>
         </div>
     </div>
 
 <!--新着情報-->
-    <div>
+    <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>新着情報</h5>
         <div class="category-container pb-2">
             @if(count($newcandidates) > 0)
@@ -139,16 +139,16 @@
                             @endif
                         </div>
     
-                        <div class="col-5 pt-1 pb-1 pl-2 pr-2 text-center d-flex align-items-center">
+                        <div class="col-5 p-2 text-center d-flex align-items-center">
                             @foreach($newcandidatephotos as $newcandidatephoto)
                                 @if ($newcandidatephoto->candidate_id == $newcandidate->id)
-                                    <img src="{{ $newcandidatephoto->image_path }}" class="img-fluid">
+                                    <img src="{{ $newcandidatephoto->image_path }}" class="img-fluid d-inline-block mx-auto">
                                     @break
                                 @endif
                             @endforeach
                         </div>
                         
-                        <div class="col-7 m-0 p-0 small">
+                        <div class="col-7  m-0 p-md-3 p-1 small">
                             @if(Auth::guard('admin')->check())
                                 <p class="mb-0">id　　  ：{{ $newcandidate->id }}</p>
                             @endif
@@ -165,7 +165,7 @@
                         </div>
                     
                         @if(Auth::guard('admin')->check())
-                            <div style="height:1rem; position:absolute; top:0; right:0; z-index:3">
+                            <div class="admin">
                                 <a href="{{ route('candidate.edit', $newcandidate->id) }}" class="d-inline-block h-100"><i class="fas fa-edit" style="vertical-align:top;"></i></a>
                                 {!! Form::model($newcandidate, ['route' => ['candidate.destroy', $newcandidate->id], 'method' => 'delete','class' => 'd-inline-block']) !!}
                                     {!! Form::button('<i class="fa fa-trash" style="vertical-align:top;"></i>', ['type' => 'submit', 'class' => 'btn p-0'] ) !!}
@@ -173,13 +173,17 @@
                             </div>
                         @elseif(Auth::guard('web')->check())
                             @if(Auth::user()->is_favorite($newcandidate->id))
-                                {!! Form::open(['route' => ['favorites.unfavorite', $newcandidate->id], 'method' => 'delete']) !!}
-                                    {!! Form::submit('お気に入りから外す', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
-                                {!! Form::close() !!}
+                                <div class="favorite">
+                                    {!! Form::open(['route' => ['favorites.unfavorite', $newcandidate->id], 'method' => 'delete']) !!}
+                                        {!! Form::button('', ['type' => 'submit', 'class' => 'btn p-0 removefavorite' , 'style' => 'color:crimson;'] ) !!}
+                                    {!! Form::close() !!}
+                                </div>
                             @else
-                                {!! Form::open(['route' => ['favorites.favorite', $newcandidate->id]]) !!}
-                                    {!! Form::submit('お気に入りに追加', ['class' => "btn btn-success",'style'=>'position:relative; z-index:3']) !!}
-                                {!! Form::close() !!}               
+                                <div class="favorite">
+                                    {!! Form::open(['route' => ['favorites.favorite', $newcandidate->id]]) !!}
+                                        {!! Form::button('', ['type' => 'submit', 'class' => 'btn p-0 addfavorite'] ) !!}
+                                    {!! Form::close() !!}  
+                                </div>
                             @endif
                         @endif
                         
@@ -191,6 +195,5 @@
     </div>
 
      {{-- 管理者ログインページへのリンク --}}
-     <a class="nav-item">{!! link_to_route('admin.showlogin', '管理者ログイン', [], ['class' => 'nav-link']) !!}</a>
-
+     <p class="text-center m-0">{!! link_to_route('admin.showlogin', '管理者ログイン', [],['style' => 'text-decoration:none;']) !!}</p>
 @endsection

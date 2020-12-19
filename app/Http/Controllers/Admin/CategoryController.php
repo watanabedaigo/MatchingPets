@@ -69,12 +69,16 @@ class CategoryController extends Controller
         $category = new Category;
         $category->name = $request->name;
         $category->admin_id = $request->user()->id;
-        // $category->admin_id = \Auth::user()->id;
-        // $category->admin_id = \Auth::id();
         $category->save();
         
-        return back();
+        $categoryphoto = new Categoryphoto;
+        
+        return view('admin.categoryphoto',[
+            'category' => $category,
+            'categoryphoto' => $categoryphoto,
+        ]);
     }
+    
     
     public function edit($id)
     {

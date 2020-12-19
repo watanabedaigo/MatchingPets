@@ -14,8 +14,6 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         
-        $user->loadRelationshipCounts();
-    
         $favorites = $user->favorites()->orderBy('created_at', 'desc')->get();
         
         $candidatephotos = Candidatephoto::all();

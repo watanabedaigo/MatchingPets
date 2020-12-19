@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Variety;
+use App\Varietyphoto;
 use App\Candidate;
 use App\Candidatephoto;
 
@@ -115,7 +116,12 @@ class VarietyController extends Controller
         $variety->cost = $request->cost;
         $variety->save();
         
-        return back();
+        $varietyphoto = new Varietyphoto;
+        
+        return view('admin.varietyphoto',[
+            'variety' => $variety,
+            'varietyphoto' => $varietyphoto,
+        ]);
     }
     
     public function edit($id)
@@ -156,8 +162,6 @@ class VarietyController extends Controller
         
         $query = Variety::query();
         
-        // 引っかかる候補を変えたければLIKEの後ろを変えて、抽象度を変える。
-        // 引っかからなければトップページへ、かつエラーメッセージ表示
         if(!empty($name)){
             $query->where('name','LIKE',"%{$name}%");
         }

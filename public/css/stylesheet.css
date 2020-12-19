@@ -42,6 +42,27 @@
      background-size: 20px 20px;
 }
 
+.favorite {
+     height:1rem; 
+     position:absolute; 
+     top:-4px; 
+     right:3px; 
+     z-index:3;
+}
+
+.admin {
+     height:1rem; 
+     position:absolute; 
+     top:0; 
+     right:0; 
+     z-index:3;
+}
+
+#img {
+    margin: 0 calc(50% - 50vw)!important;
+    width:100vw;
+}
+
 .catchcopy {
     position:absolute;
     color:black;
@@ -58,7 +79,7 @@
     position:absolute;
     font-weight:800;
     top:46%;
-    left:5%;
+    left:2%;
     background:ghostwhite;
     box-shadow:0px 0px 0px 5px tan;
     border:dashed 1px black;
@@ -145,6 +166,10 @@
     position:relative;
 }
 
+#popularityvariety-img {
+    max-width:80%;
+}
+
 .popularityvariety-name {
     font-size:.7rem;
     position:absolute;
@@ -155,6 +180,10 @@
     -ms-transform: translateX(-50%);
 }
 
+#category {
+    font-size:.5rem;
+}
+
 .search-show {
      background-color:snow;
      border-style:solid;
@@ -162,10 +191,6 @@
 }
 
 .hide {
-    display:none;
-}
-
-input[type = radio] {
     display:none;
 }
 
@@ -195,10 +220,30 @@ input[type = radio] {
     width:25%;
 }
 
+.search-btn {
+    height:1.9rem;
+}
+
 .table > tbody > tr > th{
     border:1px solid gray;
 }
 
 .table > tbody > tr > td{
     border:1px solid gray;
+}
+
+.candidate-show-btn {
+    font-size:.7rem;
+}
+
+.link-btn {
+    background-color:darkseagreen;
+    padding:0 .25rem 0 .25rem;
+}
+
+.add-btn {
+    background-color:dimgray;
+    color:whitesmoke;
+    width:100%;
+    padding:0;
 }

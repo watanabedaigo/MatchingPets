@@ -66,10 +66,27 @@ $('.popup').magnificPopup({
   removalDelay: 300,
 });
 
-const windowwidth = $(window).width();
-if(windowwidth <= 375){
+$(window).on('load resize', () => {
+  const windowwidth = $(window).width();
+  const mapshow = $('#mapshow');
+  
+  if(windowwidth >= 768 ){
+    $('.removefavorite').html('<i class="fas fa-heart"></i><span class="text-dark">お気に入りから外す</span>');
+    $('.addfavorite').html('<i class="far fa-heart"></i><span class="text-dark">お気に入りに追加</span>');
+
+    $('#candidate-img-wrap').append(mapshow);
+    mapshow.addClass('p-0');
+  }else{
+    $('.removefavorite').html('<i class="fas fa-heart"></i>');
+    $('.addfavorite').html('<i class="far fa-heart"></i>');
+
+    $('#candidate-wrap').append(mapshow);
+    mapshow.removeClass('p-0')
+  }
+  
+  const mapshowwidth = $('#mapshow').width();
   $('iframe').css({
-    'width':'300',
-    'height':'300',
+    'width':mapshowwidth,
+    'height':mapshowwidth,
   });
-}
+});

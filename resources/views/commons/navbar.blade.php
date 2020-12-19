@@ -10,16 +10,16 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if(Auth::guard('admin')->check())
-                    <li class="nav-item mr-2">{!! link_to_route('index','データ追加',[],['class' => 'nav-link rounded text-dark btn-bg']) !!}</li>
-                    <li class="nav-item ">{!! link_to_route('admin.logout', 'ログアウト',[], ['class' => 'nav-link rounded text-dark btn-bg']) !!}</li>
+                    <li class="nav-item mr-2">{!! link_to_route('index','データ追加',[],['class' => 'nav-link rounded text-dark btn-warning']) !!}</li>
+                    <li class="nav-item ">{!! link_to_route('admin.logout', 'ログアウト',[], ['class' => 'nav-link rounded text-dark btn-warning']) !!}</li>
                 @elseif(Auth::guard('web')->check())
-                    <li class="nav-item mr-2">{!! link_to_route('users.favorites', 'お気に入り', ['id' => \Auth::user()->id], ['class' => 'nav-link rounded text-dark btn-bg']) !!}</li>
-                    <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト',[], ['class' => 'nav-link rounded text-dark btn-bg']) !!}</li>
+                    <li class="nav-item mr-2">{!! link_to_route('users.favorites', 'お気に入り一覧', ['id' => \Auth::user()->id], ['class' => 'nav-link rounded text-dark btn-warning']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト',[], ['class' => 'nav-link rounded text-dark btn-warning']) !!}</li>
                 @else
-                    {{-- 無料会員登録ページへのリンク --}}
-                    <li class="nav-item mr-2">{!! link_to_route('signup.get', '無料会員登録', [], ['class' => 'nav-link rounded text-dark btn-bg']) !!}</li>
                     {{-- 一般ユーザーログインページへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link rounded text-dark btn-bg']) !!}</li>
+                    <li class="nav-item mr-2">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link rounded text-dark btn-warning']) !!}</li>
+                    {{-- 無料会員登録ページへのリンク --}}
+                    <li class="nav-item">{!! link_to_route('signup.get', '無料会員登録', [], ['class' => 'nav-link rounded text-dark btn-warning']) !!}</li>
                 @endif
             </ul>
         </div>
