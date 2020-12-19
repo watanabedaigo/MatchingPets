@@ -81,7 +81,7 @@
         <!--候補一覧-->
         <div class="category-container row pt-0 pl-2 pr-2">
             <!--候補数-->
-            <p class="m-0">{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
+            <p class="w-100 m-0">{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
             {{ $candidates->appends(request()->input())->links("vendor.pagination.default") }}
             
             <!--候補一覧-->
