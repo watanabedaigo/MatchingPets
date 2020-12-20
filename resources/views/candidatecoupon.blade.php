@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>クーポンを使用</h5>
-        <div class="category-container row pt-0 pl-2 pr-2">
+        <div class="row pt-0 pl-2 pr-2 mx-auto">
             <div class="mb-2">
                 <p class="m-0">この度は {{ $candidate->place_name }} のペットを購入していただき、ありがとうございます。新しい家族と、かけがえのない時間をお過ごし下さい。</p>
             </div>

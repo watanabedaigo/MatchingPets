@@ -1,28 +1,3 @@
-/*
-・ボックスモデルを意識
-　margin border padding contentereaを確認。それぞれ何ｐxか。
-　親要素のcontentereaを意識。
-　子要素のマージンを含めたボックスが、親要素のcontenterea内に存在する。
-　
-・ブロック要素？インライン要素？を意識
-　用途に応じてインラインブロック要素にし、縦幅・横幅を指定できるインライン要素へ。
-
-・子要素を横並びにする場合は、親要素にdisplay:frexを追加。
-　その際、子要素の横幅指定を忘れずに。
-
-・擬似クラスのhoverを用いて、洗濯している候補や品種をわかりやすくする。
-　その際、擬似クラスではない本来のクラスのtransitionプロパティで、変化の様子を指定。
-
-・見出しを工夫する。
-　borderで囲む、背景色をつける等。
-　
-・親要素を中央に表示したければ、横幅指定、margin:0 auto;で左右のマージンを均等に。
-
-・レスポンシブデザインに対応させる。
-　細かな表示切り替えが必要なので、
-　Bootstrapで大まかに作る　→　cssでメディアクエリについて記述する。テキスト５．２参照。
-
-*/
 .icon {
     padding-bottom:0.1rem;
     margin-right:0.1rem;
@@ -143,16 +118,6 @@
     background-color:transparent;
 }
 
-.category-container {
-    margin-left:auto;
-    margin-right: auto;
-}
-
-.category {
-    position:relative;
-    z-index:1;
-}
-
 .link {
     position:absolute;
     top:0;
@@ -162,7 +127,7 @@
     z-index:2
 }
 
-.popularityvariety {
+.content {
     position:relative;
 }
 

@@ -18,8 +18,8 @@
             $price = $candidate->price;
             $priceShow = number_format($price);
         @endphp
-        <div class="category-container row pt-0 pl-2 pr-2">
-            <div class="popularityvariety bg-white border border-dark rounded row p-md-3 p-0 mx-auto mt-1 background-2 small" style="width:95%;" id="candidate-wrap">
+        <div class="row pt-0 pl-2 pr-2 mx-auto">
+            <div class="content bg-white border border-dark rounded row p-md-3 p-0 mx-auto mt-1 background-2 small" style="width:95%;" id="candidate-wrap">
                 <div class="col-md-4 pt-2 pb-2 p-md-0 rounded" style="font-size:0;" id="candidate-img-wrap">
                     @foreach($candidatephotos as $candidatephoto)
                         @if ($candidatephoto->candidate_id == $candidate->id)

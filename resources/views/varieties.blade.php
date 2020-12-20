@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>{{ $category->name }}</h5>
-        <div class="category-container row pt-0 pl-2 pr-2">
+        <div class="row pt-0 pl-2 pr-2 mx-auto">
              @if(count($varieties) > 0)
                 @foreach($varieties as $variety)
                     <div class="col-sm-2 col-3 p-0 mb-1 ">
-                        <div class="category bg-white border-dark border rounded pt-1 mr-1 background-2" id="category">
+                        <div class="content bg-white border-dark border rounded pt-1 mr-1 background-2" id="category">
                             <p class="m-0 text-center w-100 font-weight-bold">
                                 @if(Auth::guard('admin')->check())
                                     {{ $variety->id }}.

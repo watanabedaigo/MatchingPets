@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>お気に入り一覧 ({{ $favorites->count() }}件)</h5>
-        <div class="category-container row pt-0 pl-2 pr-2">
+        <div class="row pt-0 pl-2 pr-2 mx-auto">
             <!--候補一覧-->
             @if(count($favorites) > 0)
                 @foreach($favorites as $favorite)
@@ -12,7 +12,7 @@
                         $priceShow = number_format($price);
                     @endphp
                 
-                    <div class="popularityvariety bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
+                    <div class="content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
                         <div class="col-5 pt-1 pb-1 pl-2 pr-2 text-center d-flex align-items-center">
                             @foreach($candidatephotos as $candidatephoto)
                                 @if ($candidatephoto->candidate_id == $favorite->id)

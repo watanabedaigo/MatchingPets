@@ -22,7 +22,7 @@
             }
         @endphp
         <p class="publication small pl-1 pr-1 m-0 text-center"><i class="fas fa-thumbtack thumbtack-1"></i><i class="fas fa-thumbtack thumbtack-2"></i>現在<span class="count"> {{ $total }}</span>匹 掲載中</p>
-        <img src="image/toppage.jpg" class="top-image"></img>
+        <img src="{{ asset('/image/toppage.jpg') }}" class="top-image"></img>
         <div class="search"> 
             <div class="form-group mb-0">
                 {!! Form::open(['route' => 'variety.search', 'method' => 'GET']) !!}
@@ -36,11 +36,11 @@
 <!--カテゴリー一覧-->
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>カテゴリー</h5>
-        <div class="category-container row pt-0 pb-2 pl-2 pr-2">
+        <div class="row pt-0 pb-2 pl-2 pr-2 mx-auto">
             @if(count($categories) > 0)
                 @foreach($categories as $category)
                     <div class="col-lg-1 col-md-2 col-3 p-0 mb-1">
-                        <div class="category bg-white border-dark border rounded pt-1 mr-1 background-2 small">
+                        <div class="content bg-white border-dark border rounded pt-1 mr-1 background-2 small">
                             <p class="m-0 text-center w-100 font-weight-bold" id="category-name">
                                 @if(Auth::guard('admin')->check())
                                     {{ $category->id }}.
@@ -75,10 +75,10 @@
     <div style="background-color:floralwhite;">
         <div class="container">
             <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>人気の品種</h5>
-            <div class="category-container pb-2 pl-2 pr-2" id="popularityvariety-wrap">
+            <div class="pb-2 pl-2 pr-2 mx-auto" id="popularityvariety-wrap">
             @if(count($popularityvarieties) > 0)
                 @foreach($popularityvarieties as $popularityvariety)
-                    <div class="popularityvariety border border-dark rounded row p-2 mt-1 mx-auto background-1" style="width:90%;" id="popularityvariety">
+                    <div class="content border border-dark rounded row p-2 mt-1 mx-auto background-1" style="width:90%;" id="popularityvariety">
                         <div class="w-100 small">
                             @if(Auth::guard('admin')->check())
                                 <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中) {{ $popularityvariety->view_count }}回閲覧</nobr></p>
@@ -120,7 +120,7 @@
 <!--新着情報-->
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>新着情報</h5>
-        <div class="category-container pb-2">
+        <div class="pb-2 mx-auto">
             @if(count($newcandidates) > 0)
                 @foreach($newcandidates as $newcandidate)
                     @php
@@ -130,7 +130,7 @@
                         $priceShow = number_format($price);
                     @endphp
     
-                    <div class="popularityvariety bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
+                    <div class="content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
                         <div class="w-100 small">
                             @if($newcandidate->view_count == 0)
                                 <p class="m-0 pl-1">{{ $date->format('Y年m月d日') }}追加　<span class="font-weight-bold" style="color:tomato;">NEW!!!</span></p>

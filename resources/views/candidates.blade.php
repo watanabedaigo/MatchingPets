@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-5 col-12 category-container mb-1 pl-0 pr-0 d-flex justify-content-between">
+                <div class="col-md-5 col-12 mb-1 mx-auto pl-0 pr-0 d-flex justify-content-between">
                     {!! Form::submit('検索/並べ替え', ['class' => 'btn search-btn search-sort']) !!}
                     <a href="{{ route('variety.show', $variety->id,) }}" class='btn search-btn reset'>リセット</a>
                 </div>
@@ -79,7 +79,7 @@
         </div>
         
         <!--候補一覧-->
-        <div class="category-container row pt-0 pl-2 pr-2">
+        <div class="row pt-0 pl-2 pr-2 mx-auto">
             <!--候補数-->
             <p class="w-100 m-0">{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
             {{ $candidates->appends(request()->input())->links("vendor.pagination.default") }}
@@ -92,7 +92,7 @@
                         $priceShow = number_format($price);
                     @endphp
                 
-                    <div class="popularityvariety bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
+                    <div class="content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
                         <div class="col-5 p-2 d-flex align-items-center">
                             @foreach($candidatephotos as $candidatephoto)
                                 @if ($candidatephoto->candidate_id == $candidate->id)
