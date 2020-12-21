@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:darkseagreen;"> <!--color候補　mediumseagreen-->
         <a class="navbar-brand" href="/">MatchingPet</a>
-        
+    
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -17,8 +17,6 @@ $('#subtitle').on('click',() => {
 });
 
 $('#sort').on('click',() => {
-  console.log('sort click');
-  
   const created = document.forms.searchSort.sortCreated.checked;
   const price = document.forms.searchSort.sortPrice.checked;
   const age = document.forms.searchSort.sortAge.checked;

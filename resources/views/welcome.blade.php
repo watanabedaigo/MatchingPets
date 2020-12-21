@@ -9,20 +9,10 @@
                                 
 <!--トップページ写真、フリーワード検索-->
     <div class="m-0" style="position:relative;" id="img">
-        <p class="catchcopy small pl-1 pr-1 m-0 text-center">新しい家族に出会える<br>ペットポータルサイト</p>
-        @php
-            $total = 0;
-            foreach($categories as $category){
-                $varieties = $category->varieties()->get();
-                foreach($varieties as $variety){
-                    $candidates = $variety->candidates()->get();
-                    $count = count($candidates);
-                    $total += $count;
-                }
-            }
-        @endphp
-        <p class="publication small pl-1 pr-1 m-0 text-center"><i class="fas fa-thumbtack thumbtack-1"></i><i class="fas fa-thumbtack thumbtack-2"></i>現在<span class="count"> {{ $total }}</span>匹 掲載中</p>
-        <img src="{{ asset('/image/toppage.jpg') }}" class="top-image"></img>
+        <div style="position:relative;">
+            <p class="catchcopy small p-1 text-center d-inline-block w-50">新しい家族に出会える<br>ペットポータルサイト</p>
+            <img src="{{ asset('/image/toppage.jpg') }}" class="top-image"></img>
+        </div>
         <div class="search"> 
             <div class="form-group mb-0">
                 {!! Form::open(['route' => 'variety.search', 'method' => 'GET']) !!}

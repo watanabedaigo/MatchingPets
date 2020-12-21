@@ -42,41 +42,15 @@
     position:absolute;
     color:black;
     font-weight:800;
-    top:6%;
-    left:2%;
+    top:50%;
+    left:50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform:translateY(-50%) translateX(-50%);
+    margin:auto;
     border-color:gold;
-    background-color:rgba(255,250,240,0.2);
+    background-color:rgba(255,250,240,0.7);
     border-top-style:solid;
     border-bottom-style:solid;
-}
-
-.publication {
-    position:absolute;
-    font-weight:800;
-    top:46%;
-    left:2%;
-    background:ghostwhite;
-    box-shadow:0px 0px 0px 5px tan;
-    border:dashed 1px black;
-}
-
-.count {
-    color:orangered;
-    font-size:1.5rem;
-}
-
-.thumbtack-1 {
-    position:absolute;
-    top:-12%;
-    left:-3%;
-    transform: rotate(-22deg);
-}
-
-.thumbtack-2 {
-    position:absolute;
-    top:-12%;
-    left:90%;
-    transform: rotate(22deg);
 }
 
 .top-image {
