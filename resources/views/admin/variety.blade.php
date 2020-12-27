@@ -6,7 +6,7 @@
         <div class="col-lg-7 col-10 category-container pt-0 pr-2 pl-2 mb-2">
             {!! Form::model($variety, ['route' => 'variety.store']) !!}
                 <div class="form-group mb-1">
-                    {!! Form::label('category_id', 'カテゴリーID',['class' => 'm-0']) !!}ß
+                    {!! Form::label('category_id', 'カテゴリーID',['class' => 'm-0']) !!}
                     {!! Form::text('category_id', null, ['class' => 'form-control']) !!}
                 </div>
                 
@@ -17,7 +17,7 @@
                 
                 <div class="form-group mb-1">
                     {!! Form::label('feature', '特徴',['class' => 'm-0']) !!}
-                    {!! Form::text('feature', null, ['class' => 'form-control']) !!}
+                    {!! Form::textarea('feature', null, ['class' => 'form-control', 'rows' => '5' , 'cols' => '1000']) !!}
                 </div>
                 
                 <!--<div class="form-group mb-1">-->

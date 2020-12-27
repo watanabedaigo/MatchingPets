@@ -3,7 +3,7 @@
 @section('content')
     <div class="row no-gutters justify-content-center">
         <h5 class="col-10 pt-2 title"><i class="fas fa-paw icon"></i>カテゴリー写真追加</h5>
-        <div class="ol-lg-7 col-10 category-container pt-0 pr-2 pl-2 mb-2">
+        <div class="col-lg-7 col-10 category-container pt-0 pr-2 pl-2 mb-2">
             {!! Form::model($categoryphoto, ['route' => 'categoryphoto.store', 'files' => true]) !!}
                 <div class="form-group mb-1">
                     {!! Form::label('category_id', 'カテゴリーID',['class' => 'm-0']) !!}

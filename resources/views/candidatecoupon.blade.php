@@ -9,10 +9,10 @@
             </div>
             <div class="w-100" style="position:relative;">
                 <div class=" w-25 mx-auto border border-dark rounded small text-center pl-1 pr-1" style="position:absolute; top:0; left:0; right:0; background-color:khaki; z-index:1;">
-                    <p class="m-0">クーポン詳細</p>
+                    <p class="m-0">内容</p>
                 </div>
                 <div class="mx-auto border border-dark rounded p-2" style="width:90%; position:absolute; top:10px; left:0; right:0; background-color:snow;">
-                    <p class="m-0">a</p>
+                    <p class="m-0">{{ $candidate->coupon}}</p>
                 </div>
             </div>
         </div>

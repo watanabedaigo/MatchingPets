@@ -17,7 +17,7 @@
 
                             @foreach($varietyphotos as $varietyphoto)
                                 @if ($varietyphoto->variety_id == $variety->id)
-                                    <img src="{{ $varietyphoto->image_path }}" class="d-block img-fluid mx-auto" style="max-width:75%;">
+                                    <img src="{{ $varietyphoto->image_path }}" class="d-block img-fluid mx-auto p-1" style="max-width:75%;">
                                 @endif
                             @endforeach
                             

@@ -40,7 +40,7 @@
                                 
                             @foreach($categoryphotos as $categoryphoto)
                                 @if ($categoryphoto->category_id == $category->id)
-                                    <img src="{{ $categoryphoto->image_path }}" class="d-block img-fluid mx-auto" style="max-width:80%;">
+                                    <img src="{{ $categoryphoto->image_path }}" class="d-block img-fluid mx-auto p-2" style="max-width:80%;">
                                 @endif
                             @endforeach
                     

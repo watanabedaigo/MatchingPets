@@ -17,7 +17,7 @@
                 
                 <div class="form-group mb-1">
                     {!! Form::label('feature', '特徴',['class' => 'm-0']) !!}
-                    {!! Form::text('feature', null, ['class' => 'form-control']) !!}
+                    {!! Form::textarea('feature', null, ['class' => 'form-control', 'rows' => '5' , 'cols' => '1000']) !!}
                 </div>
                 
                 <!--<div class="form-group mb-1">-->
