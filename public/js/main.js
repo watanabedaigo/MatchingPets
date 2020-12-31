@@ -43,13 +43,6 @@ $('#sort').on('click',() => {
   }
 });
 
-$('.popup').magnificPopup({
-  type: 'image',
-  gallery: { enabled: true },
-  mainClass: 'mfp-fade',
-  removalDelay: 300,
-});
-
 $(window).on('load resize', () => {
   const windowwidth = $(window).width();
   const mapshow = $('#mapshow');
@@ -79,4 +72,11 @@ $(window).on('load resize', () => {
   }else{
     $('.nav-link').addClass('btn-warning');
   }
+});
+
+$('.popup').magnificPopup({
+  type: 'image',
+  gallery: { enabled: true },
+  mainClass: 'mfp-fade',
+  removalDelay: 300,
 });

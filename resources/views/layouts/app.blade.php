@@ -20,7 +20,11 @@
             @yield('content')
         </div>
         
-        <!--ここにヘッダーをincludeする。-->
+        <footer>
+            <div class="d-flex justify-content-center align-items-center footer">
+                <p class="m-0">Copyright &copy; 2020 DAIGO WATANABE</p>
+            </div>
+        </footer>
         
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="{{ asset('/js/jquery.magnific-popup.min.js') }}"></script>

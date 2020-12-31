@@ -63,8 +63,8 @@
                     
                     <table class="table table-sm table-bordered w-100 mt-1 mb-1 m-md-0">
                         <tr>
-                            <th scope="row" class="w-25 text-center" style="background-color:lightgray;">閲覧数</th>
-                            <td class="bg-light">{{ $candidate->view_count }}</td>
+                            <th scope="row" class="w-25 text-center" style="background-color:lightgray;">閲覧</th>
+                            <td class="bg-light">{{ $candidate->view_count }}回</td>
                         </tr>
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">値段</th>
@@ -104,7 +104,7 @@
                         </tr>
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">URL</th>
-                            <td class="bg-light">{{ $candidate->URL }}</td>
+                            <td class="bg-light"><a href="{{ $candidate->URL }}" target="_blank">{{ $candidate->URL }}</a></td>
                         </tr>
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">クーポン</th>
