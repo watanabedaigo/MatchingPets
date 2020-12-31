@@ -16,7 +16,7 @@
                         <div class="col-5 pt-1 pb-1 pl-2 pr-2 text-center d-flex align-items-center">
                             @foreach($candidatephotos as $candidatephoto)
                                 @if ($candidatephoto->candidate_id == $favorite->id)
-                                    <img src="{{ $candidatephoto->image_path }}" class="img-fluid">
+                                    <img src="{{ $candidatephoto->image_path }}" class="img-fluid d-inline-block mx-auto candidate-img">
                                     @break
                                 @endif
                             @endforeach
@@ -27,6 +27,7 @@
                             <p class="mb-0">誕生日：{{ $favorite->birthday }}</p>
                             <p class="mb-0">性別：{{ $favorite->gender }}</p>
                             <p class="mb-0">性格：{{ $favorite->personality }}</p>
+                            <p class="mb-0">毛色：{{ $favorite->coat_color }}</p>
                             <p class="mb-0">場所：{{ $favorite->place_name }}</p>
                         </div>
                     

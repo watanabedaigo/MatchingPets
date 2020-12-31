@@ -80,7 +80,7 @@
                     {!! Form::text('coupon', null, ['class' => 'form-control']) !!}
                 </div>
                 
-                {!! Form::submit('追加', ['class' => 'btn add-btn']) !!}
+                {!! Form::submit('更新', ['class' => 'btn add-btn']) !!}
             {!! Form::close() !!}
         </div>
     </div>

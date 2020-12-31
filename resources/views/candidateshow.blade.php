@@ -83,6 +83,10 @@
                             <td class="bg-light">{{ $candidate->personality_details }}</td>
                         </tr>
                         <tr>
+                            <th scope="row" class="w-25 text-center" style="background-color:lightgray;">毛色</th>
+                            <td class="bg-light">{{ $candidate->coat_color }}</td>
+                        </tr>
+                        <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">検査</th>
                             <td class="bg-light">{{ $candidate->inspection }}</td>
                         </tr>

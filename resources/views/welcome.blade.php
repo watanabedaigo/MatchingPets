@@ -110,7 +110,7 @@
 <!--新着情報-->
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>新着情報</h5>
-        <div class="pb-2 mx-auto">
+        <div class="pr-2 pb-2 pl-2 mx-auto">
             @if(count($newcandidates) > 0)
                 @foreach($newcandidates as $newcandidate)
                     @php
@@ -119,7 +119,6 @@
                         $price = $newcandidate->price;
                         $priceShow = number_format($price);
                     @endphp
-    
                     <div class="content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
                         <div class="w-100 small">
                             @if($newcandidate->view_count == 0)
@@ -128,16 +127,16 @@
                                 <p class="m-0 pl-1">{{ $date->format('Y年m月d日') }}追加　{{ $newcandidate->view_count }}人が見ました</p>
                             @endif
                         </div>
-    
+        
                         <div class="col-5 p-2 text-center d-flex align-items-center">
                             @foreach($newcandidatephotos as $newcandidatephoto)
                                 @if ($newcandidatephoto->candidate_id == $newcandidate->id)
-                                    <img src="{{ $newcandidatephoto->image_path }}" class="img-fluid d-inline-block mx-auto">
+                                    <img src="{{ $newcandidatephoto->image_path }}" class="img-fluid d-inline-block mx-auto candidate-img">
                                     @break
                                 @endif
                             @endforeach
                         </div>
-                        
+                            
                         <div class="col-7  m-0 p-md-3 p-1 small">
                             @if(Auth::guard('admin')->check())
                                 <p class="mb-0">id　　  ：{{ $newcandidate->id }}</p>
@@ -151,9 +150,10 @@
                             <p class="mb-0">誕生日：{{ $newcandidate->birthday }}</p>
                             <p class="mb-0">性別：{{ $newcandidate->gender }}</p>
                             <p class="mb-0">性格：{{ $newcandidate->personality }}</p>
+                            <p class="mb-0">毛色：{{ $newcandidate->coat_color }}</p>
                             <p class="mb-0">場所：{{ $newcandidate->place_name }}</p>
                         </div>
-                    
+                        
                         @if(Auth::guard('admin')->check())
                             <div class="admin">
                                 <a href="{{ route('candidate.edit', $newcandidate->id) }}" class="d-inline-block h-100"><i class="fas fa-edit" style="vertical-align:top;"></i></a>
@@ -176,7 +176,7 @@
                                 </div>
                             @endif
                         @endif
-                        
+                            
                         <a href="{{ route('candidate.show', $newcandidate->id,) }}" style='position:absolute; top:0; left:0; height:100%; width:100%; z-index:2'></a>
                     </div>
                 @endforeach

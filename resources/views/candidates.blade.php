@@ -81,7 +81,7 @@
         <!--候補一覧-->
         <div class="row pt-0 pl-2 pr-2 mx-auto">
             <!--候補数-->
-            <p class="w-100 m-0">{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
+            <p class="m-0 d-inline-block">{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
             {{ $candidates->appends(request()->input())->links("vendor.pagination.default") }}
             
             <!--候補一覧-->
@@ -96,7 +96,7 @@
                         <div class="col-5 p-2 d-flex align-items-center">
                             @foreach($candidatephotos as $candidatephoto)
                                 @if ($candidatephoto->candidate_id == $candidate->id)
-                                    <img src="{{ $candidatephoto->image_path }}" class="img-fluid d-inline-block mx-auto">
+                                    <img src="{{ $candidatephoto->image_path }}" class="img-fluid d-inline-block mx-auto candidate-img">
                                     @break
                                 @endif
                             @endforeach
@@ -110,6 +110,7 @@
                             <p class="mb-0">誕生日：{{ $candidate->birthday }}</p>
                             <p class="mb-0">性別：{{ $candidate->gender }}</p>
                             <p class="mb-0">性格：{{ $candidate->personality }}</p>
+                            <p class="mb-0">毛色：{{ $candidate->coat_color }}</p>
                             <p class="mb-0">場所：{{ $candidate->place_name }}</p>
                         </div>
                     

@@ -88,4 +88,7 @@
     .candidate-show-btn {
         font-size:.7rem;
     }
+    .candidate-img {
+        max-width:65%!important;
+    }
 }
