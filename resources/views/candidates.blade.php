@@ -79,10 +79,12 @@
         </div>
         
         <!--候補一覧-->
-        <div class="row pt-0 pl-2 pr-2 mx-auto">
+        <div class="row pt-0 pl-2 pr-2 mx-auto row no-gutters">
             <!--候補数-->
-            <p class="m-0 d-inline-block">{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
-            {{ $candidates->appends(request()->input())->links("vendor.pagination.default") }}
+            <div class="w-100">
+                <p class="m-0 d-inline-block">{{ $candidates->total() }}件中{{ $candidates->count() }}件表示</p>  
+                {{ $candidates->appends(request()->input())->links("vendor.pagination.default") }}
+            </div>
             
             <!--候補一覧-->
             @if(count($candidates) > 0)
@@ -92,7 +94,7 @@
                         $priceShow = number_format($price);
                     @endphp
                 
-                    <div class="content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
+                    <div class="col-lg-10 col-12 content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
                         <div class="col-5 p-2 d-flex align-items-center">
                             @foreach($candidatephotos as $candidatephoto)
                                 @if ($candidatephoto->candidate_id == $candidate->id)
@@ -110,7 +112,6 @@
                             <p class="mb-0">誕生日：{{ $candidate->birthday }}</p>
                             <p class="mb-0">性別：{{ $candidate->gender }}</p>
                             <p class="mb-0">性格：{{ $candidate->personality }}</p>
-                            <p class="mb-0">毛色：{{ $candidate->coat_color }}</p>
                             <p class="mb-0">場所：{{ $candidate->place_name }}</p>
                         </div>
                     

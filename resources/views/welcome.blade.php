@@ -65,10 +65,10 @@
     <div style="background-color:floralwhite;">
         <div class="container">
             <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>人気の品種</h5>
-            <div class="pb-2 pl-2 pr-2 mx-auto" id="popularityvariety-wrap">
+            <div class="pr-2 pb-2 pl-2 mx-auto" id="popularityvariety-wrap">
             @if(count($popularityvarieties) > 0)
                 @foreach($popularityvarieties as $popularityvariety)
-                    <div class="content border border-dark rounded row p-2 mt-1 mx-auto background-1" style="width:90%;" id="popularityvariety">
+                    <div class="content border border-dark rounded row p-2 mt-1 mx-auto background-1" id="popularityvariety">
                         <div class="w-100 small">
                             @if(Auth::guard('admin')->check())
                                 <p class="m-0 pl-1 font-weight-bold"><nobr><span style="color:tomato;">{{ $loop->index + 1}}位</span> {{ $popularityvariety->id }}.{{ $popularityvariety->name }}({{ count($popularityvariety->candidates()->get()) }}匹掲載中) {{ $popularityvariety->view_count }}回閲覧</nobr></p>
@@ -77,7 +77,7 @@
                             @endif
                         </div>
                         
-                        <div class="col-lg-12 col-4 pt-1 pb-1 pr-1 small">
+                        <div class="col-lg-12 col-4 pt-lg-2 pb-lg-2 p-0 small d-flex align-items-center">
                             @foreach($popularityvarietyphotos as $popularityvarietyphoto)
                                 @if ($popularityvarietyphoto->variety_id == $popularityvariety->id)
                                     <img src="{{ $popularityvarietyphoto->image_path }}" class="d-block img-fluid mx-auto" id="popularityvariety-img">
@@ -86,7 +86,7 @@
                             @endforeach
                         </div>
                             
-                        <div class="col-lg-12 col-8 m-0 small">
+                        <div class="col-lg-12 col-8 m-0 p-0 small">
                             <p class="m-0 w-100" style="word-wrap: break-word;">{{ $popularityvariety->feature }}</p>
                         </div>
                         
@@ -110,7 +110,7 @@
 <!--新着情報-->
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>新着情報</h5>
-        <div class="pr-2 pb-2 pl-2 mx-auto">
+        <div class="pr-2 pb-3 pl-2 mx-auto row no-gutters">
             @if(count($newcandidates) > 0)
                 @foreach($newcandidates as $newcandidate)
                     @php
@@ -119,7 +119,7 @@
                         $price = $newcandidate->price;
                         $priceShow = number_format($price);
                     @endphp
-                    <div class="content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2" style="width:90%;">
+                    <div class="col-lg-10 col-12 content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2">
                         <div class="w-100 small">
                             @if($newcandidate->view_count == 0)
                                 <p class="m-0 pl-1">{{ $date->format('Y年m月d日') }}追加　<span class="font-weight-bold" style="color:tomato;">NEW!!!</span></p>
@@ -150,7 +150,6 @@
                             <p class="mb-0">誕生日：{{ $newcandidate->birthday }}</p>
                             <p class="mb-0">性別：{{ $newcandidate->gender }}</p>
                             <p class="mb-0">性格：{{ $newcandidate->personality }}</p>
-                            <p class="mb-0">毛色：{{ $newcandidate->coat_color }}</p>
                             <p class="mb-0">場所：{{ $newcandidate->place_name }}</p>
                         </div>
                         
@@ -184,6 +183,6 @@
         </div>
     </div>
 
-     {{-- 管理者ログインページへのリンク --}}
-     <p class="text-center m-0">{!! link_to_route('admin.showlogin', '管理者ログイン', [],['style' => 'text-decoration:none;']) !!}</p>
+    {{-- 管理者ログインページへのリンク --}}
+    <p class="text-center m-0">{!! link_to_route('admin.showlogin', '管理者ログイン', [],['style' => 'text-decoration:none;']) !!}</p>
 @endsection

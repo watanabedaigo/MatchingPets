@@ -96,7 +96,7 @@
                         </tr>
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">住所</th>
-                            <td class="bg-light">{{ $candidate->place_address }}</td>
+                            <td class="bg-light" style="word-break:break-all;">{{ $candidate->place_address }}</td>
                         </tr>
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">電話番号</th>
@@ -108,7 +108,7 @@
                         </tr>
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">URL</th>
-                            <td class="bg-light"><a href="{{ $candidate->URL }}" target="_blank">{{ $candidate->URL }}</a></td>
+                            <td class="bg-light" style="word-break:break-all;"><a href="{{ $candidate->URL }}" target="_blank">{{ $candidate->URL }}</a></td>
                         </tr>
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">クーポン</th>
