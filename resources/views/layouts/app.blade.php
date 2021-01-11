@@ -3,25 +3,23 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
         <title>MatchingPets</title>
-        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <link href="{{asset('/css/stylesheet.css')}}" rel="stylesheet">
         <link href="{{asset('/css/responsive.css')}}" rel="stylesheet">
         <link href="{{asset('/css/magnific-popup.css')}}" rel="stylesheet">
     </head>
 
-    <body>
+    <body style="background-color:linen;">
         @include('commons.navbar')
 
-        <div id="background" style="background-color:linen;" class="pb-3">
+        <div id="background" style="padding-bottom:48px;">
             @include('commons.error_messages')
             @yield('content')
         </div>
         
         <footer>
-            <div class="d-flex justify-content-center align-items-center footer">
+            <div class="d-flex justify-content-center align-items-center w-100 footer">
                 <p class="m-0">Copyright &copy; 2020 DAIGO WATANABE</p>
             </div>
         </footer>

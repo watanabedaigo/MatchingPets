@@ -9,7 +9,6 @@ use App\Candidatephoto;
 
 class UsersController extends Controller
 {
-    // ユーザーのお気に入り一覧を表示するアクション
     public function favorites($id)
     {
         $user = User::findOrFail($id);

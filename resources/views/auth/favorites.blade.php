@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>お気に入り一覧 ({{ $favorites->count() }}件)</h5>
+        
         <div class="row pt-0 pl-2 pr-2 mx-auto row no-gutters">
             <!--候補一覧-->
             @if(count($favorites) > 0)

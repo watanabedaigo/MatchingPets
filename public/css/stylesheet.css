@@ -1,3 +1,8 @@
+body{
+    min-height: 100vh;
+    position: relative;
+}
+
 .icon {
     padding-bottom:0.1rem;
     margin-right:0.1rem;
@@ -12,8 +17,9 @@
     height:2rem; 
     color:white;
     font-size:.5rem;
+    position:absolute;
+    bottom:0;
 }
-
 
 .background-1 {
      background-image:linear-gradient(-45deg, #DAE9EE 25%, #FFFEF9 25%, #FFFEF9 50%, #DAE9EE  50%, #DAE9EE 75%, #FFFEF9 75%, #FFFEF9);
@@ -127,6 +133,10 @@
     -ms-transform: translateX(-50%);
 }
 
+.newcandidate-img {
+    max-width:80%!important;
+}
+
 #category {
     font-size:.5rem;
 }
@@ -169,6 +179,10 @@
 
 .search-btn {
     height:1.9rem;
+}
+
+.candidate-img {
+    max-width:75%!important;
 }
 
 .table > tbody > tr > th{

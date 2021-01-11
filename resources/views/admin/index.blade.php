@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>データ追加</h5>
+        
         <div class="category-container pt-0 pr-2 pl-2">
             <div class="mb-1">
                 <p class="m-0">カテゴリー</p>

@@ -29,6 +29,7 @@ class MailSend extends Mailable
     public function build()
     {
         return $this->view('admin.mailsend')
+                    ->subject('クーポンの利用')
                     ->with(['candidate' => $this->candidate]);
     }
 }

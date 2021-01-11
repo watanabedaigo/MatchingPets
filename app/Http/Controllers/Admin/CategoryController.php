@@ -106,5 +106,4 @@ class CategoryController extends Controller
 
         return back();
     }
-    
 }

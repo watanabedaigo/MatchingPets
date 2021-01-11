@@ -114,13 +114,4 @@ class CandidateController extends Controller
 
         return back();
     }
-    
-    // public function coupon($id)
-    // {
-    //     $candidate = Candidate::find($id);
-    
-    //     return view('candidatecoupon',[
-    //         'candidate' => $candidate,
-    //     ]);
-    // }
 }

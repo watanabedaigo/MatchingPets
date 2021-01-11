@@ -66,54 +66,67 @@
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">閲覧</th>
                             <td class="bg-light">{{ $candidate->view_count }}回</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">値段</th>
                             <td class="bg-light">{{ $priceShow }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">誕生日</th>
                             <td class="bg-light">{{ $candidate->birthday }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">性別</th>
                             <td class="bg-light">{{ $candidate->gender }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">性格</th>
                             <td class="bg-light">{{ $candidate->personality_details }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">毛色</th>
                             <td class="bg-light">{{ $candidate->coat_color }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">検査</th>
                             <td class="bg-light">{{ $candidate->inspection }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">飼育場所</th>
                             <td class="bg-light">{{ $candidate->place_name }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">住所</th>
                             <td class="bg-light" style="word-break:break-all;">{{ $candidate->place_address }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">電話番号</th>
                             <td class="bg-light">{{ $candidate->place_phonenumber }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">営業時間</th>
                             <td class="bg-light">{{ $candidate->bussinesshours }}</td>
                         </tr>
+                        
                         <tr>
                             <th scope="row" class="w-25 text-center" style="background-color:lightgray;">URL</th>
                             <td class="bg-light" style="word-break:break-all;"><a href="{{ $candidate->URL }}" target="_blank">{{ $candidate->URL }}</a></td>
                         </tr>
-                        <tr>
-                            <th scope="row" class="w-25 text-center" style="background-color:lightgray;">クーポン</th>
-                            <td class="bg-light">{{ $candidate->coupon }}</td>
-                        </tr>
+                        @if($candidate->coupon != NULL)
+                            <tr>
+                                <th scope="row" class="w-25 text-center" style="background-color:lightgray;">クーポン</th>
+                                <td class="bg-light">{{ $candidate->coupon }}</td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
         

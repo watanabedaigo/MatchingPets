@@ -1,7 +1,7 @@
 const containerheight = $("#background").height();
 const windowheight = $(window).height();
 if(containerheight < windowheight){
-  $("#background").css("height",windowheight + "px")
+  $("body").css("height",(windowheight) + "px")
 }
 
 $('#subtitle').on('click',() => {

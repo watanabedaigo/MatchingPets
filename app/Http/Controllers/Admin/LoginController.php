@@ -45,19 +45,6 @@ class LoginController extends Controller
         return view('admin.login');
     }
     
-    // public function login(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'email|required',
-    //         'password' => 'required|min:8',
-    //     ]);
-    //     if(Auth::attempt(['email'=>$request->input('email'),'password'=>$request->input('password')])){
-    //         return redirect()->route('top');//リダイレクト先は好きなところへ
-    //     }else{
-    //         return redirect()->back()->with('ログインに失敗しました');
-    //     }
-    // }
-
     protected function guard()
     {
         return Auth::guard('admin');

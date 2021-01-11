@@ -22,6 +22,7 @@
                 <!--条件絞り込み-->
                 <div class="col-12 pl-0 pr-0">
                     <p class="p-0 m-0" id="subtitle"><i class="fas fa-search icon"></i>条件絞り込み <i class="fas fa-sort-down" style="vertical-align:0" id="updown"></i></p>
+                    
                     <div class="form-group mb-2 pt-2 pl-md-3 search-show rounded hide" id="search">
                         {!! Form::label('place_address1', '場所①:', ['class' => 'ml-1']) !!}
                         {!! Form::text('place_address1', Request::get('place_address1'), ['placeholder' => '都道府県 or 市区町村','class' => 'form-control d-inline-block search-form mb-1']) !!}
@@ -55,16 +56,20 @@
                 <!--並び替え-->
                 <div class="col-md-6 col-12 pl-0 pr-0">
                     <p class="p-0 m-0"><i class="fas fa-sort-amount-down icon"></i>並び替え</p>
+                    
                     <div class="form-group mb-1 p-0 rounded-bottom text-center" id="sort" style="font-size:0;">
                         <div class="w-25 m-0 p-0 d-inline-block sort-select-l1 rounded-left" id="created">
                             {!! Form::label('sortCreated', '新着順',['class' => 'w-100 m-0']) !!}{!! Form::radio('sort','記載日降順',old('sort'),['id' => 'sortCreated','class' => 'mr-2 hide']) !!}
                         </div>
+                        
                         <div class="w-25 m-0 p-0 d-inline-block sort-select-l2" id="pricesort">
                             {!! Form::label('sortPrice', '安い順',['class' => 'w-100 m-0']) !!}{!! Form::radio('sort','値段昇順',old('sort'),['id' => 'sortPrice','class' => 'mr-2 hide']) !!}
                         </div>
+                        
                         <div class="w-25 m-0 p-0 d-inline-block sort-select-l2" id="age">
                             {!! Form::label('sortAge', '若い順',['class' => 'w-100 m-0']) !!}{!! Form::radio('sort','誕生日昇順',old('sort'),['id' => 'sortAge','class' => 'mr-2 hide']) !!}
                         </div>
+                        
                         <div class="w-25 m-0 p-0 d-inline-block sort-select-l2 rounded-right" id="visited">
                             {!! Form::label('sortVisited', '人気順',['class' => 'w-100 m-0']) !!}{!! Form::radio('sort','閲覧数降順',old('sort'),['id' => 'sortVisited','class' => 'mr-2 hide']) !!}
                         </div>

@@ -13,6 +13,7 @@
             <p class="catchcopy small p-1 text-center d-inline-block w-50">新しい家族に出会える<br>ペットポータルサイト</p>
             <img src="{{ asset('/image/toppage.jpg') }}" class="top-image"></img>
         </div>
+        
         <div class="search"> 
             <div class="form-group mb-0">
                 {!! Form::open(['route' => 'variety.search', 'method' => 'GET']) !!}
@@ -26,6 +27,7 @@
 <!--カテゴリー一覧-->
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>カテゴリー</h5>
+        
         <div class="row pt-0 pb-2 pl-2 pr-2 mx-auto">
             @if(count($categories) > 0)
                 @foreach($categories as $category)
@@ -65,6 +67,7 @@
     <div style="background-color:floralwhite;">
         <div class="container">
             <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>人気の品種</h5>
+            
             <div class="pr-2 pb-2 pl-2 mx-auto" id="popularityvariety-wrap">
             @if(count($popularityvarieties) > 0)
                 @foreach($popularityvarieties as $popularityvariety)
@@ -110,6 +113,7 @@
 <!--新着情報-->
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>新着情報</h5>
+        
         <div class="pr-2 pb-3 pl-2 mx-auto row no-gutters">
             @if(count($newcandidates) > 0)
                 @foreach($newcandidates as $newcandidate)
@@ -119,6 +123,7 @@
                         $price = $newcandidate->price;
                         $priceShow = number_format($price);
                     @endphp
+                    
                     <div class="col-lg-10 col-12 content bg-white border border-dark rounded row p-0 mx-auto mt-1 background-2">
                         <div class="w-100 small">
                             @if($newcandidate->view_count == 0)
@@ -131,7 +136,7 @@
                         <div class="col-5 p-2 text-center d-flex align-items-center">
                             @foreach($newcandidatephotos as $newcandidatephoto)
                                 @if ($newcandidatephoto->candidate_id == $newcandidate->id)
-                                    <img src="{{ $newcandidatephoto->image_path }}" class="img-fluid d-inline-block mx-auto candidate-img">
+                                    <img src="{{ $newcandidatephoto->image_path }}" class="img-fluid d-inline-block mx-auto newcandidate-img">
                                     @break
                                 @endif
                             @endforeach

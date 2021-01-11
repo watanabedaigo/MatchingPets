@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h5 class="pt-2 ml-2 mr-2 title"><i class="fas fa-paw icon"></i>{{ $category->name }}</h5>
+        
         <div class="row pt-0 pl-2 pr-2 mx-auto">
              @if(count($varieties) > 0)
                 @foreach($varieties as $variety)
