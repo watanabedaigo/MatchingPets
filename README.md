@@ -1,34 +1,26 @@
-## What's this ?
-this is my portfolio.  
-You can check out this on [firebase](https://portfolio-f4b3a.web.app/)  
-  
-## Overview
-### About
-This is self-introduction.
-- My Profession
-- The reason for job change
-- The reason for being engineers
-- goal
-<img width="1122" alt="スクリーンショット 2021-01-11 14 20 45" src="https://user-images.githubusercontent.com/62239012/104149104-5fe93780-5418-11eb-99c4-fb09d244a588.png">
+## About
+This is a portal site for pets.
+You can meet new family on this site.
+check out this on [Heroku](https://matchingpet.herokuapp.com/)  
+<img width="774" alt="スクリーンショット 2021-01-11 14 40 08" src="https://user-images.githubusercontent.com/62239012/104149811-05050f80-541b-11eb-939b-05f764c982fc.png">
 
-### Skills
-I have studied these contents.
+## Development
+I made this site by these contents.
 - Frontend
+    - HTML
+    - CSS
+    - Bootstrap
+    - JavaScript 
+    - jQuery
 - Backend
+    - PHP
+    - Laravel
 - Database
+    - MySQL
 - Infrastructure
+    - AWS(EC2)
 - Others
-- Studying now
-<img width="1129" alt="スクリーンショット 2021-01-11 14 19 23" src="https://user-images.githubusercontent.com/62239012/104149111-69729f80-5418-11eb-85d7-45b7b7fa366c.png">
+    - AWS(S3)
 
-### Works
-These are my works. Please check out something.
-- [MatchingPets](https://matchingpet.herokuapp.com/) / [GitHub](https://github.com/watanabedaigo/MatchingPets)
-- [TravelMemories](https://your-memories-dd52e.web.app/) / [GitHub](https://github.com/watanabedaigo/TravelMemories)
-- [Portfolio](https://portfolio-f4b3a.web.app/) / [GitHub(this page)](https://github.com/watanabedaigo/Portfolio)
-<img width="1124" alt="スクリーンショット 2021-01-11 14 19 52" src="https://user-images.githubusercontent.com/62239012/104149116-6d9ebd00-5418-11eb-9c8a-4c8ff7f5d0fc.png">
-
-### Contact
-you can send e-mail to me.
-if you have some question, please send e-mail !
-<img width="1122" alt="スクリーンショット 2021-01-11 14 20 23" src="https://user-images.githubusercontent.com/62239012/104149122-72637100-5418-11eb-950e-d6e8f72a63b1.png">
+## Contact 
+If you have an interest in this site , please check out [my portfolio](https://portfolio-f4b3a.web.app/) too.
