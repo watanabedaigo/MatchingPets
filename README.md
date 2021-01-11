@@ -1,78 +1,48 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## About
+This is a portal site for pets.
+You can meet new family on this site.
+check out this on [Heroku](https://matchingpet.herokuapp.com/)  
+<img width="774" alt="スクリーンショット 2021-01-11 14 40 08" src="https://user-images.githubusercontent.com/62239012/104149811-05050f80-541b-11eb-939b-05f764c982fc.png">
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Development
+I made this site by these contents.
+- Frontend
+    - HTML
+    - CSS
+    - Bootstrap
+    - JavaScript 
+    - jQuery
+- Backend
+    - PHP
+    - Laravel
+- Database
+    - MySQL
+- Infrastructure
+    - AWS(EC2)
+- Others
+    - AWS(S3)
+    
+## The reason of creating this site
+I had wanted to keep a pug, but it was difficult to look for it which pet shop there was age, sex desired, the pug of the hair color in. The major pet shop releases dog and cat をを breeding in a company's site, but there are few places releasing in the personal pet shop now. However, as I met a new family, there were pugs as many as possible and the feeling that I wanted to encounter and has begun to think that there should be the portal site of the pet. Therefore, only not only a dog, the candidate of various pets was displayed with a list and made the portal site of the pet that it was revealed where the kind that I wanted to keep was.
+(released in test data now.)
 
-## About Laravel
+## Difficulties
+- Understanding of the MVC model
+- String charge account of relations of 1 vs. multi
+- Implementation of the search feature
+- Implementation of the sort feature
+- Parameter transfer of the page nation
+- Implementation of the email transmission function
+- Implementation of the favorite feature
+- Change of indication contents by the condition divergence
+- Condition divergence by the number of times of the loop processing
+- Implementation of respopnsive design
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Impressions
+**It is simply fun.**
+I decide a concept and think about a design from 0 and implement one function each. I output what I learned in that and was able to know joy, the pleasure when I was able to implement a function and a design that I checked a thing not to understand one by one and solved it and imagined inside.
+In addition, I was able to know how the way of search was important. When I solved time and an error to implement a function, I just googled an error code at the start, and 1~2 unit read the article of the summary that a search was higher and quoted the contents which seemed to be usable. However, the cause of the error did not often go well to vary according to a development environment, the versions of the language and keenly realized the essential thing that was not solved. I checked one one keyword that came out in that concretely after checking it abstractly from there and grasped big picture. And, according to a flow of a hypothesis, inspection, the consideration, I kept it in mind to lose a choice one by one. I move a hand, and the joy when it was settled is not forgotten somehow.
+Concerning the first original application, it is a work with the contemplation. As I think that there is the place that is hard to read on the cord still more, I will revise the details in future and want to bring you up carefully.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Contact 
+If you have an interest in this site , please check out [my portfolio](https://portfolio-f4b3a.web.app/) too.
